@@ -20,6 +20,7 @@ dependencies:
   freezed:
   freezed_annotation:
   gap:
+  go_router:
   hooks_riverpod: 2.0.0-dev.5
   intl:
   json_annotation:

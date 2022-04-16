@@ -1,7 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-void main() {
-  runApp(const MyApp());
+import 'app.dart';
+import 'pages/first/first_page.dart';
+import 'pages/seconde/second_page.dart';
+import 'widgets/root.dart';
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  // 画面の向きを固定
+  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  runApp(
+    const RootWidget(
+      child: ProviderScope(
+        child: App(),
+      ),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -21,6 +39,8 @@ class MyApp extends StatelessWidget {
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
+  static const path = '/';
+  static const name = 'MyHomePage';
 
   final String title;
 
@@ -29,14 +49,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,20 +59,18 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+            ElevatedButton(
+              // onPressed: () => context.go(FirstPage.path),
+              onPressed: () => GoRouter.of(context).go(FirstPage.path),
+              child: const Text('Go to First Page'),
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
+            const Gap(16),
+            ElevatedButton(
+              onPressed: () => context.go(SecondPage.path),
+              child: const Text('Go to Second Page'),
             ),
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
       ),
     );
   }
