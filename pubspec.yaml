@@ -17,6 +17,7 @@ dependencies:
   flutter_hooks:
   flutter_localizations:
     sdk: flutter
+  flutter_spinkit:
   freezed:
   freezed_annotation:
   gap:
