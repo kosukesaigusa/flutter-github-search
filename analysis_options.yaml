@@ -7,6 +7,10 @@ analyzer:
   errors:
     missing_required_param: warning
     missing_return: warning
+    # Remi さんの推奨設定
+    # https://github.com/dart-lang/sdk/issues/46844
+    # freezed モデルの invalid_annotation_target の警告を消す目的
+    invalid_annotation_target: ignore
   strong-mode:
     implicit-casts: false
     implicit-dynamic: false
