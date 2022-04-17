@@ -10,14 +10,18 @@ environment:
 
 dependencies:
   cached_network_image:
+  connectivity_plus:
+  cookie_jar:
   cupertino_icons:
   dio:
+  dio_cookie_manager:
   flutter:
     sdk: flutter
   flutter_hooks:
   flutter_localizations:
     sdk: flutter
   flutter_spinkit:
+  font_awesome_flutter:
   freezed:
   freezed_annotation:
   gap:
@@ -28,6 +32,7 @@ dependencies:
   package_info_plus:
   shared_preferences:
   state_notifier:
+  url_launcher:
 
 dev_dependencies:
   build_runner:

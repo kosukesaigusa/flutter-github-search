@@ -1,31 +1,93 @@
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
+import 'package:flutter_github_search/providers/github_repository/github_repository.dart';
+import 'package:flutter_github_search/providers/scaffold_messenger/scaffold_messenger.dart';
+import 'package:flutter_github_search/widgets/loading.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:url_launcher/url_launcher.dart';
 
-import '../../providers/scaffold_messenger/scaffold_messenger.dart';
-
-class SearchPage extends HookConsumerWidget {
+class SearchPage extends StatefulHookConsumerWidget {
   const SearchPage({Key? key}) : super(key: key);
 
   static const path = '/search/';
   static const name = 'SearchPage';
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<SearchPage> createState() => _SearchPageState();
+}
+
+class _SearchPageState extends ConsumerState<SearchPage> {
+  late TextEditingController _textEditingController;
+
+  @override
+  void initState() {
+    _textEditingController = TextEditingController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _textEditingController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text('Search Page'),
-            const Gap(16),
-            ElevatedButton(
-              onPressed: () => ref.watch(scaffoldMessengerController).showSnackBar('スナックバー'),
-              child: const Text('Show SnackBar'),
-            ),
-          ],
-        ),
+      appBar: AppBar(
+        title: const Text('GitHub Search'),
+      ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          TextField(
+            controller: _textEditingController,
+            onChanged: (text) {
+              ref.read(gitHubRepositoriesSearchWordProvider.notifier).update((state) => text);
+            },
+          ),
+          Expanded(
+            child: ref.watch(gitHubRepositoriesFutureProvider).when<Widget>(
+                  loading: () => const PrimarySpinkitCircle(),
+                  error: (e, __) => Text(e.toString()),
+                  data: (gitHubRepositories) {
+                    if (gitHubRepositories.isEmpty) {
+                      return const Text('検索語句を入力してください');
+                    }
+                    return ListView.builder(
+                      itemCount: gitHubRepositories.length,
+                      itemBuilder: (context, index) {
+                        final gitHubRepository = gitHubRepositories[index];
+                        return ListTile(
+                          leading: const FaIcon(FontAwesomeIcons.github),
+                          title: Text(gitHubRepository.name),
+                          subtitle: Text(
+                            gitHubRepository.description,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            style: const TextStyle(
+                              fontSize: 10,
+                              color: Colors.black54,
+                            ),
+                          ),
+                          trailing: Text(gitHubRepository.starGazersCount.toString()),
+                          onTap: () async {
+                            final urlString = gitHubRepository.htmlUrl;
+                            if (await canLaunch(urlString)) {
+                              await launch(urlString);
+                            } else {
+                              ref
+                                  .read(scaffoldMessengerController)
+                                  .showSnackBar('URL が開けませんでした：$urlString');
+                            }
+                          },
+                        );
+                      },
+                    );
+                  },
+                ),
+          ),
+        ],
       ),
     );
   }
