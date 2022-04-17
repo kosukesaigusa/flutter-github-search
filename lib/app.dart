@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'constants/localization.dart';
-import 'route/go_router.dart';
+import 'widgets/scaffold_messenger_navigator.dart';
 
 /// MaterialApp を返すウィジェット。
 /// ここではルートは制御せず、home プロパティに
@@ -10,9 +10,7 @@ class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      routeInformationParser: router.routeInformationParser,
-      routerDelegate: router.routerDelegate,
+    return MaterialApp(
       key: UniqueKey(),
       debugShowCheckedModeBanner: false,
       locale: locale,
@@ -20,6 +18,7 @@ class App extends StatelessWidget {
       supportedLocales: const [locale],
       title: 'flutter-github-search',
       theme: ThemeData(primarySwatch: Colors.blue).copyWith(),
+      home: const ScaffoldMessengerNavigator(),
       builder: (context, child) {
         return MediaQuery(
           // 端末依存のフォントスケールを 1 に固定する
