@@ -38,7 +38,7 @@ const bottomTabs = [
   BottomTab(
     index: 1,
     tab: BottomTabEnum.search,
-    label: 'マップ',
+    label: '検索',
     path: SearchPage.path,
     iconData: Icons.search,
   ),
