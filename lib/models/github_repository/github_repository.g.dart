@@ -25,6 +25,7 @@ _$_GitHubRepository _$$_GitHubRepositoryFromJson(Map<String, dynamic> json) =>
       size: json['size'] as int? ?? 0,
       starGazersCount: json['stargazers_count'] as int? ?? 0,
       watchersCount: json['watchers_count'] as int? ?? 0,
+      forksCount: json['forks_count'] as int? ?? 0,
     );
 
 Map<String, dynamic> _$$_GitHubRepositoryToJson(_$_GitHubRepository instance) =>
@@ -46,4 +47,5 @@ Map<String, dynamic> _$$_GitHubRepositoryToJson(_$_GitHubRepository instance) =>
       'size': instance.size,
       'stargazers_count': instance.starGazersCount,
       'watchers_count': instance.watchersCount,
+      'forks_count': instance.forksCount,
     };
