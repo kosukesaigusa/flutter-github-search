@@ -25,6 +25,7 @@ class GitHubRepository with _$GitHubRepository {
     @Default(0) int size,
     @Default(0) @JsonKey(name: 'stargazers_count') int starGazersCount,
     @Default(0) @JsonKey(name: 'watchers_count') int watchersCount,
+    @Default(0) @JsonKey(name: 'forks_count') int forksCount,
   }) = _GitHubRepository;
 
   factory GitHubRepository.fromJson(Map<String, dynamic> json) => _$GitHubRepositoryFromJson(json);
