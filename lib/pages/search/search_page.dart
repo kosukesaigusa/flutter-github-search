@@ -1,10 +1,14 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_github_search/providers/github_repository/github_repository.dart';
-import 'package:flutter_github_search/providers/scaffold_messenger/scaffold_messenger.dart';
-import 'package:flutter_github_search/widgets/loading.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import '../../constants/number.dart';
+import '../../providers/github_repository/github_repository.dart';
+import '../../providers/scaffold_messenger/scaffold_messenger.dart';
+import '../../widgets/loading.dart';
 
 class SearchPage extends StatefulHookConsumerWidget {
   const SearchPage({Key? key}) : super(key: key);
@@ -18,6 +22,7 @@ class SearchPage extends StatefulHookConsumerWidget {
 
 class _SearchPageState extends ConsumerState<SearchPage> {
   late TextEditingController _textEditingController;
+  Timer? _debounceTimer;
 
   @override
   void initState() {
@@ -28,6 +33,7 @@ class _SearchPageState extends ConsumerState<SearchPage> {
   @override
   void dispose() {
     _textEditingController.dispose();
+    _debounceTimer?.cancel();
     super.dispose();
   }
 
@@ -42,9 +48,7 @@ class _SearchPageState extends ConsumerState<SearchPage> {
         children: [
           TextField(
             controller: _textEditingController,
-            onChanged: (text) {
-              ref.read(gitHubRepositoriesSearchWordProvider.notifier).update((state) => text);
-            },
+            onChanged: _textFieldOnChanged,
           ),
           Expanded(
             child: ref.watch(gitHubRepositoriesFutureProvider).when<Widget>(
@@ -90,5 +94,20 @@ class _SearchPageState extends ConsumerState<SearchPage> {
         ],
       ),
     );
+  }
+
+  /// テキストフィールドの onChanged に指定する関数。
+  /// ディバウンスタイマーがアクティブであれば一度キャンセルして、直後に新しく定義し直す。
+  /// 所定の時間（ミリ秒）経過後に第 2 引数のコールバック関数が発火して、検索ワードを更新し
+  /// GitHub の Search Repository API を新しいキーワードで取得し直す。
+  /// UX に支障が出ない程度に、無駄に API をコールする回数を減らす目的。
+  void _textFieldOnChanged(String text) {
+    if (_debounceTimer?.isActive ?? false) {
+      _debounceTimer!.cancel();
+    }
+    // 所定の時間（ミリ秒）経過後に第 2 引数のコールバック関数が発火する
+    _debounceTimer = Timer(minSearchApiCallPeriodDuration, () {
+      ref.read(gitHubRepositoriesSearchWordProvider.notifier).update((state) => text);
+    });
   }
 }
