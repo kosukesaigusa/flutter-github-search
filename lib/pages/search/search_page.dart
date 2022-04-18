@@ -142,6 +142,8 @@ class _SearchPageState extends ConsumerState<SearchPage> {
                                       children: [
                                         Text(
                                           gitHubRepository.name,
+                                          maxLines: 1,
+                                          overflow: TextOverflow.ellipsis,
                                           style: const TextStyle(
                                             fontSize: 16,
                                             fontWeight: FontWeight.w500,
