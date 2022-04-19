@@ -9,7 +9,7 @@ import 'package:flutter_github_search/utils/extensions/dio.dart';
 
 import '../constants/number.dart';
 import '../constants/string.dart';
-import '../models/api_response/search_api_response/search_api_response.dart';
+import '../models/api_response/base_api_response/base_api_response.dart';
 import '../utils/api/connectivity_interceptor.dart';
 import '../utils/api/curl_interceptor.dart';
 import '../utils/api/header_interceptor.dart';
@@ -63,7 +63,7 @@ class ApiClient implements AbstractApiClient {
   static CookieJar? _cookieJar;
 
   @override
-  Future<SearchApiResponse> get(
+  Future<BaseApiResponse> get(
     String path, {
     Map<String, dynamic>? queryParameters,
     Map<String, dynamic>? header,
@@ -88,7 +88,7 @@ class ApiClient implements AbstractApiClient {
       if (responseData == null) {
         throw DioError(requestOptions: response.requestOptions);
       }
-      return SearchApiResponse.fromJson(responseData);
+      return BaseApiResponse.fromJson(responseData);
     } on DioError catch (error) {
       if (error.type.isTimeout) {
         throw const ApiErrorResponseException();

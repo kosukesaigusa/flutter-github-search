@@ -1,3 +1,4 @@
+import 'package:flutter_github_search/models/api_response/search_repository_response/search_repository_response.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../services/api_client.dart';
@@ -17,12 +18,12 @@ class GitHubRepositoryRepository {
   Future<List<GitHubRepository>> fetchGitHubRepositories({
     required String q,
   }) async {
-    final searchApiResponse = await _client.get(
+    final apiResponse = await _client.get(
       '/search/repositories',
       queryParameters: <String, dynamic>{
         'q': q,
       },
     );
-    return searchApiResponse.items;
+    return SearchRepositoryResponse.fromJson(apiResponse.data).items;
   }
 }
