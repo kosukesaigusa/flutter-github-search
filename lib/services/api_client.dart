@@ -1,70 +1,21 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:cookie_jar/cookie_jar.dart';
-import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter_github_search/utils/extensions/dio.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../constants/number.dart';
-import '../constants/string.dart';
 import '../models/api_response/base_api_response/base_api_response.dart';
-import '../utils/api/connectivity_interceptor.dart';
-import '../utils/api/curl_interceptor.dart';
-import '../utils/api/header_interceptor.dart';
-import '../utils/api/mock_interceptor.dart';
+import '../providers/dio/dio.dart';
 import '../utils/enums.dart';
 import '../utils/exception.dart';
 import 'abstract_api_client.dart';
 
-/// ApiClient のシングルトンクラス。
-/// インスタンスの未生成の場合は、コンストラクタメソッド内で
-/// いろいろな設定を施したり、インターセプタを付けたりしている。
+final apiClientProvider = Provider<ApiClient>((ref) => ApiClient(ref.read));
+
 class ApiClient implements AbstractApiClient {
-  factory ApiClient() {
-    if (_instance == null) {
-      _instance = ApiClient._();
-      _dio.httpClientAdapter = DefaultHttpClientAdapter();
-      _dio.options = BaseOptions(
-        baseUrl: apiBaseURL,
-        connectTimeout: connectionTimeoutMilliSeconds,
-        receiveTimeout: receiveTimeoutMilliSeconds,
-        validateStatus: (_) => true,
-      );
-
-      // クッキー関係のインターセプターを設定する。
-      // if (cookieDir != null) {
-      //   _cookieJar = PersistCookieJar(
-      //     ignoreExpires: true,
-      //     storage: FileStorage(cookieDir!.path),
-      //   );
-      //   _dio.interceptors.add(CookieManager(_cookieJar!));
-      // } else {
-      //   _cookieJar = CookieJar(ignoreExpires: true);
-      //   _dio.interceptors.add(CookieManager(_cookieJar!));
-      // }
-
-      _dio.interceptors.addAll([
-        ConnectivityInterceptor(),
-        HeaderInterceptor(),
-        // デバッグモードでは CurlInterceptor を追加
-        if (kDebugMode) CurlInterceptor(),
-        // モックで動作させる場合は MockInterceptor を追加
-        if (const bool.fromEnvironment('mock'))
-          InterceptorsWrapper(
-            onRequest: MockInterceptor().onRequest,
-            onResponse: (response, handler) => handler.next(response),
-          )
-      ]);
-    }
-    return _instance!;
-  }
-
-  ApiClient._();
-  static final Dio _dio = Dio();
-  static ApiClient? _instance;
-  static CookieJar? _cookieJar;
+  ApiClient(this._read);
+  final Reader _read;
 
   @override
   Future<BaseApiResponse> get(
@@ -76,7 +27,7 @@ class ApiClient implements AbstractApiClient {
     ProgressCallback? onReceiveProgress,
   }) async {
     try {
-      final response = await _dio.get<Map<String, dynamic>>(
+      final response = await _read(dioProvider).get<Map<String, dynamic>>(
         path,
         options: Options(headers: header ?? <String, dynamic>{}),
         queryParameters: queryParameters,

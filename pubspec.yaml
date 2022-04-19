@@ -30,6 +30,7 @@ dependencies:
   intl:
   json_annotation:
   package_info_plus:
+  path_provider:
   shared_preferences:
   state_notifier:
   url_launcher:

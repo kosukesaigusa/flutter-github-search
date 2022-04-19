@@ -3,7 +3,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../services/api_client.dart';
 import '../models/github_repository/github_repository.dart';
-import '../providers/api_client/api_client.dart';
 
 final searchGitHubRepositoryRepositoryProvider = Provider.autoDispose(
   (ref) => GitHubRepositoryRepository(client: ref.read(apiClientProvider)),
