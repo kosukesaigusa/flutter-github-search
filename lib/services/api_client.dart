@@ -18,6 +18,9 @@ import '../utils/enums.dart';
 import '../utils/exception.dart';
 import 'abstract_api_client.dart';
 
+/// ApiClient のシングルトンクラス。
+/// インスタンスの未生成の場合は、コンストラクタメソッド内で
+/// いろいろな設定を施したり、インターセプタを付けたりしている。
 class ApiClient implements AbstractApiClient {
   factory ApiClient() {
     if (_instance == null) {
@@ -45,8 +48,9 @@ class ApiClient implements AbstractApiClient {
       _dio.interceptors.addAll([
         ConnectivityInterceptor(),
         HeaderInterceptor(),
+        // デバッグモードでは CurlInterceptor を追加
         if (kDebugMode) CurlInterceptor(),
-        // モックで動作させる場合
+        // モックで動作させる場合は MockInterceptor を追加
         if (const bool.fromEnvironment('mock'))
           InterceptorsWrapper(
             onRequest: MockInterceptor().onRequest,
@@ -81,38 +85,31 @@ class ApiClient implements AbstractApiClient {
       );
       final statusCode = response.statusCode;
       final responseData = response.data;
-      // TODO: ステータスコードのチェックを増やす
-      if (statusCode == 401) {
-        throw const UnAuthorizedException();
-      }
+      _validateStatusCode(statusCode);
       if (responseData == null) {
         throw DioError(requestOptions: response.requestOptions);
       }
-      return BaseApiResponse.fromJson(responseData);
-    } on DioError catch (error) {
-      if (error.type.isTimeout) {
-        throw const ApiErrorResponseException();
+      return BaseApiResponse.fromResponseData(responseData);
+    } on DioError catch (dioError) {
+      final errorType = dioError.type;
+      final errorResponse = dioError.response;
+      final dynamic error = dioError.error;
+      if (errorType.isTimeout) {
+        throw const ApiTimeoutException();
       }
-      if (error.error is ErrorCode && error.error == ErrorCode.internetConnection) {
-        throw const InternetConnectionException();
+      if (error is ErrorCode && error == ErrorCode.internetConnection) {
+        throw const NetworkConnectionException();
       }
-      // タイムアウト等は早期リターン
-      if (error.type.isTimeout) {
-        throw const ApiErrorResponseException();
-      }
-      final errorResponse = error.response;
       if (errorResponse == null) {
-        throw ApiNotFoundException(
-          'サーバーとの通信に失敗しました。',
-          error.requestOptions.uri,
+        throw ApiException(
+          message: 'API 通信に失敗しました。',
+          detail: dioError.requestOptions.uri,
         );
       }
-      final statusCode = errorResponse.statusCode;
-      // API のエラーレスポンス
-      if (statusCode == 404) {
-        throw ApiNotFoundException(null, error.response!.data.get('message'));
-      }
-      throw Exception(error.response!.data.get('message'));
+      throw ApiException(
+        message: 'API 通信に失敗しました。',
+        detail: dioError.requestOptions.uri,
+      );
     } on SocketException {
       rethrow;
     } on FormatException {
@@ -121,6 +118,13 @@ class ApiClient implements AbstractApiClient {
       rethrow;
     } on Exception {
       rethrow;
+    }
+  }
+
+  /// ステータスコードを確認して例外をスローする。問題なければ何もしない。
+  void _validateStatusCode(int? statusCode) {
+    if (statusCode == 401) {
+      throw const UnAuthorizedException();
     }
   }
 }

@@ -1,5 +1,5 @@
-abstract class ApiException implements Exception {
-  ApiException({
+abstract class AbstractApiException implements Exception {
+  AbstractApiException({
     this.message,
     this.detail,
   });
@@ -10,15 +10,16 @@ abstract class ApiException implements Exception {
   @override
   String toString() {
     if (message == null) {
-      return '通信エラーが発生しました。通信環境をご確認のうえ、再度実行してください。';
+      return 'API 通信時にエラーが発生しました。'
+          '通信環境をご確認のうえ、再度実行してください。';
     }
     return message.toString();
   }
 }
 
-/// API のエラーレスポンス
-class ApiErrorResponseException implements ApiException {
-  const ApiErrorResponseException({
+/// 一般的な API の例外
+class ApiException implements AbstractApiException {
+  const ApiException({
     this.message,
     this.detail,
   });
@@ -29,24 +30,51 @@ class ApiErrorResponseException implements ApiException {
   final dynamic detail;
 }
 
-/// API の NotFound エラーレスポンス
-class ApiNotFoundException implements ApiException {
-  const ApiNotFoundException([
-    this._message,
+/// API がタイムアウトした場合の例外
+class ApiTimeoutException implements AbstractApiException {
+  const ApiTimeoutException({
+    this.message,
     this.detail,
-  ]);
+  });
 
-  final String? _message;
+  @override
+  final dynamic message;
   @override
   final dynamic detail;
 
   @override
-  String get message => _message ?? '通信エラー: ネットワークを確認してください。';
+  String toString() {
+    if (message == null) {
+      return 'API 通信がタイムアウトしました。通信環境をご確認のうえ、再度実行してください。';
+    }
+    return message.toString();
+  }
+}
+
+/// API が 404 を返すときの例外
+class ApiNotFoundException implements AbstractApiException {
+  const ApiNotFoundException({
+    this.message,
+    this.detail,
+  });
+
+  @override
+  final dynamic message;
+  @override
+  final dynamic detail;
+
+  @override
+  String toString() {
+    if (message == null) {
+      return 'リクエストした API が見つかりませんでした。';
+    }
+    return message.toString();
+  }
 }
 
 /// ネットワーク通信がない場合の Exception
-class InternetConnectionException implements Exception {
-  const InternetConnectionException([
+class NetworkConnectionException implements Exception {
+  const NetworkConnectionException([
     this.message,
     this.detail,
   ]);
@@ -55,6 +83,7 @@ class InternetConnectionException implements Exception {
   final dynamic detail;
 }
 
+/// 必要な権限がない場合の Exception
 class UnAuthorizedException implements Exception {
   const UnAuthorizedException();
 }
