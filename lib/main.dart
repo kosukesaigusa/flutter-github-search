@@ -20,7 +20,7 @@ Future<void> main() async {
         // 起動時に一回インスタンス化したキャッシュを使いませせるようにすることで、
         // それ以降 await なしでアクセスしたいときなどに便利。
         overrides: [
-          cookieDirectoryProvider.overrideWithValue(
+          applicationDocumentsDirectoryProvider.overrideWithValue(
             await getApplicationDocumentsDirectory(),
           ),
           sharedPreferencesProvider.overrideWithValue(
