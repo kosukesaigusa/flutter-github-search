@@ -31,7 +31,7 @@ class ScaffoldMessengerController {
       scaffoldMessengerState.removeCurrentSnackBar();
     }
     // message が String 型ならそのまま、その他なら String 型に変換しつつ
-    // ユーザーに見せるべきでない文言は調整して SnackBar を表示する。ｓ
+    // ユーザーに見せるべきでない文言は調整して SnackBar を表示する。
     if (message is String) {
       return scaffoldMessengerState.showSnackBar(SnackBar(
         content: Text(message),
