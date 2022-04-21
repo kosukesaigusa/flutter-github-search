@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class FirstPage extends HookConsumerWidget {
@@ -9,10 +11,26 @@ class FirstPage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final counter = useState<int>(0);
     return Scaffold(
       appBar: AppBar(),
-      body: const Center(
-        child: Text('First Page'),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text('First Page'),
+            const Gap(8),
+            const Text('You have pushed the button this many time:'),
+            Text('${counter.value}'),
+          ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          counter.value++;
+        },
+        tooltip: 'Increment',
+        child: const Icon(Icons.add),
       ),
     );
   }
