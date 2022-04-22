@@ -3,8 +3,8 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 /// HTTP のレスポンスボディのデータ (dynamic) を
 /// 適当な Map<String, dynamic> に変換するコンバータ。
-class ApiResponseDataConverter implements JsonConverter<Map<String, dynamic>, dynamic> {
-  const ApiResponseDataConverter();
+class BaseApiResponseDataConverter implements JsonConverter<Map<String, dynamic>, dynamic> {
+  const BaseApiResponseDataConverter();
 
   @override
   Map<String, dynamic> fromJson(dynamic data) {

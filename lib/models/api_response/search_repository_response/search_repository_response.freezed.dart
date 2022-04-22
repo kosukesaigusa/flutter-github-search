@@ -12,38 +12,12 @@ part of 'search_repository_response.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 SearchRepositoryResponse _$SearchRepositoryResponseFromJson(
     Map<String, dynamic> json) {
   return _SearchRepositoryResponse.fromJson(json);
 }
-
-/// @nodoc
-class _$SearchRepositoryResponseTearOff {
-  const _$SearchRepositoryResponseTearOff();
-
-  _SearchRepositoryResponse call(
-      {@JsonKey(name: 'total_count')
-          int totalCount = 0,
-      @JsonKey(name: 'incomplete_results')
-          bool incompleteResults = false,
-      @SearchRepositoryResponseDataConverter()
-          List<GitHubRepository> items = const <GitHubRepository>[]}) {
-    return _SearchRepositoryResponse(
-      totalCount: totalCount,
-      incompleteResults: incompleteResults,
-      items: items,
-    );
-  }
-
-  SearchRepositoryResponse fromJson(Map<String, Object?> json) {
-    return SearchRepositoryResponse.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $SearchRepositoryResponse = _$SearchRepositoryResponseTearOff();
 
 /// @nodoc
 mixin _$SearchRepositoryResponse {
@@ -160,7 +134,8 @@ class _$_SearchRepositoryResponse implements _SearchRepositoryResponse {
       @JsonKey(name: 'incomplete_results')
           this.incompleteResults = false,
       @SearchRepositoryResponseDataConverter()
-          this.items = const <GitHubRepository>[]});
+          final List<GitHubRepository> items = const <GitHubRepository>[]})
+      : _items = items;
 
   factory _$_SearchRepositoryResponse.fromJson(Map<String, dynamic> json) =>
       _$$_SearchRepositoryResponseFromJson(json);
@@ -171,10 +146,15 @@ class _$_SearchRepositoryResponse implements _SearchRepositoryResponse {
   @override
   @JsonKey(name: 'incomplete_results')
   final bool incompleteResults;
-  @JsonKey()
-  @override
   @SearchRepositoryResponseDataConverter()
-  final List<GitHubRepository> items;
+  final List<GitHubRepository> _items;
+  @override
+  @JsonKey()
+  @SearchRepositoryResponseDataConverter()
+  List<GitHubRepository> get items {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_items);
+  }
 
   @override
   String toString() {
@@ -193,6 +173,7 @@ class _$_SearchRepositoryResponse implements _SearchRepositoryResponse {
             const DeepCollectionEquality().equals(other.items, items));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -215,24 +196,24 @@ class _$_SearchRepositoryResponse implements _SearchRepositoryResponse {
 abstract class _SearchRepositoryResponse implements SearchRepositoryResponse {
   const factory _SearchRepositoryResponse(
       {@JsonKey(name: 'total_count')
-          int totalCount,
+          final int totalCount,
       @JsonKey(name: 'incomplete_results')
-          bool incompleteResults,
+          final bool incompleteResults,
       @SearchRepositoryResponseDataConverter()
-          List<GitHubRepository> items}) = _$_SearchRepositoryResponse;
+          final List<GitHubRepository> items}) = _$_SearchRepositoryResponse;
 
   factory _SearchRepositoryResponse.fromJson(Map<String, dynamic> json) =
       _$_SearchRepositoryResponse.fromJson;
 
   @override
   @JsonKey(name: 'total_count')
-  int get totalCount;
+  int get totalCount => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'incomplete_results')
-  bool get incompleteResults;
+  bool get incompleteResults => throw _privateConstructorUsedError;
   @override
   @SearchRepositoryResponseDataConverter()
-  List<GitHubRepository> get items;
+  List<GitHubRepository> get items => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$SearchRepositoryResponseCopyWith<_SearchRepositoryResponse> get copyWith =>

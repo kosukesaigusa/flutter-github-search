@@ -12,62 +12,11 @@ part of 'owner.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 Owner _$OwnerFromJson(Map<String, dynamic> json) {
   return _Owner.fromJson(json);
 }
-
-/// @nodoc
-class _$OwnerTearOff {
-  const _$OwnerTearOff();
-
-  _Owner call(
-      {required String login,
-      required int id,
-      @JsonKey(name: 'node_id') required String nodeId,
-      @JsonKey(name: 'avatar_url') String avatarUrl = '',
-      @JsonKey(name: 'gravatar_url') String gravatarUrl = '',
-      @JsonKey(name: 'html_url') String htmlUrl = '',
-      @JsonKey(name: 'followers_url') String followersUrl = '',
-      @JsonKey(name: 'following_url') String followingUrl = '',
-      @JsonKey(name: 'gists_url') String gistsUrl = '',
-      @JsonKey(name: 'starred_url') String starredUrl = '',
-      @JsonKey(name: 'subscriptions_url') String subscriptionsUrl = '',
-      @JsonKey(name: 'organizations_url') String organizationsUrl = '',
-      @JsonKey(name: 'repos_url') String reposUrl = '',
-      @JsonKey(name: 'events_url') String eventsUrl = '',
-      @JsonKey(name: 'received_events_url') String receivedEventsUrl = '',
-      required String type,
-      @JsonKey(name: 'site_admin') bool siteAdmin = false}) {
-    return _Owner(
-      login: login,
-      id: id,
-      nodeId: nodeId,
-      avatarUrl: avatarUrl,
-      gravatarUrl: gravatarUrl,
-      htmlUrl: htmlUrl,
-      followersUrl: followersUrl,
-      followingUrl: followingUrl,
-      gistsUrl: gistsUrl,
-      starredUrl: starredUrl,
-      subscriptionsUrl: subscriptionsUrl,
-      organizationsUrl: organizationsUrl,
-      reposUrl: reposUrl,
-      eventsUrl: eventsUrl,
-      receivedEventsUrl: receivedEventsUrl,
-      type: type,
-      siteAdmin: siteAdmin,
-    );
-  }
-
-  Owner fromJson(Map<String, Object?> json) {
-    return Owner.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $Owner = _$OwnerTearOff();
 
 /// @nodoc
 mixin _$Owner {
@@ -470,6 +419,7 @@ class _$_Owner implements _Owner {
             const DeepCollectionEquality().equals(other.siteAdmin, siteAdmin));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -504,74 +454,74 @@ class _$_Owner implements _Owner {
 
 abstract class _Owner implements Owner {
   const factory _Owner(
-      {required String login,
-      required int id,
-      @JsonKey(name: 'node_id') required String nodeId,
-      @JsonKey(name: 'avatar_url') String avatarUrl,
-      @JsonKey(name: 'gravatar_url') String gravatarUrl,
-      @JsonKey(name: 'html_url') String htmlUrl,
-      @JsonKey(name: 'followers_url') String followersUrl,
-      @JsonKey(name: 'following_url') String followingUrl,
-      @JsonKey(name: 'gists_url') String gistsUrl,
-      @JsonKey(name: 'starred_url') String starredUrl,
-      @JsonKey(name: 'subscriptions_url') String subscriptionsUrl,
-      @JsonKey(name: 'organizations_url') String organizationsUrl,
-      @JsonKey(name: 'repos_url') String reposUrl,
-      @JsonKey(name: 'events_url') String eventsUrl,
-      @JsonKey(name: 'received_events_url') String receivedEventsUrl,
-      required String type,
-      @JsonKey(name: 'site_admin') bool siteAdmin}) = _$_Owner;
+      {required final String login,
+      required final int id,
+      @JsonKey(name: 'node_id') required final String nodeId,
+      @JsonKey(name: 'avatar_url') final String avatarUrl,
+      @JsonKey(name: 'gravatar_url') final String gravatarUrl,
+      @JsonKey(name: 'html_url') final String htmlUrl,
+      @JsonKey(name: 'followers_url') final String followersUrl,
+      @JsonKey(name: 'following_url') final String followingUrl,
+      @JsonKey(name: 'gists_url') final String gistsUrl,
+      @JsonKey(name: 'starred_url') final String starredUrl,
+      @JsonKey(name: 'subscriptions_url') final String subscriptionsUrl,
+      @JsonKey(name: 'organizations_url') final String organizationsUrl,
+      @JsonKey(name: 'repos_url') final String reposUrl,
+      @JsonKey(name: 'events_url') final String eventsUrl,
+      @JsonKey(name: 'received_events_url') final String receivedEventsUrl,
+      required final String type,
+      @JsonKey(name: 'site_admin') final bool siteAdmin}) = _$_Owner;
 
   factory _Owner.fromJson(Map<String, dynamic> json) = _$_Owner.fromJson;
 
   @override
-  String get login;
+  String get login => throw _privateConstructorUsedError;
   @override
-  int get id;
+  int get id => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'node_id')
-  String get nodeId;
+  String get nodeId => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'avatar_url')
-  String get avatarUrl;
+  String get avatarUrl => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'gravatar_url')
-  String get gravatarUrl;
+  String get gravatarUrl => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'html_url')
-  String get htmlUrl;
+  String get htmlUrl => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'followers_url')
-  String get followersUrl;
+  String get followersUrl => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'following_url')
-  String get followingUrl;
+  String get followingUrl => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'gists_url')
-  String get gistsUrl;
+  String get gistsUrl => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'starred_url')
-  String get starredUrl;
+  String get starredUrl => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'subscriptions_url')
-  String get subscriptionsUrl;
+  String get subscriptionsUrl => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'organizations_url')
-  String get organizationsUrl;
+  String get organizationsUrl => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'repos_url')
-  String get reposUrl;
+  String get reposUrl => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'events_url')
-  String get eventsUrl;
+  String get eventsUrl => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'received_events_url')
-  String get receivedEventsUrl;
+  String get receivedEventsUrl => throw _privateConstructorUsedError;
   @override
-  String get type;
+  String get type => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'site_admin')
-  bool get siteAdmin;
+  bool get siteAdmin => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$OwnerCopyWith<_Owner> get copyWith => throw _privateConstructorUsedError;

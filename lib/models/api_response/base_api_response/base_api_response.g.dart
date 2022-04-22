@@ -12,12 +12,12 @@ _$_BaseApiResponse _$$_BaseApiResponseFromJson(Map<String, dynamic> json) =>
       message: json['message'] as String? ?? '',
       data: json['data'] == null
           ? const <String, dynamic>{}
-          : const ApiResponseDataConverter().fromJson(json['data']),
+          : const BaseApiResponseDataConverter().fromJson(json['data']),
     );
 
 Map<String, dynamic> _$$_BaseApiResponseToJson(_$_BaseApiResponse instance) =>
     <String, dynamic>{
       'success': instance.success,
       'message': instance.message,
-      'data': const ApiResponseDataConverter().toJson(instance.data),
+      'data': const BaseApiResponseDataConverter().toJson(instance.data),
     };

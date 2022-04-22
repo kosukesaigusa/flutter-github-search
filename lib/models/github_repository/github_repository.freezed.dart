@@ -12,64 +12,11 @@ part of 'github_repository.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 GitHubRepository _$GitHubRepositoryFromJson(Map<String, dynamic> json) {
   return _GitHubRepository.fromJson(json);
 }
-
-/// @nodoc
-class _$GitHubRepositoryTearOff {
-  const _$GitHubRepositoryTearOff();
-
-  _GitHubRepository call(
-      {required int id,
-      @JsonKey(name: 'node_id') required String nodeId,
-      required String name,
-      @JsonKey(name: 'full_name') required String fullName,
-      required Owner owner,
-      bool private = false,
-      @JsonKey(name: 'html_url') required String htmlUrl,
-      String description = '',
-      bool fork = false,
-      required String url,
-      @JsonKey(name: 'created_at') required DateTime createdAt,
-      @JsonKey(name: 'updated_at') required DateTime updatedAt,
-      @JsonKey(name: 'pushed_at') required DateTime pushedAt,
-      String homepage = '',
-      int size = 0,
-      @JsonKey(name: 'stargazers_count') int starGazersCount = 0,
-      @JsonKey(name: 'watchers_count') int watchersCount = 0,
-      @JsonKey(name: 'forks_count') int forksCount = 0}) {
-    return _GitHubRepository(
-      id: id,
-      nodeId: nodeId,
-      name: name,
-      fullName: fullName,
-      owner: owner,
-      private: private,
-      htmlUrl: htmlUrl,
-      description: description,
-      fork: fork,
-      url: url,
-      createdAt: createdAt,
-      updatedAt: updatedAt,
-      pushedAt: pushedAt,
-      homepage: homepage,
-      size: size,
-      starGazersCount: starGazersCount,
-      watchersCount: watchersCount,
-      forksCount: forksCount,
-    );
-  }
-
-  GitHubRepository fromJson(Map<String, Object?> json) {
-    return GitHubRepository.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $GitHubRepository = _$GitHubRepositoryTearOff();
 
 /// @nodoc
 mixin _$GitHubRepository {
@@ -427,17 +374,17 @@ class _$_GitHubRepository implements _GitHubRepository {
   final String fullName;
   @override
   final Owner owner;
-  @JsonKey()
   @override
+  @JsonKey()
   final bool private;
   @override
   @JsonKey(name: 'html_url')
   final String htmlUrl;
-  @JsonKey()
   @override
+  @JsonKey()
   final String description;
-  @JsonKey()
   @override
+  @JsonKey()
   final bool fork;
   @override
   final String url;
@@ -450,11 +397,11 @@ class _$_GitHubRepository implements _GitHubRepository {
   @override
   @JsonKey(name: 'pushed_at')
   final DateTime pushedAt;
-  @JsonKey()
   @override
+  @JsonKey()
   final String homepage;
-  @JsonKey()
   @override
+  @JsonKey()
   final int size;
   @override
   @JsonKey(name: 'stargazers_count')
@@ -500,6 +447,7 @@ class _$_GitHubRepository implements _GitHubRepository {
                 .equals(other.forksCount, forksCount));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -535,73 +483,74 @@ class _$_GitHubRepository implements _GitHubRepository {
 
 abstract class _GitHubRepository implements GitHubRepository {
   const factory _GitHubRepository(
-      {required int id,
-      @JsonKey(name: 'node_id') required String nodeId,
-      required String name,
-      @JsonKey(name: 'full_name') required String fullName,
-      required Owner owner,
-      bool private,
-      @JsonKey(name: 'html_url') required String htmlUrl,
-      String description,
-      bool fork,
-      required String url,
-      @JsonKey(name: 'created_at') required DateTime createdAt,
-      @JsonKey(name: 'updated_at') required DateTime updatedAt,
-      @JsonKey(name: 'pushed_at') required DateTime pushedAt,
-      String homepage,
-      int size,
-      @JsonKey(name: 'stargazers_count') int starGazersCount,
-      @JsonKey(name: 'watchers_count') int watchersCount,
-      @JsonKey(name: 'forks_count') int forksCount}) = _$_GitHubRepository;
+          {required final int id,
+          @JsonKey(name: 'node_id') required final String nodeId,
+          required final String name,
+          @JsonKey(name: 'full_name') required final String fullName,
+          required final Owner owner,
+          final bool private,
+          @JsonKey(name: 'html_url') required final String htmlUrl,
+          final String description,
+          final bool fork,
+          required final String url,
+          @JsonKey(name: 'created_at') required final DateTime createdAt,
+          @JsonKey(name: 'updated_at') required final DateTime updatedAt,
+          @JsonKey(name: 'pushed_at') required final DateTime pushedAt,
+          final String homepage,
+          final int size,
+          @JsonKey(name: 'stargazers_count') final int starGazersCount,
+          @JsonKey(name: 'watchers_count') final int watchersCount,
+          @JsonKey(name: 'forks_count') final int forksCount}) =
+      _$_GitHubRepository;
 
   factory _GitHubRepository.fromJson(Map<String, dynamic> json) =
       _$_GitHubRepository.fromJson;
 
   @override
-  int get id;
+  int get id => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'node_id')
-  String get nodeId;
+  String get nodeId => throw _privateConstructorUsedError;
   @override
-  String get name;
+  String get name => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'full_name')
-  String get fullName;
+  String get fullName => throw _privateConstructorUsedError;
   @override
-  Owner get owner;
+  Owner get owner => throw _privateConstructorUsedError;
   @override
-  bool get private;
+  bool get private => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'html_url')
-  String get htmlUrl;
+  String get htmlUrl => throw _privateConstructorUsedError;
   @override
-  String get description;
+  String get description => throw _privateConstructorUsedError;
   @override
-  bool get fork;
+  bool get fork => throw _privateConstructorUsedError;
   @override
-  String get url;
+  String get url => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'created_at')
-  DateTime get createdAt;
+  DateTime get createdAt => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'updated_at')
-  DateTime get updatedAt;
+  DateTime get updatedAt => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'pushed_at')
-  DateTime get pushedAt;
+  DateTime get pushedAt => throw _privateConstructorUsedError;
   @override
-  String get homepage;
+  String get homepage => throw _privateConstructorUsedError;
   @override
-  int get size;
+  int get size => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'stargazers_count')
-  int get starGazersCount;
+  int get starGazersCount => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'watchers_count')
-  int get watchersCount;
+  int get watchersCount => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'forks_count')
-  int get forksCount;
+  int get forksCount => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$GitHubRepositoryCopyWith<_GitHubRepository> get copyWith =>

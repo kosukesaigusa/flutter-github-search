@@ -12,23 +12,7 @@ part of 'bottom_navigation_bar_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$BottomNavigationBarStateTearOff {
-  const _$BottomNavigationBarStateTearOff();
-
-  _TabState call(
-      {int currentIndex = 0, BottomTabEnum currentTab = BottomTabEnum.home}) {
-    return _TabState(
-      currentIndex: currentIndex,
-      currentTab: currentTab,
-    );
-  }
-}
-
-/// @nodoc
-const $BottomNavigationBarState = _$BottomNavigationBarStateTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$BottomNavigationBarState {
@@ -117,11 +101,11 @@ class __$TabStateCopyWithImpl<$Res>
 class _$_TabState implements _TabState {
   _$_TabState({this.currentIndex = 0, this.currentTab = BottomTabEnum.home});
 
-  @JsonKey()
   @override
+  @JsonKey()
   final int currentIndex;
-  @JsonKey()
   @override
+  @JsonKey()
   final BottomTabEnum currentTab;
 
   @override
@@ -153,12 +137,13 @@ class _$_TabState implements _TabState {
 }
 
 abstract class _TabState implements BottomNavigationBarState {
-  factory _TabState({int currentIndex, BottomTabEnum currentTab}) = _$_TabState;
+  factory _TabState({final int currentIndex, final BottomTabEnum currentTab}) =
+      _$_TabState;
 
   @override
-  int get currentIndex;
+  int get currentIndex => throw _privateConstructorUsedError;
   @override
-  BottomTabEnum get currentTab;
+  BottomTabEnum get currentTab => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$TabStateCopyWith<_TabState> get copyWith =>

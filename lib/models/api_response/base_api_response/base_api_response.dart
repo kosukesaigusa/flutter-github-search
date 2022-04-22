@@ -16,7 +16,7 @@ class BaseApiResponse with _$BaseApiResponse {
   const factory BaseApiResponse({
     @Default(true) bool success,
     @Default('') String message,
-    @Default(<String, dynamic>{}) @ApiResponseDataConverter() Map<String, dynamic> data,
+    @Default(<String, dynamic>{}) @BaseApiResponseDataConverter() Map<String, dynamic> data,
   }) = _BaseApiResponse;
 
   factory BaseApiResponse.fromJson(Map<String, dynamic> json) => _$BaseApiResponseFromJson(json);

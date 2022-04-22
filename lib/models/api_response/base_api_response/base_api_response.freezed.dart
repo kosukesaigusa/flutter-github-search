@@ -12,41 +12,17 @@ part of 'base_api_response.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 BaseApiResponse _$BaseApiResponseFromJson(Map<String, dynamic> json) {
   return _BaseApiResponse.fromJson(json);
 }
 
 /// @nodoc
-class _$BaseApiResponseTearOff {
-  const _$BaseApiResponseTearOff();
-
-  _BaseApiResponse call(
-      {bool success = true,
-      String message = '',
-      @ApiResponseDataConverter()
-          Map<String, dynamic> data = const <String, dynamic>{}}) {
-    return _BaseApiResponse(
-      success: success,
-      message: message,
-      data: data,
-    );
-  }
-
-  BaseApiResponse fromJson(Map<String, Object?> json) {
-    return BaseApiResponse.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $BaseApiResponse = _$BaseApiResponseTearOff();
-
-/// @nodoc
 mixin _$BaseApiResponse {
   bool get success => throw _privateConstructorUsedError;
   String get message => throw _privateConstructorUsedError;
-  @ApiResponseDataConverter()
+  @BaseApiResponseDataConverter()
   Map<String, dynamic> get data => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -63,7 +39,7 @@ abstract class $BaseApiResponseCopyWith<$Res> {
   $Res call(
       {bool success,
       String message,
-      @ApiResponseDataConverter() Map<String, dynamic> data});
+      @BaseApiResponseDataConverter() Map<String, dynamic> data});
 }
 
 /// @nodoc
@@ -108,7 +84,7 @@ abstract class _$BaseApiResponseCopyWith<$Res>
   $Res call(
       {bool success,
       String message,
-      @ApiResponseDataConverter() Map<String, dynamic> data});
+      @BaseApiResponseDataConverter() Map<String, dynamic> data});
 }
 
 /// @nodoc
@@ -151,21 +127,28 @@ class _$_BaseApiResponse implements _BaseApiResponse {
   const _$_BaseApiResponse(
       {this.success = true,
       this.message = '',
-      @ApiResponseDataConverter() this.data = const <String, dynamic>{}});
+      @BaseApiResponseDataConverter()
+          final Map<String, dynamic> data = const <String, dynamic>{}})
+      : _data = data;
 
   factory _$_BaseApiResponse.fromJson(Map<String, dynamic> json) =>
       _$$_BaseApiResponseFromJson(json);
 
-  @JsonKey()
   @override
+  @JsonKey()
   final bool success;
-  @JsonKey()
   @override
+  @JsonKey()
   final String message;
-  @JsonKey()
+  @BaseApiResponseDataConverter()
+  final Map<String, dynamic> _data;
   @override
-  @ApiResponseDataConverter()
-  final Map<String, dynamic> data;
+  @JsonKey()
+  @BaseApiResponseDataConverter()
+  Map<String, dynamic> get data {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_data);
+  }
 
   @override
   String toString() {
@@ -182,6 +165,7 @@ class _$_BaseApiResponse implements _BaseApiResponse {
             const DeepCollectionEquality().equals(other.data, data));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -202,21 +186,21 @@ class _$_BaseApiResponse implements _BaseApiResponse {
 
 abstract class _BaseApiResponse implements BaseApiResponse {
   const factory _BaseApiResponse(
-          {bool success,
-          String message,
-          @ApiResponseDataConverter() Map<String, dynamic> data}) =
+          {final bool success,
+          final String message,
+          @BaseApiResponseDataConverter() final Map<String, dynamic> data}) =
       _$_BaseApiResponse;
 
   factory _BaseApiResponse.fromJson(Map<String, dynamic> json) =
       _$_BaseApiResponse.fromJson;
 
   @override
-  bool get success;
+  bool get success => throw _privateConstructorUsedError;
   @override
-  String get message;
+  String get message => throw _privateConstructorUsedError;
   @override
-  @ApiResponseDataConverter()
-  Map<String, dynamic> get data;
+  @BaseApiResponseDataConverter()
+  Map<String, dynamic> get data => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$BaseApiResponseCopyWith<_BaseApiResponse> get copyWith =>
