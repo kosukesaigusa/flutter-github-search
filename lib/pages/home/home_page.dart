@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../providers/scaffold_messenger/scaffold_messenger.dart';
+import '../../services/scaffold_messenger.dart';
 import '../first/first_page.dart';
 import '../second/second_page.dart';
 
@@ -34,7 +34,7 @@ class HomePage extends HookConsumerWidget {
             ),
             const Gap(16),
             ElevatedButton(
-              onPressed: () => ref.watch(scaffoldMessengerController).showSnackBar('スナックバー'),
+              onPressed: () => ref.watch(scaffoldMessengerServiceProvider).showSnackBar('スナックバー'),
               child: const Text('Show SnackBar'),
             ),
           ],

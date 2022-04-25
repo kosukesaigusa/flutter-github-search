@@ -6,7 +6,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'app.dart';
-import 'providers/shared_preferences/shared_preferences.dart';
+import 'services/shared_preferences.dart';
 import 'widgets/root.dart';
 
 Future<void> main() async {

@@ -10,7 +10,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../constants/number.dart';
 import '../../providers/github_repository/github_repository.dart';
-import '../../providers/scaffold_messenger/scaffold_messenger.dart';
+import '../../services/scaffold_messenger.dart';
 import '../../widgets/loading.dart';
 
 class SearchPage extends StatefulHookConsumerWidget {
@@ -124,7 +124,7 @@ class _SearchPageState extends ConsumerState<SearchPage> {
                                 await launch(urlString);
                               } else {
                                 ref
-                                    .read(scaffoldMessengerController)
+                                    .read(scaffoldMessengerServiceProvider)
                                     .showSnackBar('URL が開けませんでした：$urlString');
                               }
                             },
