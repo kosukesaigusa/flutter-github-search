@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter_github_search/utils/extensions/dio.dart';
+import 'package:flutter_github_search/utils/extensions/string.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../models/api_response/base_api_response/base_api_response.dart';
@@ -36,7 +37,10 @@ class ApiClient implements AbstractApiClient {
       );
       final statusCode = response.statusCode;
       final responseData = response.data;
-      _validateStatusCode(statusCode);
+      _validateStatusCode(
+        statusCode: statusCode,
+        message: _messageByResponseData(responseData),
+      );
       if (responseData == null) {
         throw DioError(requestOptions: response.requestOptions);
       }
@@ -73,9 +77,24 @@ class ApiClient implements AbstractApiClient {
   }
 
   /// ステータスコードを確認して例外をスローする。問題なければ何もしない。
-  void _validateStatusCode(int? statusCode) {
+  /// void 以外の Never 型などの使用か Exception 型を使用するようなことも
+  /// 少し検討したが、とりあえず void にすることにした。
+  void _validateStatusCode({
+    int? statusCode,
+    String message = '',
+  }) {
+    if (statusCode == 400) {
+      throw ApiException(message: message.ifIsEmpty('エラーが発生しました。'));
+    }
     if (statusCode == 401) {
       throw const UnAuthorizedException();
     }
+    if (statusCode == 403) {
+      throw const ApiException();
+    }
   }
+
+  /// Map<String, dynamic>? な responseData に 'message' のキーが含まれていれば
+  /// その文字列を、そうでなければ空文字を返す。
+  String _messageByResponseData(Map<String, dynamic>? data) => (data?['message'] as String?) ?? '';
 }
