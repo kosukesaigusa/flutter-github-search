@@ -6,8 +6,8 @@ part 'github_repository.freezed.dart';
 part 'github_repository.g.dart';
 
 @freezed
-class GitHubRepository with _$GitHubRepository {
-  const factory GitHubRepository({
+class GitHubRepo with _$GitHubRepo {
+  const factory GitHubRepo({
     required int id,
     required String name,
     required Owner owner,
@@ -16,7 +16,7 @@ class GitHubRepository with _$GitHubRepository {
     @JsonKey(name: 'updated_at') required DateTime updatedAt,
     @Default(0) @JsonKey(name: 'stargazers_count') int starGazersCount,
     @Default(0) @JsonKey(name: 'forks_count') int forksCount,
-  }) = _GitHubRepository;
+  }) = _GitHubRepo;
 
-  factory GitHubRepository.fromJson(Map<String, dynamic> json) => _$GitHubRepositoryFromJson(json);
+  factory GitHubRepo.fromJson(Map<String, dynamic> json) => _$GitHubRepoFromJson(json);
 }

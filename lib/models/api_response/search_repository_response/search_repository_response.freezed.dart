@@ -26,7 +26,7 @@ mixin _$SearchRepositoryResponse {
   @JsonKey(name: 'incomplete_results')
   bool get incompleteResults => throw _privateConstructorUsedError;
   @SearchRepositoryResponseDataConverter()
-  List<GitHubRepository> get items => throw _privateConstructorUsedError;
+  List<GitHubRepo> get items => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -42,7 +42,7 @@ abstract class $SearchRepositoryResponseCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'total_count') int totalCount,
       @JsonKey(name: 'incomplete_results') bool incompleteResults,
-      @SearchRepositoryResponseDataConverter() List<GitHubRepository> items});
+      @SearchRepositoryResponseDataConverter() List<GitHubRepo> items});
 }
 
 /// @nodoc
@@ -72,7 +72,7 @@ class _$SearchRepositoryResponseCopyWithImpl<$Res>
       items: items == freezed
           ? _value.items
           : items // ignore: cast_nullable_to_non_nullable
-              as List<GitHubRepository>,
+              as List<GitHubRepo>,
     ));
   }
 }
@@ -87,7 +87,7 @@ abstract class _$SearchRepositoryResponseCopyWith<$Res>
   $Res call(
       {@JsonKey(name: 'total_count') int totalCount,
       @JsonKey(name: 'incomplete_results') bool incompleteResults,
-      @SearchRepositoryResponseDataConverter() List<GitHubRepository> items});
+      @SearchRepositoryResponseDataConverter() List<GitHubRepo> items});
 }
 
 /// @nodoc
@@ -120,7 +120,7 @@ class __$SearchRepositoryResponseCopyWithImpl<$Res>
       items: items == freezed
           ? _value.items
           : items // ignore: cast_nullable_to_non_nullable
-              as List<GitHubRepository>,
+              as List<GitHubRepo>,
     ));
   }
 }
@@ -134,7 +134,7 @@ class _$_SearchRepositoryResponse implements _SearchRepositoryResponse {
       @JsonKey(name: 'incomplete_results')
           this.incompleteResults = false,
       @SearchRepositoryResponseDataConverter()
-          final List<GitHubRepository> items = const <GitHubRepository>[]})
+          final List<GitHubRepo> items = const <GitHubRepo>[]})
       : _items = items;
 
   factory _$_SearchRepositoryResponse.fromJson(Map<String, dynamic> json) =>
@@ -147,11 +147,11 @@ class _$_SearchRepositoryResponse implements _SearchRepositoryResponse {
   @JsonKey(name: 'incomplete_results')
   final bool incompleteResults;
   @SearchRepositoryResponseDataConverter()
-  final List<GitHubRepository> _items;
+  final List<GitHubRepo> _items;
   @override
   @JsonKey()
   @SearchRepositoryResponseDataConverter()
-  List<GitHubRepository> get items {
+  List<GitHubRepo> get items {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_items);
   }
@@ -200,7 +200,7 @@ abstract class _SearchRepositoryResponse implements SearchRepositoryResponse {
       @JsonKey(name: 'incomplete_results')
           final bool incompleteResults,
       @SearchRepositoryResponseDataConverter()
-          final List<GitHubRepository> items}) = _$_SearchRepositoryResponse;
+          final List<GitHubRepo> items}) = _$_SearchRepositoryResponse;
 
   factory _SearchRepositoryResponse.fromJson(Map<String, dynamic> json) =
       _$_SearchRepositoryResponse.fromJson;
@@ -213,7 +213,7 @@ abstract class _SearchRepositoryResponse implements SearchRepositoryResponse {
   bool get incompleteResults => throw _privateConstructorUsedError;
   @override
   @SearchRepositoryResponseDataConverter()
-  List<GitHubRepository> get items => throw _privateConstructorUsedError;
+  List<GitHubRepo> get items => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$SearchRepositoryResponseCopyWith<_SearchRepositoryResponse> get copyWith =>

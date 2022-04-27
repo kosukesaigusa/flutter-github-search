@@ -8,8 +8,11 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../constants/number.dart';
+import '../../constants/string.dart';
+import '../../models/github_repository/github_repository.dart';
 import '../../providers/github_repository/github_repository.dart';
 import '../../services/scaffold_messenger.dart';
+import '../../utils/extensions/int.dart';
 import '../../utils/string.dart';
 import '../../widgets/loading.dart';
 
@@ -91,126 +94,145 @@ class _SearchPageState extends ConsumerState<SearchPage> {
             Expanded(
               child: ref.watch(gitHubRepositoriesFutureProvider).when<Widget>(
                     loading: () => const PrimarySpinkitCircle(),
-                    error: (e, __) => Text(e.toString()),
-                    data: (gitHubRepositories) {
+                    error: (e, __) => _text(e.toString()),
+                    data: (searchRepositoryResponse) {
                       showLoadingSuffixIcon.value = false;
-                      if (gitHubRepositories.isEmpty) {
-                        return const Padding(
-                          padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-                          child: Text(
-                            'GitHub の Search Repository API で検索したい'
-                            'キーワードを入力してください。',
-                            style: TextStyle(
-                              fontSize: 12,
-                              color: Colors.black54,
-                            ),
-                          ),
-                        );
+                      final items = searchRepositoryResponse.items;
+                      final totalCount = searchRepositoryResponse.totalCount;
+                      if (items.isEmpty) {
+                        return _text(emptyQMessage);
                       }
                       return ListView.builder(
-                        itemCount: gitHubRepositories.length + 2,
+                        // +3 は上下の Gap と上部のヒット件数の表示
+                        itemCount: items.length + 3,
                         itemBuilder: (context, index) {
                           if (index == 0) {
                             return const Gap(8);
                           }
-                          if (index == gitHubRepositories.length + 1) {
+                          if (index == 1) {
+                            return _text('検索結果: ${totalCount.withComma} 件');
+                          }
+                          if (index == items.length + 2) {
                             return const Gap(8);
                           }
-                          final gitHubRepository = gitHubRepositories[index - 1];
-                          return InkWell(
-                            onTap: () async {
-                              final urlString = gitHubRepository.htmlUrl;
-                              if (await canLaunch(urlString)) {
-                                await launch(urlString);
-                              } else {
-                                ref
-                                    .read(scaffoldMessengerServiceProvider)
-                                    .showSnackBar('URL が開けませんでした：$urlString');
-                              }
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  const FaIcon(FontAwesomeIcons.github),
-                                  const Gap(8),
-                                  Expanded(
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          gitHubRepository.name,
-                                          maxLines: 1,
-                                          overflow: TextOverflow.ellipsis,
-                                          style: const TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                        ),
-                                        Text(
-                                          gitHubRepository.description,
-                                          maxLines: 2,
-                                          overflow: TextOverflow.ellipsis,
-                                          style: const TextStyle(
-                                            fontSize: 10,
-                                            color: Colors.black54,
-                                          ),
-                                        ),
-                                        Text(
-                                          '更新日：${gitHubRepository.updatedAt.toString().substring(0, 10)}',
-                                          style: const TextStyle(
-                                            fontSize: 10,
-                                            color: Colors.black54,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  const Gap(8),
-                                  Column(
-                                    crossAxisAlignment: CrossAxisAlignment.end,
-                                    children: [
-                                      Row(
-                                        crossAxisAlignment: CrossAxisAlignment.center,
-                                        children: [
-                                          const Icon(Icons.star, size: 12),
-                                          const Gap(4),
-                                          Text(
-                                            addComma(gitHubRepository.starGazersCount),
-                                            style: const TextStyle(
-                                              fontSize: 12,
-                                              color: Colors.black54,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      const Gap(4),
-                                      Row(
-                                        crossAxisAlignment: CrossAxisAlignment.center,
-                                        children: [
-                                          const FaIcon(FontAwesomeIcons.codeFork, size: 12),
-                                          const Gap(4),
-                                          Text(
-                                            addComma(gitHubRepository.forksCount),
-                                            style: const TextStyle(
-                                              fontSize: 12,
-                                              color: Colors.black54,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
-                          );
+                          return RepoItemWidget(repo: items[index - 2]);
                         },
                       );
                     },
                   ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _text(String message) => Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+        child: Text(
+          message,
+          style: const TextStyle(
+            fontSize: 12,
+            color: Colors.black54,
+          ),
+        ),
+      );
+}
+
+/// 検索結果のひとつひとつ
+class RepoItemWidget extends HookConsumerWidget {
+  const RepoItemWidget({
+    Key? key,
+    required this.repo,
+  }) : super(key: key);
+
+  final GitHubRepo repo;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return InkWell(
+      onTap: () async {
+        final urlString = repo.htmlUrl;
+        if (await canLaunch(urlString)) {
+          await launch(urlString);
+        } else {
+          ref.read(scaffoldMessengerServiceProvider).showSnackBar('URL が開けませんでした：$urlString');
+        }
+      },
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const FaIcon(FontAwesomeIcons.github),
+            const Gap(8),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    repo.name,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  Text(
+                    repo.description,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                      fontSize: 10,
+                      color: Colors.black54,
+                    ),
+                  ),
+                  Text(
+                    '更新日：${repo.updatedAt.toString().substring(0, 10)}',
+                    style: const TextStyle(
+                      fontSize: 10,
+                      color: Colors.black54,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const Gap(8),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const Icon(Icons.star, size: 12),
+                    const Gap(4),
+                    Text(
+                      addComma(repo.starGazersCount),
+                      style: const TextStyle(
+                        fontSize: 12,
+                        color: Colors.black54,
+                      ),
+                    ),
+                  ],
+                ),
+                const Gap(4),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const FaIcon(FontAwesomeIcons.codeFork, size: 12),
+                    const Gap(4),
+                    Text(
+                      addComma(repo.forksCount),
+                      style: const TextStyle(
+                        fontSize: 12,
+                        color: Colors.black54,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
             ),
           ],
         ),

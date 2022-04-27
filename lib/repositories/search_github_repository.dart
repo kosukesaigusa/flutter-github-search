@@ -2,27 +2,32 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../services/api_client.dart';
 import '../models/api_response/search_repository_response/search_repository_response.dart';
-import '../models/github_repository/github_repository.dart';
 
-final searchGitHubRepositoryRepositoryProvider = Provider.autoDispose(
-  (ref) => GitHubRepositoryRepository(client: ref.read(apiClientProvider)),
+final searchGitHubRepoRepositoryProvider = Provider.autoDispose(
+  (ref) => GitHubRepoRepository(client: ref.read(apiClientProvider)),
 );
 
-class GitHubRepositoryRepository {
-  GitHubRepositoryRepository({required ApiClient client}) : _client = client;
+class GitHubRepoRepository {
+  GitHubRepoRepository({
+    required ApiClient client,
+  }) : _client = client;
   final ApiClient _client;
 
-  /// 入力したキーワードで GET /search/repositories API をコールして
-  /// ヒットする GitHub リポジトリ一覧を取得する。
-  Future<List<GitHubRepository>> fetchGitHubRepositories({
+  /// 入力したキーワードで GET /search/repositories API をコールして、
+  /// ヒットする GitHub リポジトリ一覧を含む SearchRepositoryResponse を返す。
+  Future<SearchRepositoryResponse> fetchGitHubRepositories({
     required String q,
+    int page = 1,
+    int perPage = 10,
   }) async {
     final apiResponse = await _client.get(
       '/search/repositories',
       queryParameters: <String, dynamic>{
         'q': q,
+        'page': page,
+        'per_page': perPage,
       },
     );
-    return SearchRepositoryResponse.fromJson(apiResponse.data).items;
+    return SearchRepositoryResponse.fromJson(apiResponse.data);
   }
 }

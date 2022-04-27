@@ -1,6 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../../utils/extensions/map.dart';
 import '../../json_converter.dart';
 
 part 'base_api_response.freezed.dart';
@@ -25,8 +24,8 @@ class BaseApiResponse with _$BaseApiResponse {
   /// ApiResponse 型のインスタンスにしてから使用することにする。
   factory BaseApiResponse.fromResponseData(Map<String, dynamic> responseData) {
     final baseData = <String, dynamic>{
-      'success': responseData.getByKey('success') ?? true,
-      'message': responseData.getByKey('message') ?? '',
+      'success': responseData['success'] ?? true,
+      'message': responseData['message'] ?? '',
     };
     // baseData と重複するキーは取り除く
     responseData.removeWhere((key, dynamic value) => baseData.containsKey(key));

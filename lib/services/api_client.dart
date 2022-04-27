@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../constants/string.dart';
 import '../models/api_response/base_api_response/base_api_response.dart';
 import '../providers/common/dio.dart';
 import '../utils/enums.dart';
@@ -46,39 +47,20 @@ class ApiClient implements AbstractApiClient {
       }
       return BaseApiResponse.fromResponseData(responseData);
     } on DioError catch (dioError) {
-      final errorType = dioError.type;
-      final errorResponse = dioError.response;
-      final dynamic error = dioError.error;
-      if (errorType.isTimeout) {
-        throw const ApiTimeoutException();
-      }
-      if (error is ErrorCode && error == ErrorCode.internetConnection) {
-        throw const NetworkConnectionException();
-      }
-      if (errorResponse == null) {
-        throw ApiException(
-          message: 'API 通信に失敗しました。',
-          detail: dioError.requestOptions.uri,
-        );
-      }
-      throw ApiException(
-        message: 'API 通信に失敗しました。',
-        detail: dioError.requestOptions.uri,
-      );
+      throw _handleDioError(dioError);
+    } on ApiException {
+      rethrow;
     } on SocketException {
       rethrow;
     } on FormatException {
       rethrow;
-    } on UnAuthorizedException {
-      rethrow;
-    } on Exception {
-      rethrow;
+    } on Exception catch (e) {
+      throw Exception(e.toString());
     }
   }
 
+  // TODO: ステータスコードのチェックを必要な分だけ書く
   /// ステータスコードを確認して例外をスローする。問題なければ何もしない。
-  /// void 以外の Never 型などの使用か Exception 型を使用するようなことも
-  /// 少し検討したが、とりあえず void にすることにした。
   void _validateStatusCode({
     int? statusCode,
     String message = '',
@@ -92,6 +74,30 @@ class ApiClient implements AbstractApiClient {
     if (statusCode == 403) {
       throw const ApiException();
     }
+  }
+
+  /// DioError を受けて、何かしらの Exception を return する
+  /// 呼び出し側ではそれをスローする
+  Exception _handleDioError(DioError dioError) {
+    final errorType = dioError.type;
+    final errorResponse = dioError.response;
+    final dynamic error = dioError.error;
+    if (errorType.isTimeout) {
+      return const ApiTimeoutException();
+    }
+    if (error is ErrorCode && error == ErrorCode.internetConnection) {
+      return const NetworkConnectionException();
+    }
+    if (errorResponse == null) {
+      return ApiException(
+        message: apiErrorMessage,
+        detail: dioError.requestOptions.uri,
+      );
+    }
+    return ApiException(
+      message: apiErrorMessage,
+      detail: dioError.requestOptions.uri,
+    );
   }
 
   /// Map<String, dynamic>? な responseData に 'message' のキーが含まれていれば

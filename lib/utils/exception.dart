@@ -1,3 +1,45 @@
+import 'dart:io';
+
+import '../constants/string.dart';
+
+/// アプリ内で用いる例外
+abstract class AbstractAppException implements Exception {
+  AbstractAppException(this.message);
+
+  final dynamic message;
+
+  @override
+  String toString() {
+    if (message == null) {
+      return generalErrorMessage;
+    }
+    if (message is String) {
+      return (message as String).isEmpty ? generalErrorMessage : message as String;
+    }
+    return message.toString();
+  }
+}
+
+/// アプリ内で用いる一般的な例外
+class AppException implements AbstractAppException {
+  const AppException(this.message);
+
+  @override
+  final dynamic message;
+
+  @override
+  String toString() {
+    if (message == null) {
+      return generalErrorMessage;
+    }
+    if (message is String) {
+      return (message as String).isEmpty ? generalErrorMessage : message as String;
+    }
+    return message.toString();
+  }
+}
+
+/// API に関する例外
 abstract class AbstractApiException implements Exception {
   AbstractApiException({
     this.message,
@@ -10,8 +52,10 @@ abstract class AbstractApiException implements Exception {
   @override
   String toString() {
     if (message == null) {
-      return 'API 通信時にエラーが発生しました。'
-          '通信環境をご確認のうえ、再度実行してください。';
+      return apiErrorMessage;
+    }
+    if (message is String) {
+      return (message as String).isEmpty ? apiErrorMessage : message as String;
     }
     return message.toString();
   }
@@ -26,8 +70,20 @@ class ApiException implements AbstractApiException {
 
   @override
   final dynamic message;
+
   @override
   final dynamic detail;
+
+  @override
+  String toString() {
+    if (message == null) {
+      return generalErrorMessage;
+    }
+    if (message is String) {
+      return (message as String).isEmpty ? generalErrorMessage : message as String;
+    }
+    return message.toString();
+  }
 }
 
 /// API がタイムアウトした場合の例外
@@ -45,7 +101,10 @@ class ApiTimeoutException implements AbstractApiException {
   @override
   String toString() {
     if (message == null) {
-      return 'API 通信がタイムアウトしました。通信環境をご確認のうえ、再度実行してください。';
+      return apiTimeoutMessage;
+    }
+    if (message is String) {
+      return (message as String).isEmpty ? apiTimeoutMessage : message as String;
     }
     return message.toString();
   }
@@ -66,7 +125,10 @@ class ApiNotFoundException implements AbstractApiException {
   @override
   String toString() {
     if (message == null) {
-      return 'リクエストした API が見つかりませんでした。';
+      return apiNotFoundMessage;
+    }
+    if (message is String) {
+      return (message as String).isEmpty ? apiNotFoundMessage : message as String;
     }
     return message.toString();
   }
@@ -86,4 +148,12 @@ class NetworkConnectionException implements Exception {
 /// 必要な権限がない場合の Exception
 class UnAuthorizedException implements Exception {
   const UnAuthorizedException();
+}
+
+/// Platform が iOS, Android のどちらにも該当しないときに使用する Exception
+class UnsupportedPlatformException implements Exception {
+  const UnsupportedPlatformException();
+
+  @override
+  String toString() => '${Platform.operatingSystem} はサポートされていません。';
 }
