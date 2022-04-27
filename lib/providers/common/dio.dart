@@ -10,7 +10,7 @@ import '../../utils/api/connectivity_interceptor.dart';
 import '../../utils/api/curl_interceptor.dart';
 import '../../utils/api/header_interceptor.dart';
 import '../../utils/api/mock_interceptor.dart';
-import '../cookie/cookie.dart';
+import 'cookie.dart';
 
 /// Dio のインスタンスを各種設定を済ませた状態で提供するプロバイダ
 final dioProvider = Provider<Dio>((ref) {
