@@ -21,30 +21,15 @@ GitHubRepository _$GitHubRepositoryFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$GitHubRepository {
   int get id => throw _privateConstructorUsedError;
-  @JsonKey(name: 'node_id')
-  String get nodeId => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  @JsonKey(name: 'full_name')
-  String get fullName => throw _privateConstructorUsedError;
   Owner get owner => throw _privateConstructorUsedError;
-  bool get private => throw _privateConstructorUsedError;
   @JsonKey(name: 'html_url')
   String get htmlUrl => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
-  bool get fork => throw _privateConstructorUsedError;
-  String get url => throw _privateConstructorUsedError;
-  @JsonKey(name: 'created_at')
-  DateTime get createdAt => throw _privateConstructorUsedError;
   @JsonKey(name: 'updated_at')
   DateTime get updatedAt => throw _privateConstructorUsedError;
-  @JsonKey(name: 'pushed_at')
-  DateTime get pushedAt => throw _privateConstructorUsedError;
-  String get homepage => throw _privateConstructorUsedError;
-  int get size => throw _privateConstructorUsedError;
   @JsonKey(name: 'stargazers_count')
   int get starGazersCount => throw _privateConstructorUsedError;
-  @JsonKey(name: 'watchers_count')
-  int get watchersCount => throw _privateConstructorUsedError;
   @JsonKey(name: 'forks_count')
   int get forksCount => throw _privateConstructorUsedError;
 
@@ -61,22 +46,12 @@ abstract class $GitHubRepositoryCopyWith<$Res> {
       _$GitHubRepositoryCopyWithImpl<$Res>;
   $Res call(
       {int id,
-      @JsonKey(name: 'node_id') String nodeId,
       String name,
-      @JsonKey(name: 'full_name') String fullName,
       Owner owner,
-      bool private,
       @JsonKey(name: 'html_url') String htmlUrl,
       String description,
-      bool fork,
-      String url,
-      @JsonKey(name: 'created_at') DateTime createdAt,
       @JsonKey(name: 'updated_at') DateTime updatedAt,
-      @JsonKey(name: 'pushed_at') DateTime pushedAt,
-      String homepage,
-      int size,
       @JsonKey(name: 'stargazers_count') int starGazersCount,
-      @JsonKey(name: 'watchers_count') int watchersCount,
       @JsonKey(name: 'forks_count') int forksCount});
 
   $OwnerCopyWith<$Res> get owner;
@@ -94,22 +69,12 @@ class _$GitHubRepositoryCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? nodeId = freezed,
     Object? name = freezed,
-    Object? fullName = freezed,
     Object? owner = freezed,
-    Object? private = freezed,
     Object? htmlUrl = freezed,
     Object? description = freezed,
-    Object? fork = freezed,
-    Object? url = freezed,
-    Object? createdAt = freezed,
     Object? updatedAt = freezed,
-    Object? pushedAt = freezed,
-    Object? homepage = freezed,
-    Object? size = freezed,
     Object? starGazersCount = freezed,
-    Object? watchersCount = freezed,
     Object? forksCount = freezed,
   }) {
     return _then(_value.copyWith(
@@ -117,26 +82,14 @@ class _$GitHubRepositoryCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      nodeId: nodeId == freezed
-          ? _value.nodeId
-          : nodeId // ignore: cast_nullable_to_non_nullable
-              as String,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      fullName: fullName == freezed
-          ? _value.fullName
-          : fullName // ignore: cast_nullable_to_non_nullable
               as String,
       owner: owner == freezed
           ? _value.owner
           : owner // ignore: cast_nullable_to_non_nullable
               as Owner,
-      private: private == freezed
-          ? _value.private
-          : private // ignore: cast_nullable_to_non_nullable
-              as bool,
       htmlUrl: htmlUrl == freezed
           ? _value.htmlUrl
           : htmlUrl // ignore: cast_nullable_to_non_nullable
@@ -145,41 +98,13 @@ class _$GitHubRepositoryCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-      fork: fork == freezed
-          ? _value.fork
-          : fork // ignore: cast_nullable_to_non_nullable
-              as bool,
-      url: url == freezed
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
-              as String,
-      createdAt: createdAt == freezed
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
       updatedAt: updatedAt == freezed
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      pushedAt: pushedAt == freezed
-          ? _value.pushedAt
-          : pushedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      homepage: homepage == freezed
-          ? _value.homepage
-          : homepage // ignore: cast_nullable_to_non_nullable
-              as String,
-      size: size == freezed
-          ? _value.size
-          : size // ignore: cast_nullable_to_non_nullable
-              as int,
       starGazersCount: starGazersCount == freezed
           ? _value.starGazersCount
           : starGazersCount // ignore: cast_nullable_to_non_nullable
-              as int,
-      watchersCount: watchersCount == freezed
-          ? _value.watchersCount
-          : watchersCount // ignore: cast_nullable_to_non_nullable
               as int,
       forksCount: forksCount == freezed
           ? _value.forksCount
@@ -205,22 +130,12 @@ abstract class _$GitHubRepositoryCopyWith<$Res>
   @override
   $Res call(
       {int id,
-      @JsonKey(name: 'node_id') String nodeId,
       String name,
-      @JsonKey(name: 'full_name') String fullName,
       Owner owner,
-      bool private,
       @JsonKey(name: 'html_url') String htmlUrl,
       String description,
-      bool fork,
-      String url,
-      @JsonKey(name: 'created_at') DateTime createdAt,
       @JsonKey(name: 'updated_at') DateTime updatedAt,
-      @JsonKey(name: 'pushed_at') DateTime pushedAt,
-      String homepage,
-      int size,
       @JsonKey(name: 'stargazers_count') int starGazersCount,
-      @JsonKey(name: 'watchers_count') int watchersCount,
       @JsonKey(name: 'forks_count') int forksCount});
 
   @override
@@ -241,22 +156,12 @@ class __$GitHubRepositoryCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? nodeId = freezed,
     Object? name = freezed,
-    Object? fullName = freezed,
     Object? owner = freezed,
-    Object? private = freezed,
     Object? htmlUrl = freezed,
     Object? description = freezed,
-    Object? fork = freezed,
-    Object? url = freezed,
-    Object? createdAt = freezed,
     Object? updatedAt = freezed,
-    Object? pushedAt = freezed,
-    Object? homepage = freezed,
-    Object? size = freezed,
     Object? starGazersCount = freezed,
-    Object? watchersCount = freezed,
     Object? forksCount = freezed,
   }) {
     return _then(_GitHubRepository(
@@ -264,26 +169,14 @@ class __$GitHubRepositoryCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      nodeId: nodeId == freezed
-          ? _value.nodeId
-          : nodeId // ignore: cast_nullable_to_non_nullable
-              as String,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      fullName: fullName == freezed
-          ? _value.fullName
-          : fullName // ignore: cast_nullable_to_non_nullable
               as String,
       owner: owner == freezed
           ? _value.owner
           : owner // ignore: cast_nullable_to_non_nullable
               as Owner,
-      private: private == freezed
-          ? _value.private
-          : private // ignore: cast_nullable_to_non_nullable
-              as bool,
       htmlUrl: htmlUrl == freezed
           ? _value.htmlUrl
           : htmlUrl // ignore: cast_nullable_to_non_nullable
@@ -292,41 +185,13 @@ class __$GitHubRepositoryCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-      fork: fork == freezed
-          ? _value.fork
-          : fork // ignore: cast_nullable_to_non_nullable
-              as bool,
-      url: url == freezed
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
-              as String,
-      createdAt: createdAt == freezed
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
       updatedAt: updatedAt == freezed
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      pushedAt: pushedAt == freezed
-          ? _value.pushedAt
-          : pushedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      homepage: homepage == freezed
-          ? _value.homepage
-          : homepage // ignore: cast_nullable_to_non_nullable
-              as String,
-      size: size == freezed
-          ? _value.size
-          : size // ignore: cast_nullable_to_non_nullable
-              as int,
       starGazersCount: starGazersCount == freezed
           ? _value.starGazersCount
           : starGazersCount // ignore: cast_nullable_to_non_nullable
-              as int,
-      watchersCount: watchersCount == freezed
-          ? _value.watchersCount
-          : watchersCount // ignore: cast_nullable_to_non_nullable
               as int,
       forksCount: forksCount == freezed
           ? _value.forksCount
@@ -341,22 +206,12 @@ class __$GitHubRepositoryCopyWithImpl<$Res>
 class _$_GitHubRepository implements _GitHubRepository {
   const _$_GitHubRepository(
       {required this.id,
-      @JsonKey(name: 'node_id') required this.nodeId,
       required this.name,
-      @JsonKey(name: 'full_name') required this.fullName,
       required this.owner,
-      this.private = false,
       @JsonKey(name: 'html_url') required this.htmlUrl,
       this.description = '',
-      this.fork = false,
-      required this.url,
-      @JsonKey(name: 'created_at') required this.createdAt,
       @JsonKey(name: 'updated_at') required this.updatedAt,
-      @JsonKey(name: 'pushed_at') required this.pushedAt,
-      this.homepage = '',
-      this.size = 0,
       @JsonKey(name: 'stargazers_count') this.starGazersCount = 0,
-      @JsonKey(name: 'watchers_count') this.watchersCount = 0,
       @JsonKey(name: 'forks_count') this.forksCount = 0});
 
   factory _$_GitHubRepository.fromJson(Map<String, dynamic> json) =>
@@ -365,18 +220,9 @@ class _$_GitHubRepository implements _GitHubRepository {
   @override
   final int id;
   @override
-  @JsonKey(name: 'node_id')
-  final String nodeId;
-  @override
   final String name;
   @override
-  @JsonKey(name: 'full_name')
-  final String fullName;
-  @override
   final Owner owner;
-  @override
-  @JsonKey()
-  final bool private;
   @override
   @JsonKey(name: 'html_url')
   final String htmlUrl;
@@ -384,38 +230,18 @@ class _$_GitHubRepository implements _GitHubRepository {
   @JsonKey()
   final String description;
   @override
-  @JsonKey()
-  final bool fork;
-  @override
-  final String url;
-  @override
-  @JsonKey(name: 'created_at')
-  final DateTime createdAt;
-  @override
   @JsonKey(name: 'updated_at')
   final DateTime updatedAt;
   @override
-  @JsonKey(name: 'pushed_at')
-  final DateTime pushedAt;
-  @override
-  @JsonKey()
-  final String homepage;
-  @override
-  @JsonKey()
-  final int size;
-  @override
   @JsonKey(name: 'stargazers_count')
   final int starGazersCount;
-  @override
-  @JsonKey(name: 'watchers_count')
-  final int watchersCount;
   @override
   @JsonKey(name: 'forks_count')
   final int forksCount;
 
   @override
   String toString() {
-    return 'GitHubRepository(id: $id, nodeId: $nodeId, name: $name, fullName: $fullName, owner: $owner, private: $private, htmlUrl: $htmlUrl, description: $description, fork: $fork, url: $url, createdAt: $createdAt, updatedAt: $updatedAt, pushedAt: $pushedAt, homepage: $homepage, size: $size, starGazersCount: $starGazersCount, watchersCount: $watchersCount, forksCount: $forksCount)';
+    return 'GitHubRepository(id: $id, name: $name, owner: $owner, htmlUrl: $htmlUrl, description: $description, updatedAt: $updatedAt, starGazersCount: $starGazersCount, forksCount: $forksCount)';
   }
 
   @override
@@ -424,25 +250,14 @@ class _$_GitHubRepository implements _GitHubRepository {
         (other.runtimeType == runtimeType &&
             other is _GitHubRepository &&
             const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.nodeId, nodeId) &&
             const DeepCollectionEquality().equals(other.name, name) &&
-            const DeepCollectionEquality().equals(other.fullName, fullName) &&
             const DeepCollectionEquality().equals(other.owner, owner) &&
-            const DeepCollectionEquality().equals(other.private, private) &&
             const DeepCollectionEquality().equals(other.htmlUrl, htmlUrl) &&
             const DeepCollectionEquality()
                 .equals(other.description, description) &&
-            const DeepCollectionEquality().equals(other.fork, fork) &&
-            const DeepCollectionEquality().equals(other.url, url) &&
-            const DeepCollectionEquality().equals(other.createdAt, createdAt) &&
             const DeepCollectionEquality().equals(other.updatedAt, updatedAt) &&
-            const DeepCollectionEquality().equals(other.pushedAt, pushedAt) &&
-            const DeepCollectionEquality().equals(other.homepage, homepage) &&
-            const DeepCollectionEquality().equals(other.size, size) &&
             const DeepCollectionEquality()
                 .equals(other.starGazersCount, starGazersCount) &&
-            const DeepCollectionEquality()
-                .equals(other.watchersCount, watchersCount) &&
             const DeepCollectionEquality()
                 .equals(other.forksCount, forksCount));
   }
@@ -452,22 +267,12 @@ class _$_GitHubRepository implements _GitHubRepository {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(nodeId),
       const DeepCollectionEquality().hash(name),
-      const DeepCollectionEquality().hash(fullName),
       const DeepCollectionEquality().hash(owner),
-      const DeepCollectionEquality().hash(private),
       const DeepCollectionEquality().hash(htmlUrl),
       const DeepCollectionEquality().hash(description),
-      const DeepCollectionEquality().hash(fork),
-      const DeepCollectionEquality().hash(url),
-      const DeepCollectionEquality().hash(createdAt),
       const DeepCollectionEquality().hash(updatedAt),
-      const DeepCollectionEquality().hash(pushedAt),
-      const DeepCollectionEquality().hash(homepage),
-      const DeepCollectionEquality().hash(size),
       const DeepCollectionEquality().hash(starGazersCount),
-      const DeepCollectionEquality().hash(watchersCount),
       const DeepCollectionEquality().hash(forksCount));
 
   @JsonKey(ignore: true)
@@ -484,22 +289,12 @@ class _$_GitHubRepository implements _GitHubRepository {
 abstract class _GitHubRepository implements GitHubRepository {
   const factory _GitHubRepository(
           {required final int id,
-          @JsonKey(name: 'node_id') required final String nodeId,
           required final String name,
-          @JsonKey(name: 'full_name') required final String fullName,
           required final Owner owner,
-          final bool private,
           @JsonKey(name: 'html_url') required final String htmlUrl,
           final String description,
-          final bool fork,
-          required final String url,
-          @JsonKey(name: 'created_at') required final DateTime createdAt,
           @JsonKey(name: 'updated_at') required final DateTime updatedAt,
-          @JsonKey(name: 'pushed_at') required final DateTime pushedAt,
-          final String homepage,
-          final int size,
           @JsonKey(name: 'stargazers_count') final int starGazersCount,
-          @JsonKey(name: 'watchers_count') final int watchersCount,
           @JsonKey(name: 'forks_count') final int forksCount}) =
       _$_GitHubRepository;
 
@@ -509,45 +304,20 @@ abstract class _GitHubRepository implements GitHubRepository {
   @override
   int get id => throw _privateConstructorUsedError;
   @override
-  @JsonKey(name: 'node_id')
-  String get nodeId => throw _privateConstructorUsedError;
-  @override
   String get name => throw _privateConstructorUsedError;
   @override
-  @JsonKey(name: 'full_name')
-  String get fullName => throw _privateConstructorUsedError;
-  @override
   Owner get owner => throw _privateConstructorUsedError;
-  @override
-  bool get private => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'html_url')
   String get htmlUrl => throw _privateConstructorUsedError;
   @override
   String get description => throw _privateConstructorUsedError;
   @override
-  bool get fork => throw _privateConstructorUsedError;
-  @override
-  String get url => throw _privateConstructorUsedError;
-  @override
-  @JsonKey(name: 'created_at')
-  DateTime get createdAt => throw _privateConstructorUsedError;
-  @override
   @JsonKey(name: 'updated_at')
   DateTime get updatedAt => throw _privateConstructorUsedError;
   @override
-  @JsonKey(name: 'pushed_at')
-  DateTime get pushedAt => throw _privateConstructorUsedError;
-  @override
-  String get homepage => throw _privateConstructorUsedError;
-  @override
-  int get size => throw _privateConstructorUsedError;
-  @override
   @JsonKey(name: 'stargazers_count')
   int get starGazersCount => throw _privateConstructorUsedError;
-  @override
-  @JsonKey(name: 'watchers_count')
-  int get watchersCount => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'forks_count')
   int get forksCount => throw _privateConstructorUsedError;

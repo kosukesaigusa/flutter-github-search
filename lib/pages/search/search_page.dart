@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_github_search/utils/string.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
@@ -11,6 +10,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../constants/number.dart';
 import '../../providers/github_repository/github_repository.dart';
 import '../../services/scaffold_messenger.dart';
+import '../../utils/string.dart';
 import '../../widgets/loading.dart';
 
 class SearchPage extends StatefulHookConsumerWidget {

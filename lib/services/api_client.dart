@@ -2,14 +2,14 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:flutter_github_search/utils/extensions/dio.dart';
-import 'package:flutter_github_search/utils/extensions/string.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../models/api_response/base_api_response/base_api_response.dart';
-import '../providers/dio/dio.dart';
+import '../providers/common/dio.dart';
 import '../utils/enums.dart';
 import '../utils/exception.dart';
+import '../utils/extensions/dio.dart';
+import '../utils/extensions/string.dart';
 import 'abstract_api_client.dart';
 
 final apiClientProvider = Provider<ApiClient>((ref) => ApiClient(ref.read));

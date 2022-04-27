@@ -1,7 +1,7 @@
-import 'package:flutter_github_search/models/api_response/search_repository_response/search_repository_response.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../services/api_client.dart';
+import '../models/api_response/search_repository_response/search_repository_response.dart';
 import '../models/github_repository/github_repository.dart';
 
 final searchGitHubRepositoryRepositoryProvider = Provider.autoDispose(

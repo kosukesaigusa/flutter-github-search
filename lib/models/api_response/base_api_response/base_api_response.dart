@@ -1,6 +1,6 @@
-import 'package:flutter_github_search/utils/extensions/map.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../../utils/extensions/map.dart';
 import '../../json_converter.dart';
 
 part 'base_api_response.freezed.dart';
