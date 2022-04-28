@@ -73,7 +73,7 @@ class _SearchPageState extends ConsumerState<SearchPage> {
                   // 所定の時間（ミリ秒）経過後に第 2 引数のコールバック関数が発火する
                   _debounceTimer = Timer(minSearchApiCallPeriodDuration, () {
                     showLoadingSuffixIcon.value = true;
-                    ref.read(gitHubRepositoriesSearchWordProvider.notifier).update((state) => text);
+                    ref.read(gitHubReposSearchWordProvider.notifier).update((state) => text);
                   });
                 },
                 maxLines: 1,
@@ -92,7 +92,7 @@ class _SearchPageState extends ConsumerState<SearchPage> {
               ),
             ),
             Expanded(
-              child: ref.watch(gitHubRepositoriesFutureProvider).when<Widget>(
+              child: ref.watch(gitHubReposFutureProvider).when<Widget>(
                     loading: () => const PrimarySpinkitCircle(),
                     error: (e, __) => _text(e.toString()),
                     data: (searchRepositoryResponse) {
