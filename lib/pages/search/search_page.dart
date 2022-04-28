@@ -110,10 +110,35 @@ class _SearchPageState extends ConsumerState<SearchPage> {
                             return const Gap(8);
                           }
                           if (index == 1) {
-                            return _text('検索結果: ${totalCount.withComma} 件');
+                            return Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                _text('検索結果: ${totalCount.withComma} 件'
+                                    '（${ref.watch(gitHubReposPageProvider).withComma} / '
+                                    '${(totalCount / ref.watch(gitHubReposPerPageProvider)).ceil().withComma} '
+                                    'ページ）'),
+                              ],
+                            );
                           }
                           if (index == items.length + 2) {
-                            return const Gap(8);
+                            return Column(
+                              children: [
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                  children: [
+                                    TextButton(
+                                      onPressed: () {},
+                                      child: const Text('前のページ'),
+                                    ),
+                                    TextButton(
+                                      onPressed: () {},
+                                      child: const Text('次のページ'),
+                                    ),
+                                  ],
+                                ),
+                                const Gap(16),
+                              ],
+                            );
                           }
                           return RepoItemWidget(repo: items[index - 2]);
                         },
