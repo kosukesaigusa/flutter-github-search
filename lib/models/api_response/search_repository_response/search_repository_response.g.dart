@@ -6,22 +6,20 @@ part of 'search_repository_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_SearchRepositoryResponse _$$_SearchRepositoryResponseFromJson(
+_$_SearchRepoResponse _$$_SearchRepoResponseFromJson(
         Map<String, dynamic> json) =>
-    _$_SearchRepositoryResponse(
+    _$_SearchRepoResponse(
       totalCount: json['total_count'] as int? ?? 0,
       incompleteResults: json['incomplete_results'] as bool? ?? false,
       items: json['items'] == null
           ? const <Repo>[]
-          : const SearchRepositoryResponseDataConverter()
-              .fromJson(json['items']),
+          : const SearchRepoResponseDataConverter().fromJson(json['items']),
     );
 
-Map<String, dynamic> _$$_SearchRepositoryResponseToJson(
-        _$_SearchRepositoryResponse instance) =>
+Map<String, dynamic> _$$_SearchRepoResponseToJson(
+        _$_SearchRepoResponse instance) =>
     <String, dynamic>{
       'total_count': instance.totalCount,
       'incomplete_results': instance.incompleteResults,
-      'items':
-          const SearchRepositoryResponseDataConverter().toJson(instance.items),
+      'items': const SearchRepoResponseDataConverter().toJson(instance.items),
     };

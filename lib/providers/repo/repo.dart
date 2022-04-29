@@ -3,7 +3,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../constants/string.dart';
 import '../../models/repo/repo.dart';
-import '../../repositories/search_github_repository.dart';
+import '../../repositories/search_repo.dart';
 import '../../utils/exception.dart';
 import 'repo_state.dart';
 

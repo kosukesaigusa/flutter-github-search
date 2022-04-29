@@ -7,13 +7,13 @@ part 'search_repository_response.freezed.dart';
 part 'search_repository_response.g.dart';
 
 @freezed
-class SearchRepositoryResponse with _$SearchRepositoryResponse {
-  const factory SearchRepositoryResponse({
+class SearchRepoResponse with _$SearchRepoResponse {
+  const factory SearchRepoResponse({
     @Default(0) @JsonKey(name: 'total_count') int totalCount,
     @Default(false) @JsonKey(name: 'incomplete_results') bool incompleteResults,
-    @Default(<Repo>[]) @SearchRepositoryResponseDataConverter() List<Repo> items,
-  }) = _SearchRepositoryResponse;
+    @Default(<Repo>[]) @SearchRepoResponseDataConverter() List<Repo> items,
+  }) = _SearchRepoResponse;
 
-  factory SearchRepositoryResponse.fromJson(Map<String, dynamic> json) =>
-      _$SearchRepositoryResponseFromJson(json);
+  factory SearchRepoResponse.fromJson(Map<String, dynamic> json) =>
+      _$SearchRepoResponseFromJson(json);
 }

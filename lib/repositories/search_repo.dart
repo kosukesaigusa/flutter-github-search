@@ -14,8 +14,8 @@ class RepoRepository {
   final ApiClient _client;
 
   /// 入力したキーワードで GET /search/repositories API をコールして、
-  /// ヒットする GitHub リポジトリ一覧を含む SearchRepositoryResponse を返す。
-  Future<SearchRepositoryResponse> fetchRepositories({
+  /// ヒットする GitHub リポジトリ一覧を含む SearchRepoResponse を返す。
+  Future<SearchRepoResponse> fetchRepositories({
     required String q,
     int page = 1,
     int perPage = 10,
@@ -28,6 +28,6 @@ class RepoRepository {
         'per_page': perPage,
       },
     );
-    return SearchRepositoryResponse.fromJson(apiResponse.data);
+    return SearchRepoResponse.fromJson(apiResponse.data);
   }
 }
