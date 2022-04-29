@@ -3,8 +3,8 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import '../../json_converter.dart';
 import '../../repo/repo.dart';
 
-part 'search_repository_response.freezed.dart';
-part 'search_repository_response.g.dart';
+part 'search_repo_response.freezed.dart';
+part 'search_repo_response.g.dart';
 
 @freezed
 class SearchRepoResponse with _$SearchRepoResponse {
