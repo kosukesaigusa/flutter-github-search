@@ -14,8 +14,8 @@ class PagerWidget extends StatefulHookConsumerWidget {
 class _PagerWidgetState extends ConsumerState<PagerWidget> {
   @override
   Widget build(BuildContext context) {
-    final state = ref.watch(repoSearchStateNotifierProvider);
-    final notifier = ref.watch(repoSearchStateNotifierProvider.notifier);
+    final state = ref.watch(searchReposStateNotifierProvider);
+    final notifier = ref.watch(searchReposStateNotifierProvider.notifier);
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [

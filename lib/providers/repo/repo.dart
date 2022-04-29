@@ -10,10 +10,10 @@ import 'repo_state.dart';
 /// GET /search/repositories API をコールして、
 /// 検索にヒットした GitHub リポジトリの一覧を返す。
 final reposFutureProvider = FutureProvider.autoDispose<List<Repo>>((ref) async {
-  final q = ref.watch(repoSearchStateNotifierProvider.select((state) => state.q));
+  final q = ref.watch(searchReposStateNotifierProvider.select((state) => state.q));
   final currentPage =
-      ref.watch(repoSearchStateNotifierProvider.select((state) => state.currentPage));
-  final perPage = ref.watch(repoSearchStateNotifierProvider.select((state) => state.perPage));
+      ref.watch(searchReposStateNotifierProvider.select((state) => state.currentPage));
+  final perPage = ref.watch(searchReposStateNotifierProvider.select((state) => state.perPage));
   if (q.isEmpty) {
     throw const AppException(emptyQMessage);
   }
@@ -29,18 +29,18 @@ final reposFutureProvider = FutureProvider.autoDispose<List<Repo>>((ref) async {
         perPage: perPage,
       );
   // 結果を更新してから List<Repo> を返す
-  ref.read(repoSearchStateNotifierProvider.notifier).updateByFetchResult(response.totalCount);
+  ref.read(searchReposStateNotifierProvider.notifier).updateByFetchResult(response.totalCount);
   return response.items;
 });
 
 /// GitHub リポジトリの検索条件などを操作する StateNotifier を提供するプロバイダ
-final repoSearchStateNotifierProvider =
-    StateNotifierProvider.autoDispose<RepoSearchStateNotifier, RepoSearchState>(
-  (_) => RepoSearchStateNotifier(),
+final searchReposStateNotifierProvider =
+    StateNotifierProvider.autoDispose<SearchReposStateNotifier, RepoSearchState>(
+  (_) => SearchReposStateNotifier(),
 );
 
-class RepoSearchStateNotifier extends StateNotifier<RepoSearchState> {
-  RepoSearchStateNotifier() : super(const RepoSearchState());
+class SearchReposStateNotifier extends StateNotifier<RepoSearchState> {
+  SearchReposStateNotifier() : super(const RepoSearchState());
 
   final scrollController = ScrollController();
 
@@ -52,12 +52,7 @@ class RepoSearchStateNotifier extends StateNotifier<RepoSearchState> {
 
   /// 検索ワードを変更する
   void updateSearchWord(String q) {
-    state = state.copyWith(
-      q: q,
-      currentPage: 1,
-      totalCount: 0,
-      maxPage: 1,
-    );
+    state = state.copyWith(q: q, currentPage: 1);
     animateToTop();
   }
 

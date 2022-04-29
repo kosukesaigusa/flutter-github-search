@@ -33,32 +33,30 @@ class SearchPage extends HookConsumerWidget {
               padding: EdgeInsets.symmetric(horizontal: 16),
               child: SearchPageTextField(),
             ),
-            if (ref.watch(repoSearchStateNotifierProvider).totalCount > 0)
-              _text('検索結果: ${ref.watch(repoSearchStateNotifierProvider).totalCount.withComma} 件'
-                  '（${ref.watch(repoSearchStateNotifierProvider).currentPage.withComma} / '
-                  '${ref.watch(repoSearchStateNotifierProvider).maxPage.withComma} '
-                  'ページ）'),
             Expanded(
               child: ref.watch(reposFutureProvider).when<Widget>(
                     loading: () => const PrimarySpinkitCircle(),
-                    error: (e, __) => _text(e.toString()),
+                    error: (e, __) => SearchPageTextWidget(e.toString()),
                     data: (repos) {
                       if (repos.isEmpty) {
-                        return _text(emptyQMessage);
+                        return const SearchPageTextWidget(emptyQMessage);
                       }
                       return ListView.builder(
-                        // +1 は下部の Pager
+                        // +2 は上部の Summary と下部の Pager
                         controller:
-                            ref.watch(repoSearchStateNotifierProvider.notifier).scrollController,
-                        itemCount: repos.length + 1,
+                            ref.watch(searchReposStateNotifierProvider.notifier).scrollController,
+                        itemCount: repos.length + 2,
                         itemBuilder: (context, index) {
-                          if (index == repos.length) {
+                          if (index == 0) {
+                            return const SearchResultSummaryWidget();
+                          }
+                          if (index == repos.length + 1) {
                             return const Padding(
                               padding: EdgeInsets.only(bottom: 16),
                               child: PagerWidget(),
                             );
                           } else {
-                            return RepoItemWidget(repo: repos[index]);
+                            return RepoItemWidget(repo: repos[index - 1]);
                           }
                         },
                       );
@@ -70,16 +68,43 @@ class SearchPage extends HookConsumerWidget {
       ),
     );
   }
+}
 
-  /// SearchPage 内の Column.children に並べるテキスト
-  Widget _text(String s) => Padding(
-        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-        child: Text(
-          s,
-          style: const TextStyle(
-            fontSize: 12,
-            color: Colors.black54,
-          ),
+/// SearchPage 上部の検索結果の件数などを表示するウィジェット
+class SearchResultSummaryWidget extends HookConsumerWidget {
+  const SearchResultSummaryWidget({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return SearchPageTextWidget(
+      '検索結果: ${ref.watch(searchReposStateNotifierProvider).totalCount.withComma} 件'
+      '（${ref.watch(searchReposStateNotifierProvider).currentPage.withComma} / '
+      '${ref.watch(searchReposStateNotifierProvider).maxPage.withComma} '
+      'ページ）',
+    );
+  }
+}
+
+/// SearchPage 内の Column.children に並べるテキスト
+class SearchPageTextWidget extends StatelessWidget {
+  const SearchPageTextWidget(
+    this.text, {
+    Key? key,
+  }) : super(key: key);
+
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+      child: Text(
+        text,
+        style: const TextStyle(
+          fontSize: 12,
+          color: Colors.black54,
         ),
-      );
+      ),
+    );
+  }
 }

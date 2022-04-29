@@ -45,7 +45,7 @@ class _SearchPageTextFieldState extends ConsumerState<SearchPageTextField> {
         }
         // 所定の時間（ミリ秒）経過後に第 2 引数のコールバック関数が発火する
         _debounceTimer = Timer(minSearchApiCallPeriodDuration, () {
-          ref.read(repoSearchStateNotifierProvider.notifier).updateSearchWord(q);
+          ref.read(searchReposStateNotifierProvider.notifier).updateSearchWord(q);
         });
       },
       maxLines: 1,
