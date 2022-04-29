@@ -10,10 +10,10 @@ import 'search_repo_state.dart';
 /// GET /search/repositories API をコールして、
 /// 検索にヒットした GitHub リポジトリの一覧を返す。
 final reposFutureProvider = FutureProvider.autoDispose<List<Repo>>((ref) async {
-  final q = ref.watch(searchReposStateNotifierProvider.select((state) => state.q));
+  final q = ref.watch(searchRepoStateNotifierProvider.select((state) => state.q));
   final currentPage =
-      ref.watch(searchReposStateNotifierProvider.select((state) => state.currentPage));
-  final perPage = ref.watch(searchReposStateNotifierProvider.select((state) => state.perPage));
+      ref.watch(searchRepoStateNotifierProvider.select((state) => state.currentPage));
+  final perPage = ref.watch(searchRepoStateNotifierProvider.select((state) => state.perPage));
   if (q.isEmpty) {
     throw const AppException(emptyQMessage);
   }
@@ -29,18 +29,18 @@ final reposFutureProvider = FutureProvider.autoDispose<List<Repo>>((ref) async {
         perPage: perPage,
       );
   // 結果を更新してから List<Repo> を返す
-  ref.read(searchReposStateNotifierProvider.notifier).updateByFetchResult(response.totalCount);
+  ref.read(searchRepoStateNotifierProvider.notifier).updateByFetchResult(response.totalCount);
   return response.items;
 });
 
 /// GitHub リポジトリの検索条件などを操作する StateNotifier を提供するプロバイダ
-final searchReposStateNotifierProvider =
-    StateNotifierProvider.autoDispose<SearchReposStateNotifier, RepoSearchState>(
-  (_) => SearchReposStateNotifier(),
+final searchRepoStateNotifierProvider =
+    StateNotifierProvider.autoDispose<SearchRepoStateNotifier, RepoSearchState>(
+  (_) => SearchRepoStateNotifier(),
 );
 
-class SearchReposStateNotifier extends StateNotifier<RepoSearchState> {
-  SearchReposStateNotifier() : super(const RepoSearchState());
+class SearchRepoStateNotifier extends StateNotifier<RepoSearchState> {
+  SearchRepoStateNotifier() : super(const RepoSearchState());
 
   final scrollController = ScrollController();
 

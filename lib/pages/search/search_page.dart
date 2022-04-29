@@ -44,7 +44,7 @@ class SearchPage extends HookConsumerWidget {
                       return ListView.builder(
                         // +2 は上部の Summary と下部の Pager
                         controller:
-                            ref.watch(searchReposStateNotifierProvider.notifier).scrollController,
+                            ref.watch(searchRepoStateNotifierProvider.notifier).scrollController,
                         itemCount: repos.length + 2,
                         itemBuilder: (context, index) {
                           if (index == 0) {
@@ -77,9 +77,9 @@ class SearchResultSummaryWidget extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return SearchPageTextWidget(
-      '検索結果: ${ref.watch(searchReposStateNotifierProvider).totalCount.withComma} 件'
-      '（${ref.watch(searchReposStateNotifierProvider).currentPage.withComma} / '
-      '${ref.watch(searchReposStateNotifierProvider).maxPage.withComma} '
+      '検索結果: ${ref.watch(searchRepoStateNotifierProvider).totalCount.withComma} 件'
+      '（${ref.watch(searchRepoStateNotifierProvider).currentPage.withComma} / '
+      '${ref.watch(searchRepoStateNotifierProvider).maxPage.withComma} '
       'ページ）',
     );
   }
