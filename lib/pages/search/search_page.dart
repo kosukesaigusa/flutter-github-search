@@ -2,19 +2,16 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import '../../constants/number.dart';
 import '../../constants/string.dart';
-import '../../models/github_repository/github_repository.dart';
-import '../../providers/github_repository/github_repository.dart';
-import '../../services/scaffold_messenger.dart';
+import '../../providers/github_repo/github_repo.dart';
 import '../../utils/extensions/int.dart';
-import '../../utils/string.dart';
 import '../../widgets/loading.dart';
+import '../../widgets/search/pager.dart';
+import '../../widgets/search/repo_item.dart';
 
 class SearchPage extends StatefulHookConsumerWidget {
   const SearchPage({Key? key}) : super(key: key);
@@ -73,7 +70,7 @@ class _SearchPageState extends ConsumerState<SearchPage> {
                   // 所定の時間（ミリ秒）経過後に第 2 引数のコールバック関数が発火する
                   _debounceTimer = Timer(minSearchApiCallPeriodDuration, () {
                     showLoadingSuffixIcon.value = true;
-                    ref.read(gitHubReposSearchWordProvider.notifier).update((state) => text);
+                    ref.read(searchWordStateProvider.notifier).update((state) => text);
                   });
                 },
                 maxLines: 1,
@@ -99,48 +96,34 @@ class _SearchPageState extends ConsumerState<SearchPage> {
                       showLoadingSuffixIcon.value = false;
                       final items = searchRepositoryResponse.items;
                       final totalCount = searchRepositoryResponse.totalCount;
+                      _updateMaxPage(totalCount);
                       if (items.isEmpty) {
                         return _text(emptyQMessage);
                       }
                       return ListView.builder(
-                        // +3 は上下の Gap と上部のヒット件数の表示
-                        itemCount: items.length + 3,
+                        // +2 は上下の Gap と上部のヒット件数の表示
+                        controller: ref.watch(searchPageScrollControllerProvider),
+                        itemCount: items.length + 2,
                         itemBuilder: (context, index) {
                           if (index == 0) {
-                            return const Gap(8);
-                          }
-                          if (index == 1) {
                             return Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
+                                const Gap(8),
                                 _text('検索結果: ${totalCount.withComma} 件'
-                                    '（${ref.watch(gitHubReposPageProvider).withComma} / '
-                                    '${(totalCount / ref.watch(gitHubReposPerPageProvider)).ceil().withComma} '
+                                    '（${ref.watch(currentPageStateProvider).withComma} / '
+                                    '${(totalCount / ref.watch(perPageStateProvider)).ceil().withComma} '
                                     'ページ）'),
                               ],
                             );
-                          }
-                          if (index == items.length + 2) {
-                            return Column(
-                              children: [
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                  children: [
-                                    TextButton(
-                                      onPressed: () {},
-                                      child: const Text('前のページ'),
-                                    ),
-                                    TextButton(
-                                      onPressed: () {},
-                                      child: const Text('次のページ'),
-                                    ),
-                                  ],
-                                ),
-                                const Gap(16),
-                              ],
+                          } else if (index == items.length + 1) {
+                            return const Padding(
+                              padding: EdgeInsets.only(bottom: 8),
+                              child: PagerWidget(),
                             );
+                          } else {
+                            return RepoItemWidget(repo: items[index - 1]);
                           }
-                          return RepoItemWidget(repo: items[index - 2]);
                         },
                       );
                     },
@@ -152,6 +135,14 @@ class _SearchPageState extends ConsumerState<SearchPage> {
     );
   }
 
+  /// 最大ページ数を更新する
+  void _updateMaxPage(int totalCount) {
+    ref
+        .read(maxPageStateProvider.notifier)
+        .update((state) => (totalCount / ref.watch(perPageStateProvider)).ceil());
+  }
+
+  /// SearchPage 内の Column.children に並べるテキスト
   Widget _text(String message) => Padding(
         padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
         child: Text(
@@ -162,106 +153,4 @@ class _SearchPageState extends ConsumerState<SearchPage> {
           ),
         ),
       );
-}
-
-/// 検索結果のひとつひとつ
-class RepoItemWidget extends HookConsumerWidget {
-  const RepoItemWidget({
-    Key? key,
-    required this.repo,
-  }) : super(key: key);
-
-  final GitHubRepo repo;
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    return InkWell(
-      onTap: () async {
-        final urlString = repo.htmlUrl;
-        if (await canLaunch(urlString)) {
-          await launch(urlString);
-        } else {
-          ref.read(scaffoldMessengerServiceProvider).showSnackBar('URL が開けませんでした：$urlString');
-        }
-      },
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const FaIcon(FontAwesomeIcons.github),
-            const Gap(8),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    repo.name,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  Text(
-                    repo.description,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                      fontSize: 10,
-                      color: Colors.black54,
-                    ),
-                  ),
-                  Text(
-                    '更新日：${repo.updatedAt.toString().substring(0, 10)}',
-                    style: const TextStyle(
-                      fontSize: 10,
-                      color: Colors.black54,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            const Gap(8),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    const Icon(Icons.star, size: 12),
-                    const Gap(4),
-                    Text(
-                      addComma(repo.starGazersCount),
-                      style: const TextStyle(
-                        fontSize: 12,
-                        color: Colors.black54,
-                      ),
-                    ),
-                  ],
-                ),
-                const Gap(4),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    const FaIcon(FontAwesomeIcons.codeFork, size: 12),
-                    const Gap(4),
-                    Text(
-                      addComma(repo.forksCount),
-                      style: const TextStyle(
-                        fontSize: 12,
-                        color: Colors.black54,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
-  }
 }
