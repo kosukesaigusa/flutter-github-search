@@ -14,43 +14,43 @@ abstract class AbstractApiClient {
     ProgressCallback onReceiveProgress,
   });
 
-  // Future<BaseApiResponse> put(
-  //   String path, {
-  //   Map<String, dynamic> data,
-  //   Map<String, dynamic> queryParameters,
-  //   Map<String, dynamic> header,
-  //   Options options,
-  //   CancelToken cancelToken,
-  //   ProgressCallback onSendProgress,
-  //   ProgressCallback onReceiveProgress,
-  // });
+  Future<BaseApiResponse> put(
+    String path, {
+    Map<String, dynamic> data,
+    Map<String, dynamic> queryParameters,
+    Map<String, dynamic> header,
+    Options options,
+    CancelToken cancelToken,
+    ProgressCallback onSendProgress,
+    ProgressCallback onReceiveProgress,
+  });
 
-  // Future<BaseApiResponse> patch(
-  //   String path, {
-  //   Map<String, dynamic> data,
-  //   Map<String, dynamic> queryParameters,
-  //   Map<String, dynamic> header,
-  //   CancelToken cancelToken,
-  //   ProgressCallback onReceiveProgress,
-  // });
+  Future<BaseApiResponse> patch(
+    String path, {
+    Map<String, dynamic> data,
+    Map<String, dynamic> queryParameters,
+    Map<String, dynamic> header,
+    CancelToken cancelToken,
+    ProgressCallback onReceiveProgress,
+  });
 
-  // Future<BaseApiResponse> post(
-  //   String path, {
-  //   Map<String, dynamic> data,
-  //   Map<String, dynamic> queryParameters,
-  //   Map<String, dynamic> header,
-  //   Options options,
-  //   CancelToken cancelToken,
-  //   ProgressCallback onSendProgress,
-  //   ProgressCallback onReceiveProgress,
-  // });
+  Future<BaseApiResponse> post(
+    String path, {
+    Map<String, dynamic> data,
+    Map<String, dynamic> queryParameters,
+    Map<String, dynamic> header,
+    Options options,
+    CancelToken cancelToken,
+    ProgressCallback onSendProgress,
+    ProgressCallback onReceiveProgress,
+  });
 
-  // Future<BaseApiResponse> delete(
-  //   String path, {
-  //   Map<String, dynamic> data,
-  //   Map<String, dynamic> queryParameters,
-  //   Map<String, dynamic> header,
-  //   Options options,
-  //   CancelToken cancelToken,
-  // });
+  Future<BaseApiResponse> delete(
+    String path, {
+    Map<String, dynamic> data,
+    Map<String, dynamic> queryParameters,
+    Map<String, dynamic> header,
+    Options options,
+    CancelToken cancelToken,
+  });
 }

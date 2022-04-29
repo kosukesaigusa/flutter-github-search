@@ -59,6 +59,168 @@ class ApiClient implements AbstractApiClient {
     }
   }
 
+  @override
+  Future<BaseApiResponse> put(
+    String path, {
+    Map<String, dynamic>? data,
+    Map<String, dynamic>? queryParameters,
+    Map<String, dynamic>? header,
+    Options? options,
+    CancelToken? cancelToken,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    try {
+      final response = await _read(dioProvider).put<Map<String, dynamic>>(
+        path,
+        options: options ?? Options(headers: header),
+        data: data,
+        cancelToken: cancelToken,
+        onSendProgress: onSendProgress,
+        onReceiveProgress: onReceiveProgress,
+      );
+      final statusCode = response.statusCode;
+      final responseData = response.data;
+      _validateStatusCode(
+        statusCode: statusCode,
+        message: _messageByResponseData(responseData),
+      );
+      if (responseData == null) {
+        throw DioError(requestOptions: response.requestOptions);
+      }
+      return BaseApiResponse.fromResponseData(responseData);
+    } on DioError catch (dioError) {
+      throw _handleDioError(dioError);
+    } on ApiException {
+      rethrow;
+    } on SocketException {
+      rethrow;
+    } on FormatException {
+      rethrow;
+    } on Exception catch (e) {
+      throw Exception(e.toString());
+    }
+  }
+
+  @override
+  Future<BaseApiResponse> post(
+    String path, {
+    Map<String, dynamic>? data,
+    Map<String, dynamic>? queryParameters,
+    Map<String, dynamic>? header,
+    Options? options,
+    CancelToken? cancelToken,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    try {
+      final response = await _read(dioProvider).post<Map<String, dynamic>>(
+        path,
+        options: options ?? Options(headers: header),
+        data: data,
+        queryParameters: queryParameters,
+        cancelToken: cancelToken,
+        onReceiveProgress: onReceiveProgress,
+      );
+      final statusCode = response.statusCode;
+      final responseData = response.data;
+      _validateStatusCode(
+        statusCode: statusCode,
+        message: _messageByResponseData(responseData),
+      );
+      if (responseData == null) {
+        throw DioError(requestOptions: response.requestOptions);
+      }
+      return BaseApiResponse.fromResponseData(responseData);
+    } on DioError catch (dioError) {
+      throw _handleDioError(dioError);
+    } on ApiException {
+      rethrow;
+    } on SocketException {
+      rethrow;
+    } on FormatException {
+      rethrow;
+    } on Exception catch (e) {
+      throw Exception(e.toString());
+    }
+  }
+
+  @override
+  Future<BaseApiResponse> patch(
+    String path, {
+    Map<String, dynamic>? data,
+    Map<String, dynamic>? queryParameters,
+    Map<String, dynamic>? header,
+    Options? options,
+    CancelToken? cancelToken,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    try {
+      final response = await _read(dioProvider).patch<Map<String, dynamic>>(
+        path,
+        options: options ?? Options(headers: header),
+        data: data,
+        cancelToken: cancelToken,
+        onReceiveProgress: onReceiveProgress,
+      );
+      final statusCode = response.statusCode;
+      final responseData = response.data;
+      _validateStatusCode(
+        statusCode: statusCode,
+        message: _messageByResponseData(responseData),
+      );
+      if (responseData == null) {
+        throw DioError(requestOptions: response.requestOptions);
+      }
+      return BaseApiResponse.fromResponseData(responseData);
+    } on DioError catch (dioError) {
+      throw _handleDioError(dioError);
+    } on ApiException {
+      rethrow;
+    } on SocketException {
+      rethrow;
+    } on FormatException {
+      rethrow;
+    } on Exception catch (e) {
+      throw Exception(e.toString());
+    }
+  }
+
+  @override
+  Future<BaseApiResponse> delete(
+    String path, {
+    Map<String, dynamic>? data,
+    Map<String, dynamic>? queryParameters,
+    Map<String, dynamic>? header,
+    Options? options,
+    CancelToken? cancelToken,
+  }) async {
+    try {
+      final response = await _read(dioProvider).delete<Map<String, dynamic>>(
+        path,
+        options: options ?? Options(headers: header),
+        data: data,
+      );
+      final statusCode = response.statusCode;
+      final responseData = response.data ?? <String, dynamic>{};
+      _validateStatusCode(
+        statusCode: statusCode,
+        message: _messageByResponseData(responseData),
+      );
+      return BaseApiResponse.fromResponseData(responseData);
+    } on DioError catch (dioError) {
+      throw _handleDioError(dioError);
+    } on ApiException {
+      rethrow;
+    } on SocketException {
+      rethrow;
+    } on FormatException {
+      rethrow;
+    } on Exception catch (e) {
+      throw Exception(e.toString());
+    }
+  }
+
   // TODO: ステータスコードのチェックを必要な分だけ書く
   /// ステータスコードを確認して例外をスローする。問題なければ何もしない。
   void _validateStatusCode({
