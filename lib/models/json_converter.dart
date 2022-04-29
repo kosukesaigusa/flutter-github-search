@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'github_repository/github_repository.dart';
+import 'repo/repo.dart';
 
 /// HTTP のレスポンスボディのデータ (dynamic) を
 /// 適当な Map<String, dynamic> に変換するコンバータ。
@@ -25,21 +25,20 @@ class BaseApiResponseDataConverter implements JsonConverter<Map<String, dynamic>
 }
 
 /// GitHub Search Repository API レスポンスの items の コンバータ
-class SearchRepositoryResponseDataConverter implements JsonConverter<List<GitHubRepo>, dynamic> {
+class SearchRepositoryResponseDataConverter implements JsonConverter<List<Repo>, dynamic> {
   const SearchRepositoryResponseDataConverter();
 
   @override
-  List<GitHubRepo> fromJson(dynamic items) {
+  List<Repo> fromJson(dynamic items) {
     if (items == null) {
-      return <GitHubRepo>[];
+      return <Repo>[];
     }
     if (items is List) {
-      return items.map((dynamic e) => e as Map<String, dynamic>).map(GitHubRepo.fromJson).toList();
+      return items.map((dynamic e) => e as Map<String, dynamic>).map(Repo.fromJson).toList();
     }
-    return <GitHubRepo>[];
+    return <Repo>[];
   }
 
   @override
-  List<Map<String, dynamic>> toJson(List<GitHubRepo> items) =>
-      items.map((e) => e.toJson()).toList();
+  List<Map<String, dynamic>> toJson(List<Repo> items) => items.map((e) => e.toJson()).toList();
 }

@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'github_repository.dart';
+part of 'repo.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,12 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-GitHubRepo _$GitHubRepoFromJson(Map<String, dynamic> json) {
-  return _GitHubRepo.fromJson(json);
+Repo _$RepoFromJson(Map<String, dynamic> json) {
+  return _Repo.fromJson(json);
 }
 
 /// @nodoc
-mixin _$GitHubRepo {
+mixin _$Repo {
   int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   Owner get owner => throw _privateConstructorUsedError;
@@ -35,15 +35,13 @@ mixin _$GitHubRepo {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $GitHubRepoCopyWith<GitHubRepo> get copyWith =>
-      throw _privateConstructorUsedError;
+  $RepoCopyWith<Repo> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $GitHubRepoCopyWith<$Res> {
-  factory $GitHubRepoCopyWith(
-          GitHubRepo value, $Res Function(GitHubRepo) then) =
-      _$GitHubRepoCopyWithImpl<$Res>;
+abstract class $RepoCopyWith<$Res> {
+  factory $RepoCopyWith(Repo value, $Res Function(Repo) then) =
+      _$RepoCopyWithImpl<$Res>;
   $Res call(
       {int id,
       String name,
@@ -58,12 +56,12 @@ abstract class $GitHubRepoCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$GitHubRepoCopyWithImpl<$Res> implements $GitHubRepoCopyWith<$Res> {
-  _$GitHubRepoCopyWithImpl(this._value, this._then);
+class _$RepoCopyWithImpl<$Res> implements $RepoCopyWith<$Res> {
+  _$RepoCopyWithImpl(this._value, this._then);
 
-  final GitHubRepo _value;
+  final Repo _value;
   // ignore: unused_field
-  final $Res Function(GitHubRepo) _then;
+  final $Res Function(Repo) _then;
 
   @override
   $Res call({
@@ -121,10 +119,9 @@ class _$GitHubRepoCopyWithImpl<$Res> implements $GitHubRepoCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$GitHubRepoCopyWith<$Res> implements $GitHubRepoCopyWith<$Res> {
-  factory _$GitHubRepoCopyWith(
-          _GitHubRepo value, $Res Function(_GitHubRepo) then) =
-      __$GitHubRepoCopyWithImpl<$Res>;
+abstract class _$RepoCopyWith<$Res> implements $RepoCopyWith<$Res> {
+  factory _$RepoCopyWith(_Repo value, $Res Function(_Repo) then) =
+      __$RepoCopyWithImpl<$Res>;
   @override
   $Res call(
       {int id,
@@ -141,14 +138,13 @@ abstract class _$GitHubRepoCopyWith<$Res> implements $GitHubRepoCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$GitHubRepoCopyWithImpl<$Res> extends _$GitHubRepoCopyWithImpl<$Res>
-    implements _$GitHubRepoCopyWith<$Res> {
-  __$GitHubRepoCopyWithImpl(
-      _GitHubRepo _value, $Res Function(_GitHubRepo) _then)
-      : super(_value, (v) => _then(v as _GitHubRepo));
+class __$RepoCopyWithImpl<$Res> extends _$RepoCopyWithImpl<$Res>
+    implements _$RepoCopyWith<$Res> {
+  __$RepoCopyWithImpl(_Repo _value, $Res Function(_Repo) _then)
+      : super(_value, (v) => _then(v as _Repo));
 
   @override
-  _GitHubRepo get _value => super._value as _GitHubRepo;
+  _Repo get _value => super._value as _Repo;
 
   @override
   $Res call({
@@ -161,7 +157,7 @@ class __$GitHubRepoCopyWithImpl<$Res> extends _$GitHubRepoCopyWithImpl<$Res>
     Object? starGazersCount = freezed,
     Object? forksCount = freezed,
   }) {
-    return _then(_GitHubRepo(
+    return _then(_Repo(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -200,8 +196,8 @@ class __$GitHubRepoCopyWithImpl<$Res> extends _$GitHubRepoCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_GitHubRepo implements _GitHubRepo {
-  const _$_GitHubRepo(
+class _$_Repo implements _Repo {
+  const _$_Repo(
       {required this.id,
       required this.name,
       required this.owner,
@@ -211,8 +207,7 @@ class _$_GitHubRepo implements _GitHubRepo {
       @JsonKey(name: 'stargazers_count') this.starGazersCount = 0,
       @JsonKey(name: 'forks_count') this.forksCount = 0});
 
-  factory _$_GitHubRepo.fromJson(Map<String, dynamic> json) =>
-      _$$_GitHubRepoFromJson(json);
+  factory _$_Repo.fromJson(Map<String, dynamic> json) => _$$_RepoFromJson(json);
 
   @override
   final int id;
@@ -238,14 +233,14 @@ class _$_GitHubRepo implements _GitHubRepo {
 
   @override
   String toString() {
-    return 'GitHubRepo(id: $id, name: $name, owner: $owner, htmlUrl: $htmlUrl, description: $description, updatedAt: $updatedAt, starGazersCount: $starGazersCount, forksCount: $forksCount)';
+    return 'Repo(id: $id, name: $name, owner: $owner, htmlUrl: $htmlUrl, description: $description, updatedAt: $updatedAt, starGazersCount: $starGazersCount, forksCount: $forksCount)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _GitHubRepo &&
+            other is _Repo &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality().equals(other.owner, owner) &&
@@ -274,17 +269,17 @@ class _$_GitHubRepo implements _GitHubRepo {
 
   @JsonKey(ignore: true)
   @override
-  _$GitHubRepoCopyWith<_GitHubRepo> get copyWith =>
-      __$GitHubRepoCopyWithImpl<_GitHubRepo>(this, _$identity);
+  _$RepoCopyWith<_Repo> get copyWith =>
+      __$RepoCopyWithImpl<_Repo>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_GitHubRepoToJson(this);
+    return _$$_RepoToJson(this);
   }
 }
 
-abstract class _GitHubRepo implements GitHubRepo {
-  const factory _GitHubRepo(
+abstract class _Repo implements Repo {
+  const factory _Repo(
       {required final int id,
       required final String name,
       required final Owner owner,
@@ -292,10 +287,9 @@ abstract class _GitHubRepo implements GitHubRepo {
       final String description,
       @JsonKey(name: 'updated_at') required final DateTime updatedAt,
       @JsonKey(name: 'stargazers_count') final int starGazersCount,
-      @JsonKey(name: 'forks_count') final int forksCount}) = _$_GitHubRepo;
+      @JsonKey(name: 'forks_count') final int forksCount}) = _$_Repo;
 
-  factory _GitHubRepo.fromJson(Map<String, dynamic> json) =
-      _$_GitHubRepo.fromJson;
+  factory _Repo.fromJson(Map<String, dynamic> json) = _$_Repo.fromJson;
 
   @override
   int get id => throw _privateConstructorUsedError;
@@ -319,6 +313,5 @@ abstract class _GitHubRepo implements GitHubRepo {
   int get forksCount => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$GitHubRepoCopyWith<_GitHubRepo> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$RepoCopyWith<_Repo> get copyWith => throw _privateConstructorUsedError;
 }

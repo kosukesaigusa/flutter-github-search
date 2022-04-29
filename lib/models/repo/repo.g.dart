@@ -1,13 +1,12 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'github_repository.dart';
+part of 'repo.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_GitHubRepo _$$_GitHubRepoFromJson(Map<String, dynamic> json) =>
-    _$_GitHubRepo(
+_$_Repo _$$_RepoFromJson(Map<String, dynamic> json) => _$_Repo(
       id: json['id'] as int,
       name: json['name'] as String,
       owner: Owner.fromJson(json['owner'] as Map<String, dynamic>),
@@ -18,8 +17,7 @@ _$_GitHubRepo _$$_GitHubRepoFromJson(Map<String, dynamic> json) =>
       forksCount: json['forks_count'] as int? ?? 0,
     );
 
-Map<String, dynamic> _$$_GitHubRepoToJson(_$_GitHubRepo instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$$_RepoToJson(_$_Repo instance) => <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
       'owner': instance.owner,

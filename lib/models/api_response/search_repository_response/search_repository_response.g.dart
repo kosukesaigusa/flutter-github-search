@@ -12,7 +12,7 @@ _$_SearchRepositoryResponse _$$_SearchRepositoryResponseFromJson(
       totalCount: json['total_count'] as int? ?? 0,
       incompleteResults: json['incomplete_results'] as bool? ?? false,
       items: json['items'] == null
-          ? const <GitHubRepo>[]
+          ? const <Repo>[]
           : const SearchRepositoryResponseDataConverter()
               .fromJson(json['items']),
     );

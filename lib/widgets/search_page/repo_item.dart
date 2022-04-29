@@ -4,7 +4,7 @@ import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../models/github_repository/github_repository.dart';
+import '../../models/repo/repo.dart';
 import '../../services/scaffold_messenger.dart';
 import '../../utils/extensions/int.dart';
 
@@ -15,7 +15,7 @@ class RepoItemWidget extends HookConsumerWidget {
     required this.repo,
   }) : super(key: key);
 
-  final GitHubRepo repo;
+  final Repo repo;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
