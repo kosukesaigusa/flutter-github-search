@@ -3,7 +3,7 @@ import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../constants/string.dart';
-import '../../providers/repo/repo.dart';
+import '../../providers/search_repo/search_repo.dart';
 import '../../utils/extensions/int.dart';
 import '../../widgets/loading.dart';
 import '../../widgets/search_page/pager.dart';

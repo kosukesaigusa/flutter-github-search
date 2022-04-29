@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'repo_state.freezed.dart';
+part 'search_repo_state.freezed.dart';
 
 /// GitHub リポジトリの検索条件に関する State
 @freezed

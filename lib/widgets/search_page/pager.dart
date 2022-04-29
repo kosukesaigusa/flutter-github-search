@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../providers/repo/repo.dart';
+import '../../providers/search_repo/search_repo.dart';
 
 /// GitHub リポジトリ一覧の前のページ・次のページボタン
 class PagerWidget extends StatefulHookConsumerWidget {

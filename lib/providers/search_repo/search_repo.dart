@@ -5,7 +5,7 @@ import '../../constants/string.dart';
 import '../../models/repo/repo.dart';
 import '../../repositories/search_repo.dart';
 import '../../utils/exception.dart';
-import 'repo_state.dart';
+import 'search_repo_state.dart';
 
 /// GET /search/repositories API をコールして、
 /// 検索にヒットした GitHub リポジトリの一覧を返す。
