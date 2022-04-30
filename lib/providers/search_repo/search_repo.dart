@@ -19,7 +19,6 @@ final searchRepoStateNotifierProvider =
 );
 
 class SearchRepoStateNotifier extends StateNotifier<SearchRepoState> {
-  // SearchRepoStateNotifier(this._read) : super(const SearchRepoState());
   SearchRepoStateNotifier(this._read) : super(const SearchRepoState()) {
     _searchRepositories();
   }
