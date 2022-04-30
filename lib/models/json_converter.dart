@@ -24,7 +24,7 @@ class BaseApiResponseDataConverter implements JsonConverter<Map<String, dynamic>
   Map<String, dynamic> toJson(Map<String, dynamic> data) => data;
 }
 
-/// GitHub Search Repository API レスポンスの items の コンバータ
+/// GET /search/repository API レスポンスの items の コンバータ
 class SearchRepoResponseDataConverter implements JsonConverter<List<Repo>, dynamic> {
   const SearchRepoResponseDataConverter();
 
