@@ -3,14 +3,14 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
-/// API リクエストの cURL コマンドを生成する
+/// HTTP リクエストの curl コマンドを生成する
 class CurlInterceptor extends Interceptor {
   @override
   Future onRequest(
     RequestOptions options,
     RequestInterceptorHandler handler,
   ) async {
-    debugPrint('*** Curl ***');
+    debugPrint('*** curl ***');
     final curl = StringBuffer();
     var query = '';
     if (options.method == 'GET' && options.queryParameters.isNotEmpty) {

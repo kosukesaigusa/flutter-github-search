@@ -1,5 +1,7 @@
 import 'package:dio/dio.dart';
 
+import '../../constants/string.dart';
+
 /// ヘッダーに認証情報などを付加する
 class HeaderInterceptor extends Interceptor {
   HeaderInterceptor([this.overwriteUrl]);
@@ -11,9 +13,9 @@ class HeaderInterceptor extends Interceptor {
     RequestOptions options,
     RequestInterceptorHandler handler,
   ) async {
-    // Referrer を付加する
-    options.headers['Referrer'] = overwriteUrl ?? options.baseUrl;
-    // Origin を付加する
+    // Referer や Origin など、Dio 経由のすべてのリクエストヘッダーに付加したい
+    // キー・バリューを追加する。
+    options.headers[referrer] = overwriteUrl ?? options.baseUrl;
     options.headers['Origin'] = options.baseUrl;
     return handler.next(options);
   }
