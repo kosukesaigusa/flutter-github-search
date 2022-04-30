@@ -12,7 +12,7 @@ class HeaderInterceptor extends Interceptor {
     RequestInterceptorHandler handler,
   ) async {
     // Referrer を付加する
-    options.headers['Referer'] = overwriteUrl ?? options.baseUrl;
+    options.headers['Referrer'] = overwriteUrl ?? options.baseUrl;
     // Origin を付加する
     options.headers['Origin'] = options.baseUrl;
     return handler.next(options);

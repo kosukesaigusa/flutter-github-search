@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../services/api_client.dart';
@@ -27,6 +28,9 @@ class IssueRepository {
         'title': title,
         'body': body,
       },
+      options: Options(headers: <String, dynamic>{
+        'accept': 'application/vnd.github.v3+json',
+      }),
     );
     return CreateIssueResponse.fromJson(apiResponse.data);
   }

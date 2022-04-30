@@ -31,8 +31,8 @@ class ApiClient implements AbstractApiClient {
     try {
       final response = await _read(dioProvider).get<Map<String, dynamic>>(
         path,
-        options: Options(headers: header ?? <String, dynamic>{}),
         queryParameters: queryParameters,
+        options: options ?? Options(headers: header),
         cancelToken: cancelToken,
         onReceiveProgress: onReceiveProgress,
       );
@@ -73,8 +73,9 @@ class ApiClient implements AbstractApiClient {
     try {
       final response = await _read(dioProvider).put<Map<String, dynamic>>(
         path,
-        options: options ?? Options(headers: header),
         data: data,
+        queryParameters: queryParameters,
+        options: options ?? Options(headers: header),
         cancelToken: cancelToken,
         onSendProgress: onSendProgress,
         onReceiveProgress: onReceiveProgress,
@@ -116,10 +117,11 @@ class ApiClient implements AbstractApiClient {
     try {
       final response = await _read(dioProvider).post<Map<String, dynamic>>(
         path,
-        options: options ?? Options(headers: header),
         data: data,
         queryParameters: queryParameters,
+        options: options ?? Options(headers: header),
         cancelToken: cancelToken,
+        onSendProgress: onSendProgress,
         onReceiveProgress: onReceiveProgress,
       );
       final statusCode = response.statusCode;
@@ -153,14 +155,17 @@ class ApiClient implements AbstractApiClient {
     Map<String, dynamic>? header,
     Options? options,
     CancelToken? cancelToken,
+    ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
     try {
       final response = await _read(dioProvider).patch<Map<String, dynamic>>(
         path,
-        options: options ?? Options(headers: header),
         data: data,
+        queryParameters: queryParameters,
+        options: options ?? Options(headers: header),
         cancelToken: cancelToken,
+        onSendProgress: onSendProgress,
         onReceiveProgress: onReceiveProgress,
       );
       final statusCode = response.statusCode;
@@ -198,8 +203,10 @@ class ApiClient implements AbstractApiClient {
     try {
       final response = await _read(dioProvider).delete<Map<String, dynamic>>(
         path,
-        options: options ?? Options(headers: header),
         data: data,
+        queryParameters: queryParameters,
+        options: options ?? Options(headers: header),
+        cancelToken: cancelToken,
       );
       final statusCode = response.statusCode;
       final responseData = response.data ?? <String, dynamic>{};

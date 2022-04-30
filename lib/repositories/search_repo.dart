@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../services/api_client.dart';
@@ -27,6 +28,9 @@ class RepoRepository {
         'page': page,
         'per_page': perPage,
       },
+      options: Options(headers: <String, dynamic>{
+        'Accept': 'application/vnd.github.v3+json',
+      }),
     );
     return SearchRepoResponse.fromJson(apiResponse.data);
   }
