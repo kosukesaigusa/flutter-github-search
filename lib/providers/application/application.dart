@@ -14,6 +14,6 @@ class ApplicationStateNotifierProvider extends StateNotifier<ApplicationState> {
 
   final bottomTabKeys = {
     BottomTabEnum.home: GlobalKey<NavigatorState>(),
-    BottomTabEnum.search: GlobalKey<NavigatorState>(),
+    BottomTabEnum.repo: GlobalKey<NavigatorState>(),
   };
 }

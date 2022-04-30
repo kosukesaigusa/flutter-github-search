@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../pages/home/home_page.dart';
-import '../pages/search/search_page.dart';
+import '../pages/repo/search_repo_page.dart';
 
 /// MainPage の BottomNavigationBar の enum
 enum BottomTabEnum {
   home,
-  search,
+  repo,
 }
 
 /// MainPage の BottomNavigationBar の内容
@@ -31,16 +32,16 @@ const bottomTabs = [
   BottomTab(
     index: 0,
     tab: BottomTabEnum.home,
-    label: 'ホーム',
+    label: 'Home',
     path: HomePage.path,
     iconData: Icons.home,
   ),
   BottomTab(
     index: 1,
-    tab: BottomTabEnum.search,
-    label: '検索',
-    path: SearchPage.path,
-    iconData: Icons.search,
+    tab: BottomTabEnum.repo,
+    label: 'Repos',
+    path: SearchRepoPage.path,
+    iconData: FontAwesomeIcons.database,
   ),
 ];
 

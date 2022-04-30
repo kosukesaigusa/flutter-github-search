@@ -10,11 +10,11 @@ import '../../widgets/search_page/pager.dart';
 import '../../widgets/search_page/repo_item.dart';
 import '../../widgets/search_page/text_field.dart';
 
-class SearchPage extends HookConsumerWidget {
-  const SearchPage({Key? key}) : super(key: key);
+class SearchRepoPage extends HookConsumerWidget {
+  const SearchRepoPage({Key? key}) : super(key: key);
 
-  static const path = '/search/';
-  static const name = 'SearchPage';
+  static const path = '/search-repo/';
+  static const name = 'SearchRepoPage';
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -31,15 +31,15 @@ class SearchPage extends HookConsumerWidget {
             const Gap(16),
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 16),
-              child: SearchPageTextField(),
+              child: SearchRepoPageTextField(),
             ),
             Expanded(
               child: ref.watch(reposFutureProvider).when<Widget>(
                     loading: () => const PrimarySpinkitCircle(),
-                    error: (e, __) => SearchPageTextWidget(e.toString()),
+                    error: (e, __) => SearchRepoPageTextWidget(e.toString()),
                     data: (repos) {
                       if (repos.isEmpty) {
-                        return const SearchPageTextWidget(emptyQMessage);
+                        return const SearchRepoPageTextWidget(emptyQMessage);
                       }
                       return ListView.builder(
                         // +2 は上部の Summary と下部の Pager
@@ -70,13 +70,13 @@ class SearchPage extends HookConsumerWidget {
   }
 }
 
-/// SearchPage 上部の検索結果の件数などを表示するウィジェット
+/// SearchRepoPage 上部の検索結果の件数などを表示するウィジェット
 class SearchResultSummaryWidget extends HookConsumerWidget {
   const SearchResultSummaryWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return SearchPageTextWidget(
+    return SearchRepoPageTextWidget(
       '検索結果: ${ref.watch(searchRepoStateNotifierProvider).totalCount.withComma} 件'
       '（${ref.watch(searchRepoStateNotifierProvider).currentPage.withComma} / '
       '${ref.watch(searchRepoStateNotifierProvider).maxPage.withComma} '
@@ -85,9 +85,9 @@ class SearchResultSummaryWidget extends HookConsumerWidget {
   }
 }
 
-/// SearchPage 内の Column.children に並べるテキスト
-class SearchPageTextWidget extends StatelessWidget {
-  const SearchPageTextWidget(
+/// SearchRepoPage 内の Column.children に並べるテキスト
+class SearchRepoPageTextWidget extends StatelessWidget {
+  const SearchRepoPageTextWidget(
     this.text, {
     Key? key,
   }) : super(key: key);

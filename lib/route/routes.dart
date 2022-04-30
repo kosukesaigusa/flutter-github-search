@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../pages/first/first_page.dart';
 import '../pages/home/home_page.dart';
 import '../pages/main/main_page.dart';
-import '../pages/search/search_page.dart';
+import '../pages/repo/search_repo_page.dart';
 import '../pages/second/second_page.dart';
 import '../utils/types.dart';
 
@@ -13,5 +13,5 @@ final routeBuilder = <String, PageBuilder>{
   FirstPage.path: (_, args) => const FirstPage(key: ValueKey(FirstPage.name)),
   SecondPage.path: (_, args) => const SecondPage(key: ValueKey(SecondPage.name)),
   HomePage.path: (_, args) => const HomePage(key: ValueKey(HomePage.name)),
-  SearchPage.path: (_, args) => const SearchPage(key: ValueKey(SearchPage.name)),
+  SearchRepoPage.path: (_, args) => const SearchRepoPage(key: ValueKey(SearchRepoPage.name)),
 };

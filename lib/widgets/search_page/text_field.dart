@@ -6,14 +6,14 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../constants/number.dart';
 import '../../providers/search_repo/search_repo.dart';
 
-class SearchPageTextField extends StatefulHookConsumerWidget {
-  const SearchPageTextField({Key? key}) : super(key: key);
+class SearchRepoPageTextField extends StatefulHookConsumerWidget {
+  const SearchRepoPageTextField({Key? key}) : super(key: key);
 
   @override
-  ConsumerState<SearchPageTextField> createState() => _SearchPageTextFieldState();
+  ConsumerState<SearchRepoPageTextField> createState() => _SearchRepoPageTextFieldState();
 }
 
-class _SearchPageTextFieldState extends ConsumerState<SearchPageTextField> {
+class _SearchRepoPageTextFieldState extends ConsumerState<SearchRepoPageTextField> {
   late TextEditingController _textEditingController;
   Timer? _debounceTimer;
 
