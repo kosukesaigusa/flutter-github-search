@@ -1,11 +1,15 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../models/repo/repo.dart';
+import '../../utils/enums.dart';
+
 part 'search_repo_state.freezed.dart';
 
-/// GitHub リポジトリの検索条件に関する State
 @freezed
-class RepoSearchState with _$RepoSearchState {
-  const factory RepoSearchState({
+class SearchRepoState with _$SearchRepoState {
+  const factory SearchRepoState({
+    @Default(false) bool loading,
+    @Default(SearchRepoErrorEnum.none) SearchRepoErrorEnum error,
     @Default(false) bool canShowPreviousPage,
     @Default(false) bool canShowNextPage,
     @Default('') String q,
@@ -13,5 +17,6 @@ class RepoSearchState with _$RepoSearchState {
     @Default(10) int perPage,
     @Default(0) int totalCount,
     @Default(1) int maxPage,
-  }) = _RepoSearchState;
+    @Default(<Repo>[]) List<Repo> repos,
+  }) = _SearchRepoState;
 }

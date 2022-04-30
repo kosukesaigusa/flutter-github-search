@@ -1,59 +1,71 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../constants/string.dart';
+import '../../models/api_response/search_repo_response/search_repo_response.dart';
 import '../../models/repo/repo.dart';
 import '../../repositories/search_repo.dart';
+import '../../utils/enums.dart';
 import '../../utils/exception.dart';
 import 'search_repo_state.dart';
 
-/// GET /search/repositories API をコールして、
-/// 検索にヒットした GitHub リポジトリの一覧を返す。
-final reposFutureProvider = FutureProvider.autoDispose<List<Repo>>((ref) async {
-  final q = ref.watch(searchRepoStateNotifierProvider.select((state) => state.q));
-  final currentPage =
-      ref.watch(searchRepoStateNotifierProvider.select((state) => state.currentPage));
-  final perPage = ref.watch(searchRepoStateNotifierProvider.select((state) => state.perPage));
-  if (q.isEmpty) {
-    throw const AppException(emptyQMessage);
-  }
-  if (currentPage < 1) {
-    throw const AppException('ページ番号が正しくありません。');
-  }
-  if (perPage < 1) {
-    throw const AppException('1 ページあたりの件数が正しくありません。');
-  }
-  final response = await ref.read(searchRepoRepositoryProvider).fetchRepositories(
-        q: q,
-        page: currentPage,
-        perPage: perPage,
-      );
-  // 結果を更新してから List<Repo> を返す
-  ref.read(searchRepoStateNotifierProvider.notifier).updateByFetchResult(response.totalCount);
-  return response.items;
-});
-
-/// GitHub リポジトリの検索条件などを操作する StateNotifier を提供するプロバイダ
+/// GitHub リポジトリの検索条件や検索結果を操作・保持する
+/// StateNotifier を提供するプロバイダ。
+/// 検索ワードやページャなどのそれぞれの要素が互いに割と複雑に影響しあっているので、
+/// バラバラの StateProvider や FutureProvider で記述していたのから、
+/// StateNotifier で記述することにした。
 final searchRepoStateNotifierProvider =
-    StateNotifierProvider.autoDispose<SearchRepoStateNotifier, RepoSearchState>(
-  (_) => SearchRepoStateNotifier(),
+    StateNotifierProvider.autoDispose<SearchRepoStateNotifier, SearchRepoState>(
+  (ref) => SearchRepoStateNotifier(ref.read),
 );
 
-class SearchRepoStateNotifier extends StateNotifier<RepoSearchState> {
-  SearchRepoStateNotifier() : super(const RepoSearchState());
-
-  final scrollController = ScrollController();
-
-  @override
-  void dispose() {
-    scrollController.dispose();
-    super.dispose();
+class SearchRepoStateNotifier extends StateNotifier<SearchRepoState> {
+  // SearchRepoStateNotifier(this._read) : super(const SearchRepoState());
+  SearchRepoStateNotifier(this._read) : super(const SearchRepoState()) {
+    _searchRepositories();
   }
 
-  /// 検索ワードを変更する
+  final Reader _read;
+
+  /// ListView.builder に指定するスクロールコントローラ
+  final scrollController = ScrollController();
+
+  /// GET /search/repositories API をコールして検索結果をstate に保持する
+  Future<void> _searchRepositories() async {
+    if (state.q.isEmpty) {
+      state = state.copyWith(loading: false, error: SearchRepoErrorEnum.emptyQ);
+      return;
+    }
+    if (state.currentPage < 1) {
+      state = state.copyWith(loading: false, error: SearchRepoErrorEnum.pageNotValid);
+      return;
+    }
+    if (state.perPage < 1) {
+      state = state.copyWith(loading: false, error: SearchRepoErrorEnum.perPageNotValid);
+      return;
+    }
+    try {
+      state = state.copyWith(loading: true);
+      final response = await _read(searchRepoRepositoryProvider).fetchRepositories(
+        q: state.q,
+        page: state.currentPage,
+        perPage: state.perPage,
+      );
+      _updateStateByResponse(response);
+    } on ApiException {
+      state = state.copyWith(error: SearchRepoErrorEnum.apiError);
+    } on Exception {
+      state = state.copyWith(error: SearchRepoErrorEnum.other);
+    } finally {
+      state = state.copyWith(loading: false);
+    }
+  }
+
+  /// 検索ワードを変更して再度 Search Repository API をコールする
   void updateSearchWord(String q) {
-    state = state.copyWith(q: q, currentPage: 1);
-    animateToTop();
+    state = state.copyWith(q: q, currentPage: 1, repos: <Repo>[]);
+    _resetPagerStatus();
+    _animateToTop();
+    _searchRepositories();
   }
 
   /// 前のページへ
@@ -62,8 +74,9 @@ class SearchRepoStateNotifier extends StateNotifier<RepoSearchState> {
       return;
     }
     state = state.copyWith(currentPage: state.currentPage - 1);
-    resetPagerStatus();
-    animateToTop();
+    _resetPagerStatus();
+    _animateToTop();
+    _searchRepositories();
   }
 
   /// 次のページへ
@@ -72,23 +85,23 @@ class SearchRepoStateNotifier extends StateNotifier<RepoSearchState> {
       return;
     }
     state = state.copyWith(currentPage: state.currentPage + 1);
-    resetPagerStatus();
-    animateToTop();
+    _resetPagerStatus();
+    _animateToTop();
+    _searchRepositories();
   }
 
   /// GET /search/repository の結果に応じて更新すべき状態を更新する
-  void updateByFetchResult(
-    int totalCount,
-  ) {
+  void _updateStateByResponse(SearchRepoResponse response) {
     state = state.copyWith(
-      totalCount: totalCount,
-      maxPage: (totalCount / state.perPage).ceil(),
+      totalCount: response.totalCount,
+      maxPage: (response.totalCount / state.perPage).ceil(),
+      repos: response.items,
     );
-    resetPagerStatus();
+    _resetPagerStatus();
   }
 
   /// ページャに関わる状態を更新する
-  void resetPagerStatus() {
+  void _resetPagerStatus() {
     state = state.copyWith(
       canShowPreviousPage: state.currentPage > 1,
       canShowNextPage: state.currentPage < state.maxPage,
@@ -96,7 +109,7 @@ class SearchRepoStateNotifier extends StateNotifier<RepoSearchState> {
   }
 
   /// ページ切替時に ListView の上までスクロールする
-  void animateToTop() {
+  void _animateToTop() {
     if (!scrollController.hasClients) {
       return;
     }
@@ -105,5 +118,11 @@ class SearchRepoStateNotifier extends StateNotifier<RepoSearchState> {
       duration: const Duration(microseconds: 200),
       curve: Curves.linear,
     );
+  }
+
+  @override
+  void dispose() {
+    scrollController.dispose();
+    super.dispose();
   }
 }

@@ -15,7 +15,9 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$RepoSearchState {
+mixin _$SearchRepoState {
+  bool get loading => throw _privateConstructorUsedError;
+  SearchRepoErrorEnum get error => throw _privateConstructorUsedError;
   bool get canShowPreviousPage => throw _privateConstructorUsedError;
   bool get canShowNextPage => throw _privateConstructorUsedError;
   String get q => throw _privateConstructorUsedError;
@@ -23,38 +25,44 @@ mixin _$RepoSearchState {
   int get perPage => throw _privateConstructorUsedError;
   int get totalCount => throw _privateConstructorUsedError;
   int get maxPage => throw _privateConstructorUsedError;
+  List<Repo> get repos => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $RepoSearchStateCopyWith<RepoSearchState> get copyWith =>
+  $SearchRepoStateCopyWith<SearchRepoState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $RepoSearchStateCopyWith<$Res> {
-  factory $RepoSearchStateCopyWith(
-          RepoSearchState value, $Res Function(RepoSearchState) then) =
-      _$RepoSearchStateCopyWithImpl<$Res>;
+abstract class $SearchRepoStateCopyWith<$Res> {
+  factory $SearchRepoStateCopyWith(
+          SearchRepoState value, $Res Function(SearchRepoState) then) =
+      _$SearchRepoStateCopyWithImpl<$Res>;
   $Res call(
-      {bool canShowPreviousPage,
+      {bool loading,
+      SearchRepoErrorEnum error,
+      bool canShowPreviousPage,
       bool canShowNextPage,
       String q,
       int currentPage,
       int perPage,
       int totalCount,
-      int maxPage});
+      int maxPage,
+      List<Repo> repos});
 }
 
 /// @nodoc
-class _$RepoSearchStateCopyWithImpl<$Res>
-    implements $RepoSearchStateCopyWith<$Res> {
-  _$RepoSearchStateCopyWithImpl(this._value, this._then);
+class _$SearchRepoStateCopyWithImpl<$Res>
+    implements $SearchRepoStateCopyWith<$Res> {
+  _$SearchRepoStateCopyWithImpl(this._value, this._then);
 
-  final RepoSearchState _value;
+  final SearchRepoState _value;
   // ignore: unused_field
-  final $Res Function(RepoSearchState) _then;
+  final $Res Function(SearchRepoState) _then;
 
   @override
   $Res call({
+    Object? loading = freezed,
+    Object? error = freezed,
     Object? canShowPreviousPage = freezed,
     Object? canShowNextPage = freezed,
     Object? q = freezed,
@@ -62,8 +70,17 @@ class _$RepoSearchStateCopyWithImpl<$Res>
     Object? perPage = freezed,
     Object? totalCount = freezed,
     Object? maxPage = freezed,
+    Object? repos = freezed,
   }) {
     return _then(_value.copyWith(
+      loading: loading == freezed
+          ? _value.loading
+          : loading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      error: error == freezed
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as SearchRepoErrorEnum,
       canShowPreviousPage: canShowPreviousPage == freezed
           ? _value.canShowPreviousPage
           : canShowPreviousPage // ignore: cast_nullable_to_non_nullable
@@ -92,40 +109,49 @@ class _$RepoSearchStateCopyWithImpl<$Res>
           ? _value.maxPage
           : maxPage // ignore: cast_nullable_to_non_nullable
               as int,
+      repos: repos == freezed
+          ? _value.repos
+          : repos // ignore: cast_nullable_to_non_nullable
+              as List<Repo>,
     ));
   }
 }
 
 /// @nodoc
-abstract class _$RepoSearchStateCopyWith<$Res>
-    implements $RepoSearchStateCopyWith<$Res> {
-  factory _$RepoSearchStateCopyWith(
-          _RepoSearchState value, $Res Function(_RepoSearchState) then) =
-      __$RepoSearchStateCopyWithImpl<$Res>;
+abstract class _$SearchRepoStateCopyWith<$Res>
+    implements $SearchRepoStateCopyWith<$Res> {
+  factory _$SearchRepoStateCopyWith(
+          _SearchRepoState value, $Res Function(_SearchRepoState) then) =
+      __$SearchRepoStateCopyWithImpl<$Res>;
   @override
   $Res call(
-      {bool canShowPreviousPage,
+      {bool loading,
+      SearchRepoErrorEnum error,
+      bool canShowPreviousPage,
       bool canShowNextPage,
       String q,
       int currentPage,
       int perPage,
       int totalCount,
-      int maxPage});
+      int maxPage,
+      List<Repo> repos});
 }
 
 /// @nodoc
-class __$RepoSearchStateCopyWithImpl<$Res>
-    extends _$RepoSearchStateCopyWithImpl<$Res>
-    implements _$RepoSearchStateCopyWith<$Res> {
-  __$RepoSearchStateCopyWithImpl(
-      _RepoSearchState _value, $Res Function(_RepoSearchState) _then)
-      : super(_value, (v) => _then(v as _RepoSearchState));
+class __$SearchRepoStateCopyWithImpl<$Res>
+    extends _$SearchRepoStateCopyWithImpl<$Res>
+    implements _$SearchRepoStateCopyWith<$Res> {
+  __$SearchRepoStateCopyWithImpl(
+      _SearchRepoState _value, $Res Function(_SearchRepoState) _then)
+      : super(_value, (v) => _then(v as _SearchRepoState));
 
   @override
-  _RepoSearchState get _value => super._value as _RepoSearchState;
+  _SearchRepoState get _value => super._value as _SearchRepoState;
 
   @override
   $Res call({
+    Object? loading = freezed,
+    Object? error = freezed,
     Object? canShowPreviousPage = freezed,
     Object? canShowNextPage = freezed,
     Object? q = freezed,
@@ -133,8 +159,17 @@ class __$RepoSearchStateCopyWithImpl<$Res>
     Object? perPage = freezed,
     Object? totalCount = freezed,
     Object? maxPage = freezed,
+    Object? repos = freezed,
   }) {
-    return _then(_RepoSearchState(
+    return _then(_SearchRepoState(
+      loading: loading == freezed
+          ? _value.loading
+          : loading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      error: error == freezed
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as SearchRepoErrorEnum,
       canShowPreviousPage: canShowPreviousPage == freezed
           ? _value.canShowPreviousPage
           : canShowPreviousPage // ignore: cast_nullable_to_non_nullable
@@ -163,22 +198,36 @@ class __$RepoSearchStateCopyWithImpl<$Res>
           ? _value.maxPage
           : maxPage // ignore: cast_nullable_to_non_nullable
               as int,
+      repos: repos == freezed
+          ? _value.repos
+          : repos // ignore: cast_nullable_to_non_nullable
+              as List<Repo>,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_RepoSearchState implements _RepoSearchState {
-  const _$_RepoSearchState(
-      {this.canShowPreviousPage = false,
+class _$_SearchRepoState implements _SearchRepoState {
+  const _$_SearchRepoState(
+      {this.loading = false,
+      this.error = SearchRepoErrorEnum.none,
+      this.canShowPreviousPage = false,
       this.canShowNextPage = false,
       this.q = '',
       this.currentPage = 1,
       this.perPage = 10,
       this.totalCount = 0,
-      this.maxPage = 1});
+      this.maxPage = 1,
+      final List<Repo> repos = const <Repo>[]})
+      : _repos = repos;
 
+  @override
+  @JsonKey()
+  final bool loading;
+  @override
+  @JsonKey()
+  final SearchRepoErrorEnum error;
   @override
   @JsonKey()
   final bool canShowPreviousPage;
@@ -200,17 +249,26 @@ class _$_RepoSearchState implements _RepoSearchState {
   @override
   @JsonKey()
   final int maxPage;
+  final List<Repo> _repos;
+  @override
+  @JsonKey()
+  List<Repo> get repos {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_repos);
+  }
 
   @override
   String toString() {
-    return 'RepoSearchState(canShowPreviousPage: $canShowPreviousPage, canShowNextPage: $canShowNextPage, q: $q, currentPage: $currentPage, perPage: $perPage, totalCount: $totalCount, maxPage: $maxPage)';
+    return 'SearchRepoState(loading: $loading, error: $error, canShowPreviousPage: $canShowPreviousPage, canShowNextPage: $canShowNextPage, q: $q, currentPage: $currentPage, perPage: $perPage, totalCount: $totalCount, maxPage: $maxPage, repos: $repos)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _RepoSearchState &&
+            other is _SearchRepoState &&
+            const DeepCollectionEquality().equals(other.loading, loading) &&
+            const DeepCollectionEquality().equals(other.error, error) &&
             const DeepCollectionEquality()
                 .equals(other.canShowPreviousPage, canShowPreviousPage) &&
             const DeepCollectionEquality()
@@ -221,36 +279,47 @@ class _$_RepoSearchState implements _RepoSearchState {
             const DeepCollectionEquality().equals(other.perPage, perPage) &&
             const DeepCollectionEquality()
                 .equals(other.totalCount, totalCount) &&
-            const DeepCollectionEquality().equals(other.maxPage, maxPage));
+            const DeepCollectionEquality().equals(other.maxPage, maxPage) &&
+            const DeepCollectionEquality().equals(other.repos, repos));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      const DeepCollectionEquality().hash(loading),
+      const DeepCollectionEquality().hash(error),
       const DeepCollectionEquality().hash(canShowPreviousPage),
       const DeepCollectionEquality().hash(canShowNextPage),
       const DeepCollectionEquality().hash(q),
       const DeepCollectionEquality().hash(currentPage),
       const DeepCollectionEquality().hash(perPage),
       const DeepCollectionEquality().hash(totalCount),
-      const DeepCollectionEquality().hash(maxPage));
+      const DeepCollectionEquality().hash(maxPage),
+      const DeepCollectionEquality().hash(repos));
 
   @JsonKey(ignore: true)
   @override
-  _$RepoSearchStateCopyWith<_RepoSearchState> get copyWith =>
-      __$RepoSearchStateCopyWithImpl<_RepoSearchState>(this, _$identity);
+  _$SearchRepoStateCopyWith<_SearchRepoState> get copyWith =>
+      __$SearchRepoStateCopyWithImpl<_SearchRepoState>(this, _$identity);
 }
 
-abstract class _RepoSearchState implements RepoSearchState {
-  const factory _RepoSearchState(
-      {final bool canShowPreviousPage,
+abstract class _SearchRepoState implements SearchRepoState {
+  const factory _SearchRepoState(
+      {final bool loading,
+      final SearchRepoErrorEnum error,
+      final bool canShowPreviousPage,
       final bool canShowNextPage,
       final String q,
       final int currentPage,
       final int perPage,
       final int totalCount,
-      final int maxPage}) = _$_RepoSearchState;
+      final int maxPage,
+      final List<Repo> repos}) = _$_SearchRepoState;
 
+  @override
+  bool get loading => throw _privateConstructorUsedError;
+  @override
+  SearchRepoErrorEnum get error => throw _privateConstructorUsedError;
   @override
   bool get canShowPreviousPage => throw _privateConstructorUsedError;
   @override
@@ -266,7 +335,9 @@ abstract class _RepoSearchState implements RepoSearchState {
   @override
   int get maxPage => throw _privateConstructorUsedError;
   @override
+  List<Repo> get repos => throw _privateConstructorUsedError;
+  @override
   @JsonKey(ignore: true)
-  _$RepoSearchStateCopyWith<_RepoSearchState> get copyWith =>
+  _$SearchRepoStateCopyWith<_SearchRepoState> get copyWith =>
       throw _privateConstructorUsedError;
 }

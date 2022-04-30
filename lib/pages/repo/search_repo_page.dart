@@ -27,45 +27,50 @@ class SearchRepoPage extends HookConsumerWidget {
         ),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Gap(16),
-            const Padding(
+          children: const [
+            Gap(16),
+            Padding(
               padding: EdgeInsets.symmetric(horizontal: 16),
               child: SearchRepoPageTextField(),
             ),
-            Expanded(
-              child: ref.watch(reposFutureProvider).when<Widget>(
-                    loading: () => const PrimarySpinkitCircle(),
-                    error: (e, __) => SearchRepoPageTextWidget(e.toString()),
-                    data: (repos) {
-                      if (repos.isEmpty) {
-                        return const SearchRepoPageTextWidget(emptyQMessage);
-                      }
-                      return ListView.builder(
-                        // +2 は上部の Summary と下部の Pager
-                        controller:
-                            ref.watch(searchRepoStateNotifierProvider.notifier).scrollController,
-                        itemCount: repos.length + 2,
-                        itemBuilder: (context, index) {
-                          if (index == 0) {
-                            return const SearchResultSummaryWidget();
-                          }
-                          if (index == repos.length + 1) {
-                            return const Padding(
-                              padding: EdgeInsets.only(bottom: 16),
-                              child: PagerWidget(),
-                            );
-                          } else {
-                            return RepoItemWidget(repo: repos[index - 1]);
-                          }
-                        },
-                      );
-                    },
-                  ),
-            ),
+            SearchRepoContentWidget(),
           ],
         ),
       ),
+    );
+  }
+}
+
+/// SearchRepo の TextField 以下のウィジェット
+class SearchRepoContentWidget extends HookConsumerWidget {
+  const SearchRepoContentWidget({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(searchRepoStateNotifierProvider);
+    return Expanded(
+      child: state.loading
+          ? const PrimarySpinkitCircle()
+          : state.repos.isEmpty
+              ? const SearchRepoPageTextWidget(emptyQMessage)
+              : ListView.builder(
+                  // +2 は上部の Summary と下部の Pager
+                  controller: ref.watch(searchRepoStateNotifierProvider.notifier).scrollController,
+                  itemCount: state.repos.length + 2,
+                  itemBuilder: (context, index) {
+                    if (index == 0) {
+                      return const SearchResultSummaryWidget();
+                    }
+                    if (index == state.repos.length + 1) {
+                      return const Padding(
+                        padding: EdgeInsets.only(bottom: 16),
+                        child: PagerWidget(),
+                      );
+                    } else {
+                      return RepoItemWidget(repo: state.repos[index - 1]);
+                    }
+                  },
+                ),
     );
   }
 }
@@ -76,10 +81,11 @@ class SearchResultSummaryWidget extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(searchRepoStateNotifierProvider);
     return SearchRepoPageTextWidget(
-      '検索結果: ${ref.watch(searchRepoStateNotifierProvider).totalCount.withComma} 件'
-      '（${ref.watch(searchRepoStateNotifierProvider).currentPage.withComma} / '
-      '${ref.watch(searchRepoStateNotifierProvider).maxPage.withComma} '
+      '検索結果: ${state.totalCount.withComma} 件'
+      '（${state.currentPage.withComma} / '
+      '${state.maxPage.withComma} '
       'ページ）',
     );
   }
