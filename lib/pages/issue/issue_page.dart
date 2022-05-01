@@ -29,7 +29,17 @@ class _IssuePageState extends ConsumerState<IssuePage> {
       body: state.loading
           ? const PrimarySpinkitCircle()
           : state.issues.isEmpty
-              ? const Center(child: Text('Issue がありません。'))
+              ? Center(
+                  child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text('Issue が取得できませんでした。'),
+                    TextButton(
+                      onPressed: notifier.reload,
+                      child: const Text('リロードする'),
+                    ),
+                  ],
+                ))
               : RefreshIndicator(
                   onRefresh: notifier.reload,
                   child: ListView.builder(
