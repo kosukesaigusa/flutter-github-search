@@ -9,7 +9,7 @@ part 'search_repo_state.freezed.dart';
 class SearchRepoState with _$SearchRepoState {
   const factory SearchRepoState({
     @Default(false) bool loading,
-    @Default(SearchRepoErrorEnum.none) SearchRepoErrorEnum error,
+    @Default(FetchResponseErrorEnum.none) FetchResponseErrorEnum error,
     @Default(false) bool canShowPreviousPage,
     @Default(false) bool canShowNextPage,
     @Default('') String q,

@@ -31,15 +31,15 @@ class SearchRepoStateNotifier extends StateNotifier<SearchRepoState> {
   /// GET /search/repositories API をコールして検索結果をstate に保持する
   Future<void> _searchRepositories() async {
     if (state.q.isEmpty) {
-      state = state.copyWith(loading: false, error: SearchRepoErrorEnum.emptyQ);
+      state = state.copyWith(loading: false, error: FetchResponseErrorEnum.emptyQ);
       return;
     }
     if (state.currentPage < 1) {
-      state = state.copyWith(loading: false, error: SearchRepoErrorEnum.pageNotValid);
+      state = state.copyWith(loading: false, error: FetchResponseErrorEnum.pageNotValid);
       return;
     }
     if (state.perPage < 1) {
-      state = state.copyWith(loading: false, error: SearchRepoErrorEnum.perPageNotValid);
+      state = state.copyWith(loading: false, error: FetchResponseErrorEnum.perPageNotValid);
       return;
     }
     try {
@@ -51,9 +51,9 @@ class SearchRepoStateNotifier extends StateNotifier<SearchRepoState> {
       );
       _updateStateByResponse(response);
     } on ApiException {
-      state = state.copyWith(error: SearchRepoErrorEnum.apiError);
+      state = state.copyWith(error: FetchResponseErrorEnum.apiError);
     } on Exception {
-      state = state.copyWith(error: SearchRepoErrorEnum.other);
+      state = state.copyWith(error: FetchResponseErrorEnum.other);
     } finally {
       state = state.copyWith(loading: false);
     }

@@ -17,7 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$SearchRepoState {
   bool get loading => throw _privateConstructorUsedError;
-  SearchRepoErrorEnum get error => throw _privateConstructorUsedError;
+  FetchResponseErrorEnum get error => throw _privateConstructorUsedError;
   bool get canShowPreviousPage => throw _privateConstructorUsedError;
   bool get canShowNextPage => throw _privateConstructorUsedError;
   String get q => throw _privateConstructorUsedError;
@@ -39,7 +39,7 @@ abstract class $SearchRepoStateCopyWith<$Res> {
       _$SearchRepoStateCopyWithImpl<$Res>;
   $Res call(
       {bool loading,
-      SearchRepoErrorEnum error,
+      FetchResponseErrorEnum error,
       bool canShowPreviousPage,
       bool canShowNextPage,
       String q,
@@ -80,7 +80,7 @@ class _$SearchRepoStateCopyWithImpl<$Res>
       error: error == freezed
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
-              as SearchRepoErrorEnum,
+              as FetchResponseErrorEnum,
       canShowPreviousPage: canShowPreviousPage == freezed
           ? _value.canShowPreviousPage
           : canShowPreviousPage // ignore: cast_nullable_to_non_nullable
@@ -126,7 +126,7 @@ abstract class _$SearchRepoStateCopyWith<$Res>
   @override
   $Res call(
       {bool loading,
-      SearchRepoErrorEnum error,
+      FetchResponseErrorEnum error,
       bool canShowPreviousPage,
       bool canShowNextPage,
       String q,
@@ -169,7 +169,7 @@ class __$SearchRepoStateCopyWithImpl<$Res>
       error: error == freezed
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
-              as SearchRepoErrorEnum,
+              as FetchResponseErrorEnum,
       canShowPreviousPage: canShowPreviousPage == freezed
           ? _value.canShowPreviousPage
           : canShowPreviousPage // ignore: cast_nullable_to_non_nullable
@@ -211,7 +211,7 @@ class __$SearchRepoStateCopyWithImpl<$Res>
 class _$_SearchRepoState implements _SearchRepoState {
   const _$_SearchRepoState(
       {this.loading = false,
-      this.error = SearchRepoErrorEnum.none,
+      this.error = FetchResponseErrorEnum.none,
       this.canShowPreviousPage = false,
       this.canShowNextPage = false,
       this.q = '',
@@ -227,7 +227,7 @@ class _$_SearchRepoState implements _SearchRepoState {
   final bool loading;
   @override
   @JsonKey()
-  final SearchRepoErrorEnum error;
+  final FetchResponseErrorEnum error;
   @override
   @JsonKey()
   final bool canShowPreviousPage;
@@ -306,7 +306,7 @@ class _$_SearchRepoState implements _SearchRepoState {
 abstract class _SearchRepoState implements SearchRepoState {
   const factory _SearchRepoState(
       {final bool loading,
-      final SearchRepoErrorEnum error,
+      final FetchResponseErrorEnum error,
       final bool canShowPreviousPage,
       final bool canShowNextPage,
       final String q,
@@ -319,7 +319,7 @@ abstract class _SearchRepoState implements SearchRepoState {
   @override
   bool get loading => throw _privateConstructorUsedError;
   @override
-  SearchRepoErrorEnum get error => throw _privateConstructorUsedError;
+  FetchResponseErrorEnum get error => throw _privateConstructorUsedError;
   @override
   bool get canShowPreviousPage => throw _privateConstructorUsedError;
   @override
