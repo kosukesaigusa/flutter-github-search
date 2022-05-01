@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../constants/number.dart';
-import '../../providers/search_repo/search_repo.dart';
+import '../../providers/repo/search_repo.dart';
 
 class RepoPageTextField extends StatefulHookConsumerWidget {
   const RepoPageTextField({Key? key}) : super(key: key);
