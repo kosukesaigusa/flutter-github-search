@@ -3,6 +3,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../services/api_client.dart';
 import '../models/api_response/fetch_issue_response/fetch_issue_response.dart';
+import '../models/issue/issue.dart';
 import '../providers/common/github_access_token.dart';
 
 final issueRepositoryProvider = Provider.autoDispose(
@@ -38,7 +39,6 @@ class IssueRepository {
       },
       options: Options(headers: <String, dynamic>{
         'Accept': 'application/vnd.github.v3+json',
-        'Authorization': 'token: $_accessToken',
       }),
     );
     return FetchIssueResponse.fromJson(apiResponse.data);
@@ -46,22 +46,23 @@ class IssueRepository {
 
   /// POST /repos/{owner}/{repo}/issues API をコールして
   /// 指定した GitHub リポジトリに Issue を作成する。
-  // Future<CreateIssueResponse> createIssue({
-  //   required String ownerName,
-  //   required String repoName,
-  //   required String title,
-  //   required String body,
-  // }) async {
-  //   final apiResponse = await _client.post(
-  //     '/repos/$ownerName/$repoName/issues',
-  //     queryParameters: <String, dynamic>{
-  //       'title': title,
-  //       'body': body,
-  //     },
-  //     options: Options(headers: <String, dynamic>{
-  //       'accept': 'application/vnd.github.v3+json',
-  //     }),
-  //   );
-  //   return CreateIssueResponse.fromJson(apiResponse.data);
-  // }
+  Future<Issue> createIssueDialog({
+    required String ownerName,
+    required String repoName,
+    required String title,
+    required String body,
+  }) async {
+    final apiResponse = await _client.post(
+      '/repos/$ownerName/$repoName/issues',
+      data: <String, dynamic>{
+        'title': title,
+        'body': body,
+      },
+      options: Options(headers: <String, dynamic>{
+        'Accept': 'application/vnd.github.v3+json',
+        'Authorization': 'token $_accessToken',
+      }),
+    );
+    return Issue.fromJson(apiResponse.data);
+  }
 }
