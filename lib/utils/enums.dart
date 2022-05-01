@@ -9,8 +9,9 @@ enum ErrorCode {
   unauthorized,
 }
 
-/// GET /search/repository をする上での検索条件や結果に関するエラー
-enum SearchRepoErrorEnum {
+/// GET /search/repository API や GET /repos/{owner}/{repo}/issues API
+/// をコールする上での条件や結果に関するエラー
+enum FetchResponseErrorEnum {
   /// 正常
   none,
 
@@ -30,20 +31,20 @@ enum SearchRepoErrorEnum {
   other,
 }
 
-extension SearchRepoErrorEnumExtension on SearchRepoErrorEnum {
+extension FetchResponseErrorEnumExtension on FetchResponseErrorEnum {
   String get message {
     switch (this) {
-      case SearchRepoErrorEnum.none:
+      case FetchResponseErrorEnum.none:
         return '';
-      case SearchRepoErrorEnum.emptyQ:
+      case FetchResponseErrorEnum.emptyQ:
         return emptyQMessage;
-      case SearchRepoErrorEnum.pageNotValid:
+      case FetchResponseErrorEnum.pageNotValid:
         return 'ページ番号が正しくありません。';
-      case SearchRepoErrorEnum.perPageNotValid:
+      case FetchResponseErrorEnum.perPageNotValid:
         return '1 ページあたりの件数が正しくありません。';
-      case SearchRepoErrorEnum.apiError:
+      case FetchResponseErrorEnum.apiError:
         return 'リポジトリの検索に失敗しました。';
-      case SearchRepoErrorEnum.other:
+      case FetchResponseErrorEnum.other:
         return 'エラーが発生しました。検索条件を見直してください。';
     }
   }
