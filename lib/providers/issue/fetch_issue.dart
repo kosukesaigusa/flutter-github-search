@@ -60,6 +60,13 @@ class FetchIssueStateNotifier extends StateNotifier<FetchIssueState> {
     }
   }
 
+  /// Issue の作成後などにリロードする
+  Future<void> reload() async {
+    _animateToTop();
+    _resetPagerStatus();
+    await _fetchIssues();
+  }
+
   /// 前のページへ
   void showPreviousPage() {
     if (state.currentPage < 2) {
