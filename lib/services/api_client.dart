@@ -29,7 +29,7 @@ class ApiClient implements AbstractApiClient {
     ProgressCallback? onReceiveProgress,
   }) async {
     try {
-      final response = await _read(dioProvider).get<Map<String, dynamic>>(
+      final response = await _read(dioProvider).get<dynamic>(
         path,
         queryParameters: queryParameters,
         options: options ?? Options(headers: header),
@@ -37,14 +37,11 @@ class ApiClient implements AbstractApiClient {
         onReceiveProgress: onReceiveProgress,
       );
       final statusCode = response.statusCode;
-      final responseData = response.data;
+      final responseData = _getResponseDataFromRowData(response.data);
       _validateStatusCode(
         statusCode: statusCode,
         message: _messageByResponseData(responseData),
       );
-      if (responseData == null) {
-        throw DioError(requestOptions: response.requestOptions);
-      }
       return BaseApiResponse.fromResponseData(responseData);
     } on DioError catch (dioError) {
       throw _handleDioError(dioError);
@@ -71,7 +68,7 @@ class ApiClient implements AbstractApiClient {
     ProgressCallback? onReceiveProgress,
   }) async {
     try {
-      final response = await _read(dioProvider).put<Map<String, dynamic>>(
+      final response = await _read(dioProvider).put<dynamic>(
         path,
         data: data,
         queryParameters: queryParameters,
@@ -81,14 +78,11 @@ class ApiClient implements AbstractApiClient {
         onReceiveProgress: onReceiveProgress,
       );
       final statusCode = response.statusCode;
-      final responseData = response.data;
+      final responseData = _getResponseDataFromRowData(response.data);
       _validateStatusCode(
         statusCode: statusCode,
         message: _messageByResponseData(responseData),
       );
-      if (responseData == null) {
-        throw DioError(requestOptions: response.requestOptions);
-      }
       return BaseApiResponse.fromResponseData(responseData);
     } on DioError catch (dioError) {
       throw _handleDioError(dioError);
@@ -115,7 +109,7 @@ class ApiClient implements AbstractApiClient {
     ProgressCallback? onReceiveProgress,
   }) async {
     try {
-      final response = await _read(dioProvider).post<Map<String, dynamic>>(
+      final response = await _read(dioProvider).post<dynamic>(
         path,
         data: data,
         queryParameters: queryParameters,
@@ -125,14 +119,11 @@ class ApiClient implements AbstractApiClient {
         onReceiveProgress: onReceiveProgress,
       );
       final statusCode = response.statusCode;
-      final responseData = response.data;
+      final responseData = _getResponseDataFromRowData(response.data);
       _validateStatusCode(
         statusCode: statusCode,
         message: _messageByResponseData(responseData),
       );
-      if (responseData == null) {
-        throw DioError(requestOptions: response.requestOptions);
-      }
       return BaseApiResponse.fromResponseData(responseData);
     } on DioError catch (dioError) {
       throw _handleDioError(dioError);
@@ -159,7 +150,7 @@ class ApiClient implements AbstractApiClient {
     ProgressCallback? onReceiveProgress,
   }) async {
     try {
-      final response = await _read(dioProvider).patch<Map<String, dynamic>>(
+      final response = await _read(dioProvider).patch<dynamic>(
         path,
         data: data,
         queryParameters: queryParameters,
@@ -169,14 +160,11 @@ class ApiClient implements AbstractApiClient {
         onReceiveProgress: onReceiveProgress,
       );
       final statusCode = response.statusCode;
-      final responseData = response.data;
+      final responseData = _getResponseDataFromRowData(response.data);
       _validateStatusCode(
         statusCode: statusCode,
         message: _messageByResponseData(responseData),
       );
-      if (responseData == null) {
-        throw DioError(requestOptions: response.requestOptions);
-      }
       return BaseApiResponse.fromResponseData(responseData);
     } on DioError catch (dioError) {
       throw _handleDioError(dioError);
@@ -201,7 +189,7 @@ class ApiClient implements AbstractApiClient {
     CancelToken? cancelToken,
   }) async {
     try {
-      final response = await _read(dioProvider).delete<Map<String, dynamic>>(
+      final response = await _read(dioProvider).delete<dynamic>(
         path,
         data: data,
         queryParameters: queryParameters,
@@ -209,7 +197,7 @@ class ApiClient implements AbstractApiClient {
         cancelToken: cancelToken,
       );
       final statusCode = response.statusCode;
-      final responseData = response.data ?? <String, dynamic>{};
+      final responseData = _getResponseDataFromRowData(response.data);
       _validateStatusCode(
         statusCode: statusCode,
         message: _messageByResponseData(responseData),
@@ -272,4 +260,18 @@ class ApiClient implements AbstractApiClient {
   /// Map<String, dynamic>? な responseData に 'message' のキーが含まれていれば
   /// その文字列を、そうでなければ空文字を返す。
   String _messageByResponseData(Map<String, dynamic>? data) => (data?['message'] as String?) ?? '';
+
+  /// 型不定の生の HTTP レスポンスを Map<String, dynamic> に変換して返す
+  Map<String, dynamic> _getResponseDataFromRowData(dynamic data) {
+    if (data == null) {
+      return <String, dynamic>{};
+    }
+    if (data is List) {
+      return <String, dynamic>{'items': data};
+    }
+    if (data is Map) {
+      return data as Map<String, dynamic>;
+    }
+    return <String, dynamic>{};
+  }
 }
