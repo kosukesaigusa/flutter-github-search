@@ -7,12 +7,8 @@ final applicationStateNotifierProvider =
   (ref) => ApplicationStateNotifierProvider(),
 );
 
+/// アプリケーション全体で保持・操作したい状態をまとめる
+/// いまは特にそのような用途がないため実装内容は空っぽ。
 class ApplicationStateNotifierProvider extends StateNotifier<ApplicationState> {
   ApplicationStateNotifierProvider() : super(const ApplicationState());
-
-  // final bottomTabKeys = {
-  //   BottomTabEnum.home: GlobalKey<NavigatorState>(),
-  //   BottomTabEnum.repo: GlobalKey<NavigatorState>(),
-  //   BottomTabEnum.repo: GlobalKey<NavigatorState>(),
-  // };
 }
