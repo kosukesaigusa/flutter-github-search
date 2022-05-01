@@ -4,17 +4,18 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../constants/string.dart';
 import '../../providers/search_repo/search_repo.dart';
-import '../../utils/extensions/int.dart';
+import '../../widgets/common_text.dart';
+import '../../widgets/fetch_summary.dart';
 import '../../widgets/loading.dart';
-import '../../widgets/search_page/pager.dart';
-import '../../widgets/search_page/repo_item.dart';
-import '../../widgets/search_page/text_field.dart';
+import '../../widgets/pager.dart';
+import '../../widgets/repo/repo_item.dart';
+import '../../widgets/repo/text_field.dart';
 
-class SearchRepoPage extends HookConsumerWidget {
-  const SearchRepoPage({Key? key}) : super(key: key);
+class RepoPage extends HookConsumerWidget {
+  const RepoPage({Key? key}) : super(key: key);
 
   static const path = '/search-repo/';
-  static const name = 'SearchRepoPage';
+  static const name = 'RepoPage';
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -23,7 +24,7 @@ class SearchRepoPage extends HookConsumerWidget {
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('GitHub Search'),
+          title: const Text('Repos'),
         ),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -31,7 +32,7 @@ class SearchRepoPage extends HookConsumerWidget {
             Gap(16),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16),
-              child: SearchRepoPageTextField(),
+              child: RepoPageTextField(),
             ),
             SearchRepoContentWidget(),
           ],
@@ -48,69 +49,39 @@ class SearchRepoContentWidget extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(searchRepoStateNotifierProvider);
+    final notifier = ref.watch(searchRepoStateNotifierProvider.notifier);
     return Expanded(
       child: state.loading
           ? const PrimarySpinkitCircle()
           : state.repos.isEmpty
-              ? const SearchRepoPageTextWidget(emptyQMessage)
+              ? const CommonTextWidget(emptyQMessage)
               : ListView.builder(
                   // +2 は上部の Summary と下部の Pager
                   controller: ref.watch(searchRepoStateNotifierProvider.notifier).scrollController,
                   itemCount: state.repos.length + 2,
                   itemBuilder: (context, index) {
                     if (index == 0) {
-                      return const SearchResultSummaryWidget();
+                      return FetchSummaryWidget(
+                        totalCount: state.totalCount,
+                        currentPage: state.currentPage,
+                        maxPage: state.maxPage,
+                      );
                     }
                     if (index == state.repos.length + 1) {
-                      return const Padding(
-                        padding: EdgeInsets.only(bottom: 16),
-                        child: PagerWidget(),
+                      return Padding(
+                        padding: const EdgeInsets.only(bottom: 16),
+                        child: PagerWidget(
+                          canShowPreviousPage: state.canShowPreviousPage,
+                          canShowNextPage: state.canShowNextPage,
+                          showPreviousPage: notifier.showPreviousPage,
+                          showNextPage: notifier.showNextPage,
+                        ),
                       );
                     } else {
                       return RepoItemWidget(repo: state.repos[index - 1]);
                     }
                   },
                 ),
-    );
-  }
-}
-
-/// SearchRepoPage 上部の検索結果の件数などを表示するウィジェット
-class SearchResultSummaryWidget extends HookConsumerWidget {
-  const SearchResultSummaryWidget({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(searchRepoStateNotifierProvider);
-    return SearchRepoPageTextWidget(
-      '検索結果: ${state.totalCount.withComma} 件'
-      '（${state.currentPage.withComma} / '
-      '${state.maxPage.withComma} '
-      'ページ）',
-    );
-  }
-}
-
-/// SearchRepoPage 内の Column.children に並べるテキスト
-class SearchRepoPageTextWidget extends StatelessWidget {
-  const SearchRepoPageTextWidget(
-    this.text, {
-    Key? key,
-  }) : super(key: key);
-
-  final String text;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-      child: Text(
-        text,
-        style: const TextStyle(
-          fontSize: 12,
-          color: Colors.black54,
-        ),
-      ),
     );
   }
 }
