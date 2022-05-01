@@ -3,7 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../pages/home/home_page.dart';
 import '../pages/issue/issue_page.dart';
-import '../pages/repo/search_repo_page.dart';
+import '../pages/repo/repo_page.dart';
 
 /// MainPage の BottomNavigationBar の enum
 enum BottomTabEnum {
@@ -30,7 +30,7 @@ extension BottomTabEnumExtension on BottomTabEnum {
           index: 1,
           tab: BottomTabEnum.repo,
           label: 'Repos',
-          path: SearchRepoPage.path,
+          path: RepoPage.path,
           iconData: FontAwesomeIcons.database,
         );
       case BottomTabEnum.issue:
