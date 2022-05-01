@@ -1,0 +1,17 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug",
+      "program": "lib/main.dart",
+      "request": "launch",
+      "type": "dart",
+      "args": [
+        "--debug",
+        "--dart-define=TARGET_GITHUB_REPO={Target GITHUB repository name}",
+        "--dart-define=GITHUB_OWNER_NAME={GitHub owner name}",
+        "--dart-define=GITHUB_ACCESS_TOKEN={GitHub Personal access token}"
+      ]
+    }
+  ]
+}
