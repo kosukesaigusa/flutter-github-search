@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../providers/application/application.dart';
 import '../../providers/bottom_navigation_bar/bottom_navigation_bar.dart';
 import '../../route/main_tabs.dart';
 import '../../widgets/stacked_pages_navigator.dart';
@@ -70,14 +69,12 @@ class _MainPageState extends ConsumerState<MainPage> with WidgetsBindingObserver
                 FocusScope.of(context).unfocus();
                 final tab = bottomTabs[index].tab;
                 final state = ref.watch(bottomNavigationStateNotifierProvider);
-                final tabNavigatorKey = ref
-                    .watch(applicationStateNotifierProvider.notifier)
-                    .bottomTabKeys[state.currentTab];
-                if (tabNavigatorKey == null) {
+                final bottomTabKey = bottomTabKeys[state.currentTab];
+                if (bottomTabKey == null) {
                   return;
                 }
                 if (tab == state.currentTab) {
-                  tabNavigatorKey.currentState!.popUntil((route) => route.isFirst);
+                  bottomTabKey.currentState!.popUntil((route) => route.isFirst);
                   return;
                 }
                 ref

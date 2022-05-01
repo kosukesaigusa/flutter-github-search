@@ -1,7 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../route/main_tabs.dart';
 import 'application_state.dart';
 
 final applicationStateNotifierProvider =
@@ -12,8 +10,9 @@ final applicationStateNotifierProvider =
 class ApplicationStateNotifierProvider extends StateNotifier<ApplicationState> {
   ApplicationStateNotifierProvider() : super(const ApplicationState());
 
-  final bottomTabKeys = {
-    BottomTabEnum.home: GlobalKey<NavigatorState>(),
-    BottomTabEnum.repo: GlobalKey<NavigatorState>(),
-  };
+  // final bottomTabKeys = {
+  //   BottomTabEnum.home: GlobalKey<NavigatorState>(),
+  //   BottomTabEnum.repo: GlobalKey<NavigatorState>(),
+  //   BottomTabEnum.repo: GlobalKey<NavigatorState>(),
+  // };
 }
