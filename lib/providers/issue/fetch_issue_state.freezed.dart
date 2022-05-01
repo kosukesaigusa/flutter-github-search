@@ -22,8 +22,6 @@ mixin _$FetchIssueState {
   bool get canShowNextPage => throw _privateConstructorUsedError;
   int get currentPage => throw _privateConstructorUsedError;
   int get perPage => throw _privateConstructorUsedError;
-  int get totalCount => throw _privateConstructorUsedError;
-  int get maxPage => throw _privateConstructorUsedError;
   List<Issue> get issues => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -43,8 +41,6 @@ abstract class $FetchIssueStateCopyWith<$Res> {
       bool canShowNextPage,
       int currentPage,
       int perPage,
-      int totalCount,
-      int maxPage,
       List<Issue> issues});
 }
 
@@ -65,8 +61,6 @@ class _$FetchIssueStateCopyWithImpl<$Res>
     Object? canShowNextPage = freezed,
     Object? currentPage = freezed,
     Object? perPage = freezed,
-    Object? totalCount = freezed,
-    Object? maxPage = freezed,
     Object? issues = freezed,
   }) {
     return _then(_value.copyWith(
@@ -94,14 +88,6 @@ class _$FetchIssueStateCopyWithImpl<$Res>
           ? _value.perPage
           : perPage // ignore: cast_nullable_to_non_nullable
               as int,
-      totalCount: totalCount == freezed
-          ? _value.totalCount
-          : totalCount // ignore: cast_nullable_to_non_nullable
-              as int,
-      maxPage: maxPage == freezed
-          ? _value.maxPage
-          : maxPage // ignore: cast_nullable_to_non_nullable
-              as int,
       issues: issues == freezed
           ? _value.issues
           : issues // ignore: cast_nullable_to_non_nullable
@@ -124,8 +110,6 @@ abstract class _$FetchIssueStateCopyWith<$Res>
       bool canShowNextPage,
       int currentPage,
       int perPage,
-      int totalCount,
-      int maxPage,
       List<Issue> issues});
 }
 
@@ -148,8 +132,6 @@ class __$FetchIssueStateCopyWithImpl<$Res>
     Object? canShowNextPage = freezed,
     Object? currentPage = freezed,
     Object? perPage = freezed,
-    Object? totalCount = freezed,
-    Object? maxPage = freezed,
     Object? issues = freezed,
   }) {
     return _then(_FetchIssueState(
@@ -177,14 +159,6 @@ class __$FetchIssueStateCopyWithImpl<$Res>
           ? _value.perPage
           : perPage // ignore: cast_nullable_to_non_nullable
               as int,
-      totalCount: totalCount == freezed
-          ? _value.totalCount
-          : totalCount // ignore: cast_nullable_to_non_nullable
-              as int,
-      maxPage: maxPage == freezed
-          ? _value.maxPage
-          : maxPage // ignore: cast_nullable_to_non_nullable
-              as int,
       issues: issues == freezed
           ? _value.issues
           : issues // ignore: cast_nullable_to_non_nullable
@@ -203,8 +177,6 @@ class _$_FetchIssueState implements _FetchIssueState {
       this.canShowNextPage = false,
       this.currentPage = 1,
       this.perPage = 10,
-      this.totalCount = 0,
-      this.maxPage = 1,
       final List<Issue> issues = const <Issue>[]})
       : _issues = issues;
 
@@ -226,12 +198,6 @@ class _$_FetchIssueState implements _FetchIssueState {
   @override
   @JsonKey()
   final int perPage;
-  @override
-  @JsonKey()
-  final int totalCount;
-  @override
-  @JsonKey()
-  final int maxPage;
   final List<Issue> _issues;
   @override
   @JsonKey()
@@ -242,7 +208,7 @@ class _$_FetchIssueState implements _FetchIssueState {
 
   @override
   String toString() {
-    return 'FetchIssueState(loading: $loading, error: $error, canShowPreviousPage: $canShowPreviousPage, canShowNextPage: $canShowNextPage, currentPage: $currentPage, perPage: $perPage, totalCount: $totalCount, maxPage: $maxPage, issues: $issues)';
+    return 'FetchIssueState(loading: $loading, error: $error, canShowPreviousPage: $canShowPreviousPage, canShowNextPage: $canShowNextPage, currentPage: $currentPage, perPage: $perPage, issues: $issues)';
   }
 
   @override
@@ -259,9 +225,6 @@ class _$_FetchIssueState implements _FetchIssueState {
             const DeepCollectionEquality()
                 .equals(other.currentPage, currentPage) &&
             const DeepCollectionEquality().equals(other.perPage, perPage) &&
-            const DeepCollectionEquality()
-                .equals(other.totalCount, totalCount) &&
-            const DeepCollectionEquality().equals(other.maxPage, maxPage) &&
             const DeepCollectionEquality().equals(other.issues, issues));
   }
 
@@ -274,8 +237,6 @@ class _$_FetchIssueState implements _FetchIssueState {
       const DeepCollectionEquality().hash(canShowNextPage),
       const DeepCollectionEquality().hash(currentPage),
       const DeepCollectionEquality().hash(perPage),
-      const DeepCollectionEquality().hash(totalCount),
-      const DeepCollectionEquality().hash(maxPage),
       const DeepCollectionEquality().hash(issues));
 
   @JsonKey(ignore: true)
@@ -292,8 +253,6 @@ abstract class _FetchIssueState implements FetchIssueState {
       final bool canShowNextPage,
       final int currentPage,
       final int perPage,
-      final int totalCount,
-      final int maxPage,
       final List<Issue> issues}) = _$_FetchIssueState;
 
   @override
@@ -308,10 +267,6 @@ abstract class _FetchIssueState implements FetchIssueState {
   int get currentPage => throw _privateConstructorUsedError;
   @override
   int get perPage => throw _privateConstructorUsedError;
-  @override
-  int get totalCount => throw _privateConstructorUsedError;
-  @override
-  int get maxPage => throw _privateConstructorUsedError;
   @override
   List<Issue> get issues => throw _privateConstructorUsedError;
   @override

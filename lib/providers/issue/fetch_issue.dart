@@ -47,8 +47,6 @@ class FetchIssueStateNotifier extends StateNotifier<FetchIssueState> {
       final response = await _read(issueRepositoryProvider).fetchIssues(
         ownerName: _read(issueOwnerNameProvider),
         repoName: _read(issueRepoNameProvider),
-        // ownerName: 'KosukeSaigusa',
-        // repoName: 'github-flutter-search',
         page: state.currentPage,
         perPage: state.perPage,
       );
@@ -75,7 +73,7 @@ class FetchIssueStateNotifier extends StateNotifier<FetchIssueState> {
 
   /// 次のページへ
   void showNextPage() {
-    if (state.currentPage >= state.maxPage) {
+    if (state.issues.isEmpty) {
       return;
     }
     state = state.copyWith(currentPage: state.currentPage + 1);
@@ -87,9 +85,8 @@ class FetchIssueStateNotifier extends StateNotifier<FetchIssueState> {
   /// GET /repos/{owner}/{repo}/issues API の結果に応じて更新すべき状態を更新する
   void _updateStateByResponse(FetchIssueResponse response) {
     state = state.copyWith(
-      totalCount: response.totalCount,
-      maxPage: (response.totalCount / state.perPage).ceil(),
       issues: response.items,
+      canShowNextPage: response.items.length >= state.perPage,
     );
     _resetPagerStatus();
   }
@@ -98,7 +95,7 @@ class FetchIssueStateNotifier extends StateNotifier<FetchIssueState> {
   void _resetPagerStatus() {
     state = state.copyWith(
       canShowPreviousPage: state.currentPage > 1,
-      canShowNextPage: state.currentPage < state.maxPage,
+      canShowNextPage: state.issues.length >= state.perPage,
     );
   }
 

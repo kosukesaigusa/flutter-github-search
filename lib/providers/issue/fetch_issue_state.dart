@@ -14,8 +14,6 @@ class FetchIssueState with _$FetchIssueState {
     @Default(false) bool canShowNextPage,
     @Default(1) int currentPage,
     @Default(10) int perPage,
-    @Default(0) int totalCount,
-    @Default(1) int maxPage,
     @Default(<Issue>[]) List<Issue> issues,
   }) = _FetchIssueState;
 }
