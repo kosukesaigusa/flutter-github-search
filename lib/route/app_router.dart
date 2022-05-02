@@ -26,9 +26,9 @@ class _AppRouterImpl implements AppRouter {
     } else {
       path = (settings.name == AppRouter.initialRoute ? bottomNavigationPath : settings.name)!;
     }
-    debugPrint('*****************************');
+    debugPrint('***');
     debugPrint('path: $path');
-    debugPrint('*****************************');
+    debugPrint('***');
 
     // path に ? がついている場合は、それ以降をクエリストリングとみなし、
     // 分割して `queryParams` というマップに追加する。
