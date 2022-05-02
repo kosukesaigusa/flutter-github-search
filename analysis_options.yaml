@@ -2,8 +2,8 @@ include: package:flutter_lints/flutter.yaml
 
 analyzer:
   exclude:
-    - lib/**/**.freezed.dart'
-    - lib/**/**.g.dart'
+    - lib/**/**.freezed.dart
+    - lib/**/**.g.dart
   errors:
     missing_required_param: warning
     missing_return: warning

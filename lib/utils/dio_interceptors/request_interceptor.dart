@@ -3,14 +3,20 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
-/// HTTP リクエストの curl コマンドを生成する
-class CurlInterceptor extends Interceptor {
+/// HTTP リクエストをインターセプトして行いたい処理などを行う
+class RequestInterceptor extends Interceptor {
   @override
   Future onRequest(
     RequestOptions options,
     RequestInterceptorHandler handler,
   ) async {
     debugPrint('*** Request ***');
+    _printCurlCommand(options);
+    super.onRequest(options, handler);
+  }
+
+  /// Curl コマンドを出力する
+  void _printCurlCommand(RequestOptions options) {
     final stringBuffer = StringBuffer();
     var query = '';
     if (options.method == 'GET' && options.queryParameters.isNotEmpty) {
@@ -28,6 +34,5 @@ class CurlInterceptor extends Interceptor {
     // SSL 証明書のエラーを無視する
     stringBuffer.write(' --insecure');
     debugPrint(stringBuffer.toString());
-    super.onRequest(options, handler);
   }
 }

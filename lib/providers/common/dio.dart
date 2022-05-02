@@ -6,11 +6,11 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../constants/number.dart';
 import '../../constants/string.dart';
-import '../../utils/api/connectivity_interceptor.dart';
-import '../../utils/api/curl_interceptor.dart';
-import '../../utils/api/header_interceptor.dart';
-import '../../utils/api/mock_interceptor.dart';
-import '../../utils/api/response_interceptor.dart';
+import '../../utils/dio_interceptors/connectivity_interceptor.dart';
+import '../../utils/dio_interceptors/header_interceptor.dart';
+import '../../utils/dio_interceptors/mock_interceptor.dart';
+import '../../utils/dio_interceptors/request_interceptor.dart';
+import '../../utils/dio_interceptors/response_interceptor.dart';
 import 'cookie.dart';
 
 /// Dio のインスタンスを各種設定を済ませた状態で提供するプロバイダ
@@ -27,8 +27,8 @@ final dioProvider = Provider<Dio>((ref) {
     ConnectivityInterceptor(),
     HeaderInterceptor(),
     CookieManager(ref.read(cookieJarProvider)),
-    // デバッグモードでは CurlInterceptor を追加
-    if (kDebugMode) CurlInterceptor(),
+    // デバッグモードでは RequestInterceptor を追加
+    if (kDebugMode) RequestInterceptor(),
     // デバッグモードでは ResponseInterceptor を追加
     if (kDebugMode) ResponseInterceptor(),
     // モックで動作させる場合は MockInterceptor を追加
