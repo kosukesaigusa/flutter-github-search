@@ -94,7 +94,7 @@ class SearchRepoStateNotifier extends StateNotifier<SearchRepoState> {
     state = state.copyWith(
       totalCount: response.totalCount,
       maxPage: (response.totalCount / state.perPage).ceil(),
-      repos: response.items,
+      repos: response.repos,
     );
     _resetPagerStatus();
   }

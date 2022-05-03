@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../models/response_data/fetch_issues_response/fetch_issues_response.dart';
+import '../../models/response_data/issues_response/issues_response.dart';
 import '../../repositories/issue.dart';
 import '../../utils/enums.dart';
 import '../../utils/exception.dart';
@@ -90,7 +90,7 @@ class FetchIssueStateNotifier extends StateNotifier<FetchIssueState> {
   }
 
   /// GET /repos/{owner}/{repo}/issues API の結果に応じて更新すべき状態を更新する
-  void _updateStateByResponse(FetchIssuesResponse response) {
+  void _updateStateByResponse(IssuesResponse response) {
     state = state.copyWith(
       issues: response.items,
       canShowNextPage: response.items.length >= state.perPage,

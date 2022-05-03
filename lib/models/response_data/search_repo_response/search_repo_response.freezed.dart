@@ -26,7 +26,8 @@ mixin _$SearchRepoResponse {
   int get totalCount => throw _privateConstructorUsedError;
   @JsonKey(name: 'incomplete_results')
   bool get incompleteResults => throw _privateConstructorUsedError;
-  List<Repo> get items => throw _privateConstructorUsedError;
+  @JsonKey(name: 'items')
+  List<Repo> get repos => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -44,7 +45,7 @@ abstract class $SearchRepoResponseCopyWith<$Res> {
       String message,
       @JsonKey(name: 'total_count') int totalCount,
       @JsonKey(name: 'incomplete_results') bool incompleteResults,
-      List<Repo> items});
+      @JsonKey(name: 'items') List<Repo> repos});
 }
 
 /// @nodoc
@@ -62,7 +63,7 @@ class _$SearchRepoResponseCopyWithImpl<$Res>
     Object? message = freezed,
     Object? totalCount = freezed,
     Object? incompleteResults = freezed,
-    Object? items = freezed,
+    Object? repos = freezed,
   }) {
     return _then(_value.copyWith(
       success: success == freezed
@@ -81,9 +82,9 @@ class _$SearchRepoResponseCopyWithImpl<$Res>
           ? _value.incompleteResults
           : incompleteResults // ignore: cast_nullable_to_non_nullable
               as bool,
-      items: items == freezed
-          ? _value.items
-          : items // ignore: cast_nullable_to_non_nullable
+      repos: repos == freezed
+          ? _value.repos
+          : repos // ignore: cast_nullable_to_non_nullable
               as List<Repo>,
     ));
   }
@@ -101,7 +102,7 @@ abstract class _$SearchRepoResponseCopyWith<$Res>
       String message,
       @JsonKey(name: 'total_count') int totalCount,
       @JsonKey(name: 'incomplete_results') bool incompleteResults,
-      List<Repo> items});
+      @JsonKey(name: 'items') List<Repo> repos});
 }
 
 /// @nodoc
@@ -121,7 +122,7 @@ class __$SearchRepoResponseCopyWithImpl<$Res>
     Object? message = freezed,
     Object? totalCount = freezed,
     Object? incompleteResults = freezed,
-    Object? items = freezed,
+    Object? repos = freezed,
   }) {
     return _then(_SearchRepoResponse(
       success: success == freezed
@@ -140,9 +141,9 @@ class __$SearchRepoResponseCopyWithImpl<$Res>
           ? _value.incompleteResults
           : incompleteResults // ignore: cast_nullable_to_non_nullable
               as bool,
-      items: items == freezed
-          ? _value.items
-          : items // ignore: cast_nullable_to_non_nullable
+      repos: repos == freezed
+          ? _value.repos
+          : repos // ignore: cast_nullable_to_non_nullable
               as List<Repo>,
     ));
   }
@@ -156,8 +157,8 @@ class _$_SearchRepoResponse implements _SearchRepoResponse {
       this.message = '',
       @JsonKey(name: 'total_count') this.totalCount = 0,
       @JsonKey(name: 'incomplete_results') this.incompleteResults = false,
-      final List<Repo> items = const <Repo>[]})
-      : _items = items;
+      @JsonKey(name: 'items') final List<Repo> repos = const <Repo>[]})
+      : _repos = repos;
 
   factory _$_SearchRepoResponse.fromJson(Map<String, dynamic> json) =>
       _$$_SearchRepoResponseFromJson(json);
@@ -174,17 +175,18 @@ class _$_SearchRepoResponse implements _SearchRepoResponse {
   @override
   @JsonKey(name: 'incomplete_results')
   final bool incompleteResults;
-  final List<Repo> _items;
+  @JsonKey(name: 'items')
+  final List<Repo> _repos;
   @override
-  @JsonKey()
-  List<Repo> get items {
+  @JsonKey(name: 'items')
+  List<Repo> get repos {
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_items);
+    return EqualUnmodifiableListView(_repos);
   }
 
   @override
   String toString() {
-    return 'SearchRepoResponse(success: $success, message: $message, totalCount: $totalCount, incompleteResults: $incompleteResults, items: $items)';
+    return 'SearchRepoResponse(success: $success, message: $message, totalCount: $totalCount, incompleteResults: $incompleteResults, repos: $repos)';
   }
 
   @override
@@ -198,7 +200,7 @@ class _$_SearchRepoResponse implements _SearchRepoResponse {
                 .equals(other.totalCount, totalCount) &&
             const DeepCollectionEquality()
                 .equals(other.incompleteResults, incompleteResults) &&
-            const DeepCollectionEquality().equals(other.items, items));
+            const DeepCollectionEquality().equals(other.repos, repos));
   }
 
   @JsonKey(ignore: true)
@@ -209,7 +211,7 @@ class _$_SearchRepoResponse implements _SearchRepoResponse {
       const DeepCollectionEquality().hash(message),
       const DeepCollectionEquality().hash(totalCount),
       const DeepCollectionEquality().hash(incompleteResults),
-      const DeepCollectionEquality().hash(items));
+      const DeepCollectionEquality().hash(repos));
 
   @JsonKey(ignore: true)
   @override
@@ -228,7 +230,7 @@ abstract class _SearchRepoResponse implements SearchRepoResponse {
       final String message,
       @JsonKey(name: 'total_count') final int totalCount,
       @JsonKey(name: 'incomplete_results') final bool incompleteResults,
-      final List<Repo> items}) = _$_SearchRepoResponse;
+      @JsonKey(name: 'items') final List<Repo> repos}) = _$_SearchRepoResponse;
 
   factory _SearchRepoResponse.fromJson(Map<String, dynamic> json) =
       _$_SearchRepoResponse.fromJson;
@@ -244,7 +246,8 @@ abstract class _SearchRepoResponse implements SearchRepoResponse {
   @JsonKey(name: 'incomplete_results')
   bool get incompleteResults => throw _privateConstructorUsedError;
   @override
-  List<Repo> get items => throw _privateConstructorUsedError;
+  @JsonKey(name: 'items')
+  List<Repo> get repos => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$SearchRepoResponseCopyWith<_SearchRepoResponse> get copyWith =>

@@ -2,8 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../services/api_client.dart';
-import '../models/response_data/create_issue_response/create_issue_response.dart';
-import '../models/response_data/fetch_issues_response/fetch_issues_response.dart';
+import '../models/response_data/issue_response/issue_response.dart';
+import '../models/response_data/issues_response/issues_response.dart';
 import '../providers/common/github_access_token.dart';
 
 final issueRepositoryProvider = Provider.autoDispose(
@@ -25,7 +25,7 @@ class IssueRepository {
 
   /// GET /repos/{owner}/{repo}/issues API をコールして
   /// 指定した GitHub リポジトリの Issue 一覧を取得する。
-  Future<FetchIssuesResponse> fetchIssues({
+  Future<IssuesResponse> fetchIssues({
     required String ownerName,
     required String repoName,
     int page = 1,
@@ -41,12 +41,12 @@ class IssueRepository {
         'Accept': 'application/vnd.github.v3+json',
       }),
     );
-    return FetchIssuesResponse.fromBaseResponseData(baseResponseData);
+    return IssuesResponse.fromBaseResponseData(baseResponseData);
   }
 
   /// POST /repos/{owner}/{repo}/issues API をコールして
   /// 指定した GitHub リポジトリに Issue を作成する。
-  Future<CreateIssueResponse> createIssue({
+  Future<IssueResponse> createIssue({
     required String ownerName,
     required String repoName,
     required String title,
@@ -63,6 +63,6 @@ class IssueRepository {
         'Authorization': 'token $_accessToken',
       }),
     );
-    return CreateIssueResponse.fromBaseResponseData(baseResponseData);
+    return IssueResponse.fromBaseResponseData(baseResponseData);
   }
 }

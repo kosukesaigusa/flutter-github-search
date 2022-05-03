@@ -13,7 +13,7 @@ class SearchRepoResponse with _$SearchRepoResponse {
     @Default('') String message,
     @Default(0) @JsonKey(name: 'total_count') int totalCount,
     @Default(false) @JsonKey(name: 'incomplete_results') bool incompleteResults,
-    @Default(<Repo>[]) List<Repo> items,
+    @Default(<Repo>[]) @JsonKey(name: 'items') List<Repo> repos,
   }) = _SearchRepoResponse;
 
   factory SearchRepoResponse.fromJson(Map<String, dynamic> json) =>

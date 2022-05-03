@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'fetch_issues_response.dart';
+part of 'issues_response.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,38 +14,38 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-FetchIssuesResponse _$FetchIssuesResponseFromJson(Map<String, dynamic> json) {
-  return _FetchIssuesResponse.fromJson(json);
+IssuesResponse _$IssuesResponseFromJson(Map<String, dynamic> json) {
+  return _IssuesResponse.fromJson(json);
 }
 
 /// @nodoc
-mixin _$FetchIssuesResponse {
+mixin _$IssuesResponse {
   bool get success => throw _privateConstructorUsedError;
   String get message => throw _privateConstructorUsedError;
   List<Issue> get items => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $FetchIssuesResponseCopyWith<FetchIssuesResponse> get copyWith =>
+  $IssuesResponseCopyWith<IssuesResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $FetchIssuesResponseCopyWith<$Res> {
-  factory $FetchIssuesResponseCopyWith(
-          FetchIssuesResponse value, $Res Function(FetchIssuesResponse) then) =
-      _$FetchIssuesResponseCopyWithImpl<$Res>;
+abstract class $IssuesResponseCopyWith<$Res> {
+  factory $IssuesResponseCopyWith(
+          IssuesResponse value, $Res Function(IssuesResponse) then) =
+      _$IssuesResponseCopyWithImpl<$Res>;
   $Res call({bool success, String message, List<Issue> items});
 }
 
 /// @nodoc
-class _$FetchIssuesResponseCopyWithImpl<$Res>
-    implements $FetchIssuesResponseCopyWith<$Res> {
-  _$FetchIssuesResponseCopyWithImpl(this._value, this._then);
+class _$IssuesResponseCopyWithImpl<$Res>
+    implements $IssuesResponseCopyWith<$Res> {
+  _$IssuesResponseCopyWithImpl(this._value, this._then);
 
-  final FetchIssuesResponse _value;
+  final IssuesResponse _value;
   // ignore: unused_field
-  final $Res Function(FetchIssuesResponse) _then;
+  final $Res Function(IssuesResponse) _then;
 
   @override
   $Res call({
@@ -71,25 +71,25 @@ class _$FetchIssuesResponseCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$FetchIssuesResponseCopyWith<$Res>
-    implements $FetchIssuesResponseCopyWith<$Res> {
-  factory _$FetchIssuesResponseCopyWith(_FetchIssuesResponse value,
-          $Res Function(_FetchIssuesResponse) then) =
-      __$FetchIssuesResponseCopyWithImpl<$Res>;
+abstract class _$IssuesResponseCopyWith<$Res>
+    implements $IssuesResponseCopyWith<$Res> {
+  factory _$IssuesResponseCopyWith(
+          _IssuesResponse value, $Res Function(_IssuesResponse) then) =
+      __$IssuesResponseCopyWithImpl<$Res>;
   @override
   $Res call({bool success, String message, List<Issue> items});
 }
 
 /// @nodoc
-class __$FetchIssuesResponseCopyWithImpl<$Res>
-    extends _$FetchIssuesResponseCopyWithImpl<$Res>
-    implements _$FetchIssuesResponseCopyWith<$Res> {
-  __$FetchIssuesResponseCopyWithImpl(
-      _FetchIssuesResponse _value, $Res Function(_FetchIssuesResponse) _then)
-      : super(_value, (v) => _then(v as _FetchIssuesResponse));
+class __$IssuesResponseCopyWithImpl<$Res>
+    extends _$IssuesResponseCopyWithImpl<$Res>
+    implements _$IssuesResponseCopyWith<$Res> {
+  __$IssuesResponseCopyWithImpl(
+      _IssuesResponse _value, $Res Function(_IssuesResponse) _then)
+      : super(_value, (v) => _then(v as _IssuesResponse));
 
   @override
-  _FetchIssuesResponse get _value => super._value as _FetchIssuesResponse;
+  _IssuesResponse get _value => super._value as _IssuesResponse;
 
   @override
   $Res call({
@@ -97,7 +97,7 @@ class __$FetchIssuesResponseCopyWithImpl<$Res>
     Object? message = freezed,
     Object? items = freezed,
   }) {
-    return _then(_FetchIssuesResponse(
+    return _then(_IssuesResponse(
       success: success == freezed
           ? _value.success
           : success // ignore: cast_nullable_to_non_nullable
@@ -116,15 +116,15 @@ class __$FetchIssuesResponseCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_FetchIssuesResponse implements _FetchIssuesResponse {
-  const _$_FetchIssuesResponse(
+class _$_IssuesResponse implements _IssuesResponse {
+  const _$_IssuesResponse(
       {this.success = true,
       this.message = '',
       final List<Issue> items = const <Issue>[]})
       : _items = items;
 
-  factory _$_FetchIssuesResponse.fromJson(Map<String, dynamic> json) =>
-      _$$_FetchIssuesResponseFromJson(json);
+  factory _$_IssuesResponse.fromJson(Map<String, dynamic> json) =>
+      _$$_IssuesResponseFromJson(json);
 
   @override
   @JsonKey()
@@ -142,14 +142,14 @@ class _$_FetchIssuesResponse implements _FetchIssuesResponse {
 
   @override
   String toString() {
-    return 'FetchIssuesResponse(success: $success, message: $message, items: $items)';
+    return 'IssuesResponse(success: $success, message: $message, items: $items)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _FetchIssuesResponse &&
+            other is _IssuesResponse &&
             const DeepCollectionEquality().equals(other.success, success) &&
             const DeepCollectionEquality().equals(other.message, message) &&
             const DeepCollectionEquality().equals(other.items, items));
@@ -165,24 +165,23 @@ class _$_FetchIssuesResponse implements _FetchIssuesResponse {
 
   @JsonKey(ignore: true)
   @override
-  _$FetchIssuesResponseCopyWith<_FetchIssuesResponse> get copyWith =>
-      __$FetchIssuesResponseCopyWithImpl<_FetchIssuesResponse>(
-          this, _$identity);
+  _$IssuesResponseCopyWith<_IssuesResponse> get copyWith =>
+      __$IssuesResponseCopyWithImpl<_IssuesResponse>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_FetchIssuesResponseToJson(this);
+    return _$$_IssuesResponseToJson(this);
   }
 }
 
-abstract class _FetchIssuesResponse implements FetchIssuesResponse {
-  const factory _FetchIssuesResponse(
+abstract class _IssuesResponse implements IssuesResponse {
+  const factory _IssuesResponse(
       {final bool success,
       final String message,
-      final List<Issue> items}) = _$_FetchIssuesResponse;
+      final List<Issue> items}) = _$_IssuesResponse;
 
-  factory _FetchIssuesResponse.fromJson(Map<String, dynamic> json) =
-      _$_FetchIssuesResponse.fromJson;
+  factory _IssuesResponse.fromJson(Map<String, dynamic> json) =
+      _$_IssuesResponse.fromJson;
 
   @override
   bool get success => throw _privateConstructorUsedError;
@@ -192,6 +191,6 @@ abstract class _FetchIssuesResponse implements FetchIssuesResponse {
   List<Issue> get items => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$FetchIssuesResponseCopyWith<_FetchIssuesResponse> get copyWith =>
+  _$IssuesResponseCopyWith<_IssuesResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }

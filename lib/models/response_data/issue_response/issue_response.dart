@@ -3,22 +3,21 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import '../../issue/issue.dart';
 import '../base_response_data/base_response_data.dart';
 
-part 'create_issue_response.freezed.dart';
-part 'create_issue_response.g.dart';
+part 'issue_response.freezed.dart';
+part 'issue_response.g.dart';
 
 @freezed
-class CreateIssueResponse with _$CreateIssueResponse {
-  const factory CreateIssueResponse({
+class IssueResponse with _$IssueResponse {
+  const factory IssueResponse({
     @Default(true) bool success,
     @Default('') String message,
     required Issue issue,
-  }) = _CreateIssueResponse;
+  }) = _IssueResponse;
 
-  factory CreateIssueResponse.fromJson(Map<String, dynamic> json) =>
-      _$CreateIssueResponseFromJson(json);
+  factory IssueResponse.fromJson(Map<String, dynamic> json) => _$IssueResponseFromJson(json);
 
-  factory CreateIssueResponse.fromBaseResponseData(BaseResponseData baseResponseData) =>
-      CreateIssueResponse.fromJson(
+  factory IssueResponse.fromBaseResponseData(BaseResponseData baseResponseData) =>
+      IssueResponse.fromJson(
         <String, dynamic>{
           'success': baseResponseData.success,
           'message': baseResponseData.message,

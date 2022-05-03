@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'create_issue_response.dart';
+part of 'issue_response.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,40 +14,40 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-CreateIssueResponse _$CreateIssueResponseFromJson(Map<String, dynamic> json) {
-  return _CreateIssueResponse.fromJson(json);
+IssueResponse _$IssueResponseFromJson(Map<String, dynamic> json) {
+  return _IssueResponse.fromJson(json);
 }
 
 /// @nodoc
-mixin _$CreateIssueResponse {
+mixin _$IssueResponse {
   bool get success => throw _privateConstructorUsedError;
   String get message => throw _privateConstructorUsedError;
   Issue get issue => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $CreateIssueResponseCopyWith<CreateIssueResponse> get copyWith =>
+  $IssueResponseCopyWith<IssueResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $CreateIssueResponseCopyWith<$Res> {
-  factory $CreateIssueResponseCopyWith(
-          CreateIssueResponse value, $Res Function(CreateIssueResponse) then) =
-      _$CreateIssueResponseCopyWithImpl<$Res>;
+abstract class $IssueResponseCopyWith<$Res> {
+  factory $IssueResponseCopyWith(
+          IssueResponse value, $Res Function(IssueResponse) then) =
+      _$IssueResponseCopyWithImpl<$Res>;
   $Res call({bool success, String message, Issue issue});
 
   $IssueCopyWith<$Res> get issue;
 }
 
 /// @nodoc
-class _$CreateIssueResponseCopyWithImpl<$Res>
-    implements $CreateIssueResponseCopyWith<$Res> {
-  _$CreateIssueResponseCopyWithImpl(this._value, this._then);
+class _$IssueResponseCopyWithImpl<$Res>
+    implements $IssueResponseCopyWith<$Res> {
+  _$IssueResponseCopyWithImpl(this._value, this._then);
 
-  final CreateIssueResponse _value;
+  final IssueResponse _value;
   // ignore: unused_field
-  final $Res Function(CreateIssueResponse) _then;
+  final $Res Function(IssueResponse) _then;
 
   @override
   $Res call({
@@ -80,11 +80,11 @@ class _$CreateIssueResponseCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$CreateIssueResponseCopyWith<$Res>
-    implements $CreateIssueResponseCopyWith<$Res> {
-  factory _$CreateIssueResponseCopyWith(_CreateIssueResponse value,
-          $Res Function(_CreateIssueResponse) then) =
-      __$CreateIssueResponseCopyWithImpl<$Res>;
+abstract class _$IssueResponseCopyWith<$Res>
+    implements $IssueResponseCopyWith<$Res> {
+  factory _$IssueResponseCopyWith(
+          _IssueResponse value, $Res Function(_IssueResponse) then) =
+      __$IssueResponseCopyWithImpl<$Res>;
   @override
   $Res call({bool success, String message, Issue issue});
 
@@ -93,15 +93,15 @@ abstract class _$CreateIssueResponseCopyWith<$Res>
 }
 
 /// @nodoc
-class __$CreateIssueResponseCopyWithImpl<$Res>
-    extends _$CreateIssueResponseCopyWithImpl<$Res>
-    implements _$CreateIssueResponseCopyWith<$Res> {
-  __$CreateIssueResponseCopyWithImpl(
-      _CreateIssueResponse _value, $Res Function(_CreateIssueResponse) _then)
-      : super(_value, (v) => _then(v as _CreateIssueResponse));
+class __$IssueResponseCopyWithImpl<$Res>
+    extends _$IssueResponseCopyWithImpl<$Res>
+    implements _$IssueResponseCopyWith<$Res> {
+  __$IssueResponseCopyWithImpl(
+      _IssueResponse _value, $Res Function(_IssueResponse) _then)
+      : super(_value, (v) => _then(v as _IssueResponse));
 
   @override
-  _CreateIssueResponse get _value => super._value as _CreateIssueResponse;
+  _IssueResponse get _value => super._value as _IssueResponse;
 
   @override
   $Res call({
@@ -109,7 +109,7 @@ class __$CreateIssueResponseCopyWithImpl<$Res>
     Object? message = freezed,
     Object? issue = freezed,
   }) {
-    return _then(_CreateIssueResponse(
+    return _then(_IssueResponse(
       success: success == freezed
           ? _value.success
           : success // ignore: cast_nullable_to_non_nullable
@@ -128,12 +128,12 @@ class __$CreateIssueResponseCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_CreateIssueResponse implements _CreateIssueResponse {
-  const _$_CreateIssueResponse(
+class _$_IssueResponse implements _IssueResponse {
+  const _$_IssueResponse(
       {this.success = true, this.message = '', required this.issue});
 
-  factory _$_CreateIssueResponse.fromJson(Map<String, dynamic> json) =>
-      _$$_CreateIssueResponseFromJson(json);
+  factory _$_IssueResponse.fromJson(Map<String, dynamic> json) =>
+      _$$_IssueResponseFromJson(json);
 
   @override
   @JsonKey()
@@ -146,14 +146,14 @@ class _$_CreateIssueResponse implements _CreateIssueResponse {
 
   @override
   String toString() {
-    return 'CreateIssueResponse(success: $success, message: $message, issue: $issue)';
+    return 'IssueResponse(success: $success, message: $message, issue: $issue)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _CreateIssueResponse &&
+            other is _IssueResponse &&
             const DeepCollectionEquality().equals(other.success, success) &&
             const DeepCollectionEquality().equals(other.message, message) &&
             const DeepCollectionEquality().equals(other.issue, issue));
@@ -169,24 +169,23 @@ class _$_CreateIssueResponse implements _CreateIssueResponse {
 
   @JsonKey(ignore: true)
   @override
-  _$CreateIssueResponseCopyWith<_CreateIssueResponse> get copyWith =>
-      __$CreateIssueResponseCopyWithImpl<_CreateIssueResponse>(
-          this, _$identity);
+  _$IssueResponseCopyWith<_IssueResponse> get copyWith =>
+      __$IssueResponseCopyWithImpl<_IssueResponse>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_CreateIssueResponseToJson(this);
+    return _$$_IssueResponseToJson(this);
   }
 }
 
-abstract class _CreateIssueResponse implements CreateIssueResponse {
-  const factory _CreateIssueResponse(
+abstract class _IssueResponse implements IssueResponse {
+  const factory _IssueResponse(
       {final bool success,
       final String message,
-      required final Issue issue}) = _$_CreateIssueResponse;
+      required final Issue issue}) = _$_IssueResponse;
 
-  factory _CreateIssueResponse.fromJson(Map<String, dynamic> json) =
-      _$_CreateIssueResponse.fromJson;
+  factory _IssueResponse.fromJson(Map<String, dynamic> json) =
+      _$_IssueResponse.fromJson;
 
   @override
   bool get success => throw _privateConstructorUsedError;
@@ -196,6 +195,6 @@ abstract class _CreateIssueResponse implements CreateIssueResponse {
   Issue get issue => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$CreateIssueResponseCopyWith<_CreateIssueResponse> get copyWith =>
+  _$IssueResponseCopyWith<_IssueResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
