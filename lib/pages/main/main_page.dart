@@ -49,8 +49,6 @@ class _MainPageState extends ConsumerState<MainPage> with WidgetsBindingObserver
             bottomNavigationBar: BottomNavigationBar(
               type: BottomNavigationBarType.fixed,
               selectedItemColor: Theme.of(context).colorScheme.primary,
-              // BottomTab の画面を切り替える。
-              // 現在表示している状態のタブをタップした場合は画面をすべて pop する。
               onTap: _onTap,
               currentIndex: ref.watch(bottomTabStateProvider).index,
               items: bottomTabs
@@ -67,6 +65,7 @@ class _MainPageState extends ConsumerState<MainPage> with WidgetsBindingObserver
   }
 
   /// BottomNavigationBarItem をタップしたときの挙動
+  /// 現在表示している状態のタブをタップした場合は画面をすべて pop する。
   void _onTap(int index) {
     FocusScope.of(context).unfocus();
     final bottomTab = BottomTab.getByIndex(index);
