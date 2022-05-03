@@ -22,7 +22,8 @@ IssuesResponse _$IssuesResponseFromJson(Map<String, dynamic> json) {
 mixin _$IssuesResponse {
   bool get success => throw _privateConstructorUsedError;
   String get message => throw _privateConstructorUsedError;
-  List<Issue> get items => throw _privateConstructorUsedError;
+  @JsonKey(name: 'items')
+  List<Issue> get issues => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +36,10 @@ abstract class $IssuesResponseCopyWith<$Res> {
   factory $IssuesResponseCopyWith(
           IssuesResponse value, $Res Function(IssuesResponse) then) =
       _$IssuesResponseCopyWithImpl<$Res>;
-  $Res call({bool success, String message, List<Issue> items});
+  $Res call(
+      {bool success,
+      String message,
+      @JsonKey(name: 'items') List<Issue> issues});
 }
 
 /// @nodoc
@@ -51,7 +55,7 @@ class _$IssuesResponseCopyWithImpl<$Res>
   $Res call({
     Object? success = freezed,
     Object? message = freezed,
-    Object? items = freezed,
+    Object? issues = freezed,
   }) {
     return _then(_value.copyWith(
       success: success == freezed
@@ -62,9 +66,9 @@ class _$IssuesResponseCopyWithImpl<$Res>
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
-      items: items == freezed
-          ? _value.items
-          : items // ignore: cast_nullable_to_non_nullable
+      issues: issues == freezed
+          ? _value.issues
+          : issues // ignore: cast_nullable_to_non_nullable
               as List<Issue>,
     ));
   }
@@ -77,7 +81,10 @@ abstract class _$IssuesResponseCopyWith<$Res>
           _IssuesResponse value, $Res Function(_IssuesResponse) then) =
       __$IssuesResponseCopyWithImpl<$Res>;
   @override
-  $Res call({bool success, String message, List<Issue> items});
+  $Res call(
+      {bool success,
+      String message,
+      @JsonKey(name: 'items') List<Issue> issues});
 }
 
 /// @nodoc
@@ -95,7 +102,7 @@ class __$IssuesResponseCopyWithImpl<$Res>
   $Res call({
     Object? success = freezed,
     Object? message = freezed,
-    Object? items = freezed,
+    Object? issues = freezed,
   }) {
     return _then(_IssuesResponse(
       success: success == freezed
@@ -106,9 +113,9 @@ class __$IssuesResponseCopyWithImpl<$Res>
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
-      items: items == freezed
-          ? _value.items
-          : items // ignore: cast_nullable_to_non_nullable
+      issues: issues == freezed
+          ? _value.issues
+          : issues // ignore: cast_nullable_to_non_nullable
               as List<Issue>,
     ));
   }
@@ -120,8 +127,8 @@ class _$_IssuesResponse implements _IssuesResponse {
   const _$_IssuesResponse(
       {this.success = true,
       this.message = '',
-      final List<Issue> items = const <Issue>[]})
-      : _items = items;
+      @JsonKey(name: 'items') final List<Issue> issues = const <Issue>[]})
+      : _issues = issues;
 
   factory _$_IssuesResponse.fromJson(Map<String, dynamic> json) =>
       _$$_IssuesResponseFromJson(json);
@@ -132,17 +139,18 @@ class _$_IssuesResponse implements _IssuesResponse {
   @override
   @JsonKey()
   final String message;
-  final List<Issue> _items;
+  @JsonKey(name: 'items')
+  final List<Issue> _issues;
   @override
-  @JsonKey()
-  List<Issue> get items {
+  @JsonKey(name: 'items')
+  List<Issue> get issues {
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_items);
+    return EqualUnmodifiableListView(_issues);
   }
 
   @override
   String toString() {
-    return 'IssuesResponse(success: $success, message: $message, items: $items)';
+    return 'IssuesResponse(success: $success, message: $message, issues: $issues)';
   }
 
   @override
@@ -152,7 +160,7 @@ class _$_IssuesResponse implements _IssuesResponse {
             other is _IssuesResponse &&
             const DeepCollectionEquality().equals(other.success, success) &&
             const DeepCollectionEquality().equals(other.message, message) &&
-            const DeepCollectionEquality().equals(other.items, items));
+            const DeepCollectionEquality().equals(other.issues, issues));
   }
 
   @JsonKey(ignore: true)
@@ -161,7 +169,7 @@ class _$_IssuesResponse implements _IssuesResponse {
       runtimeType,
       const DeepCollectionEquality().hash(success),
       const DeepCollectionEquality().hash(message),
-      const DeepCollectionEquality().hash(items));
+      const DeepCollectionEquality().hash(issues));
 
   @JsonKey(ignore: true)
   @override
@@ -178,7 +186,7 @@ abstract class _IssuesResponse implements IssuesResponse {
   const factory _IssuesResponse(
       {final bool success,
       final String message,
-      final List<Issue> items}) = _$_IssuesResponse;
+      @JsonKey(name: 'items') final List<Issue> issues}) = _$_IssuesResponse;
 
   factory _IssuesResponse.fromJson(Map<String, dynamic> json) =
       _$_IssuesResponse.fromJson;
@@ -188,7 +196,8 @@ abstract class _IssuesResponse implements IssuesResponse {
   @override
   String get message => throw _privateConstructorUsedError;
   @override
-  List<Issue> get items => throw _privateConstructorUsedError;
+  @JsonKey(name: 'items')
+  List<Issue> get issues => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$IssuesResponseCopyWith<_IssuesResponse> get copyWith =>

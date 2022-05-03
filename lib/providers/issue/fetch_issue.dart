@@ -92,8 +92,8 @@ class FetchIssueStateNotifier extends StateNotifier<FetchIssueState> {
   /// GET /repos/{owner}/{repo}/issues API の結果に応じて更新すべき状態を更新する
   void _updateStateByResponse(IssuesResponse response) {
     state = state.copyWith(
-      issues: response.items,
-      canShowNextPage: response.items.length >= state.perPage,
+      issues: response.issues,
+      canShowNextPage: response.issues.length >= state.perPage,
     );
     _resetPagerStatus();
   }

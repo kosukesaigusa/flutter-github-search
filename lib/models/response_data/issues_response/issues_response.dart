@@ -11,7 +11,7 @@ class IssuesResponse with _$IssuesResponse {
   const factory IssuesResponse({
     @Default(true) bool success,
     @Default('') String message,
-    @Default(<Issue>[]) List<Issue> items,
+    @Default(<Issue>[]) @JsonKey(name: 'items') List<Issue> issues,
   }) = _IssuesResponse;
 
   factory IssuesResponse.fromJson(Map<String, dynamic> json) => _$IssuesResponseFromJson(json);
