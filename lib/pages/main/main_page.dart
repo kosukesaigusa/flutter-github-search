@@ -66,6 +66,7 @@ class _MainPageState extends ConsumerState<MainPage> with WidgetsBindingObserver
     );
   }
 
+  /// BottomNavigationBarItem をタップしたときの挙動
   void _onTap(int index) {
     FocusScope.of(context).unfocus();
     final bottomTab = BottomTab.getByIndex(index);
