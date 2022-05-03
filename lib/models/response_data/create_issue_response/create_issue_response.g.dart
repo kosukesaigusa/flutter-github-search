@@ -9,11 +9,15 @@ part of 'create_issue_response.dart';
 _$_CreateIssueResponse _$$_CreateIssueResponseFromJson(
         Map<String, dynamic> json) =>
     _$_CreateIssueResponse(
-      issue: Issue.fromJson(json['data'] as Map<String, dynamic>),
+      success: json['success'] as bool? ?? true,
+      message: json['message'] as String? ?? '',
+      issue: Issue.fromJson(json['issue'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_CreateIssueResponseToJson(
         _$_CreateIssueResponse instance) =>
     <String, dynamic>{
-      'data': instance.issue,
+      'success': instance.success,
+      'message': instance.message,
+      'issue': instance.issue,
     };

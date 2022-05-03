@@ -11,7 +11,7 @@ class Issue with _$Issue {
     @Default('') String title,
     @Default('') String body,
     @Default(0) int number,
-    @Default('state') String state,
+    @Default('open') String state,
     @JsonKey(name: 'updated_at') required DateTime createdAt,
   }) = _Issue;
 

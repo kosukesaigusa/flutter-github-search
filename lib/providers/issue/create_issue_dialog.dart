@@ -33,16 +33,12 @@ class CreateIssueDialogStateNotifier extends StateNotifier<CreateIssueDialogStat
     }
     try {
       state = state.copyWith(sending: true);
-      await _read(issueRepositoryProvider).createIssueDialog(
+      await _read(issueRepositoryProvider).createIssue(
         ownerName: _read(issueOwnerNameProvider),
         repoName: _read(issueRepoNameProvider),
         title: titleTextEditingController.value.text,
         body: bodyTextEditingController.value.text,
       );
-      // 作成したばかりの Issue が直後のリロード処理の GET メソッドの
-      // レスポンスには含まれないようなので、しばらく待つ。
-      // この方が UX がマシだと判断した（それにしても 5 秒は長すぎるが、5 秒後でも読み込めないことはある...）。
-      await Future<void>.delayed(const Duration(seconds: 5));
     } on AppException {
       rethrow;
     } on ApiException {

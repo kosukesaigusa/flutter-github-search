@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../models/api_response/search_repo_response/search_repo_response.dart';
 import '../../models/repo/repo.dart';
+import '../../models/response_data/search_repo_response/search_repo_response.dart';
 import '../../repositories/search_repo.dart';
 import '../../utils/enums.dart';
 import '../../utils/exception.dart';

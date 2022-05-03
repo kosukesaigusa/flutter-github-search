@@ -5,7 +5,7 @@ import 'package:dio/dio.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../constants/string.dart';
-import '../models/api_response/base_api_response/base_api_response.dart';
+import '../models/response_data/base_response_data/base_response_data.dart';
 import '../providers/common/dio.dart';
 import '../utils/enums.dart';
 import '../utils/exception.dart';
@@ -20,7 +20,7 @@ class ApiClient implements AbstractApiClient {
   final Reader _read;
 
   @override
-  Future<BaseApiResponse> get(
+  Future<BaseResponseData> get(
     String path, {
     Map<String, dynamic>? queryParameters,
     Map<String, dynamic>? header,
@@ -37,12 +37,12 @@ class ApiClient implements AbstractApiClient {
         onReceiveProgress: onReceiveProgress,
       );
       final statusCode = response.statusCode;
-      final responseData = _getResponseDataFromRowData(response.data);
+      final baseResponseData = BaseResponseData.fromDynamic(response.data);
       _validateStatusCode(
         statusCode: statusCode,
-        message: _messageByResponseData(responseData),
+        message: baseResponseData.message,
       );
-      return BaseApiResponse.fromResponseData(responseData);
+      return baseResponseData;
     } on DioError catch (dioError) {
       throw _handleDioError(dioError);
     } on ApiException {
@@ -57,7 +57,7 @@ class ApiClient implements AbstractApiClient {
   }
 
   @override
-  Future<BaseApiResponse> put(
+  Future<BaseResponseData> put(
     String path, {
     Map<String, dynamic>? data,
     Map<String, dynamic>? queryParameters,
@@ -78,12 +78,12 @@ class ApiClient implements AbstractApiClient {
         onReceiveProgress: onReceiveProgress,
       );
       final statusCode = response.statusCode;
-      final responseData = _getResponseDataFromRowData(response.data);
+      final baseResponseData = BaseResponseData.fromDynamic(response.data);
       _validateStatusCode(
         statusCode: statusCode,
-        message: _messageByResponseData(responseData),
+        message: baseResponseData.message,
       );
-      return BaseApiResponse.fromResponseData(responseData);
+      return baseResponseData;
     } on DioError catch (dioError) {
       throw _handleDioError(dioError);
     } on ApiException {
@@ -98,7 +98,7 @@ class ApiClient implements AbstractApiClient {
   }
 
   @override
-  Future<BaseApiResponse> post(
+  Future<BaseResponseData> post(
     String path, {
     Map<String, dynamic>? data,
     Map<String, dynamic>? queryParameters,
@@ -119,12 +119,12 @@ class ApiClient implements AbstractApiClient {
         onReceiveProgress: onReceiveProgress,
       );
       final statusCode = response.statusCode;
-      final responseData = _getResponseDataFromRowData(response.data);
+      final baseResponseData = BaseResponseData.fromDynamic(response.data);
       _validateStatusCode(
         statusCode: statusCode,
-        message: _messageByResponseData(responseData),
+        message: baseResponseData.message,
       );
-      return BaseApiResponse.fromResponseData(responseData);
+      return baseResponseData;
     } on DioError catch (dioError) {
       throw _handleDioError(dioError);
     } on ApiException {
@@ -139,7 +139,7 @@ class ApiClient implements AbstractApiClient {
   }
 
   @override
-  Future<BaseApiResponse> patch(
+  Future<BaseResponseData> patch(
     String path, {
     Map<String, dynamic>? data,
     Map<String, dynamic>? queryParameters,
@@ -160,12 +160,12 @@ class ApiClient implements AbstractApiClient {
         onReceiveProgress: onReceiveProgress,
       );
       final statusCode = response.statusCode;
-      final responseData = _getResponseDataFromRowData(response.data);
+      final baseResponseData = BaseResponseData.fromDynamic(response.data);
       _validateStatusCode(
         statusCode: statusCode,
-        message: _messageByResponseData(responseData),
+        message: baseResponseData.message,
       );
-      return BaseApiResponse.fromResponseData(responseData);
+      return baseResponseData;
     } on DioError catch (dioError) {
       throw _handleDioError(dioError);
     } on ApiException {
@@ -180,7 +180,7 @@ class ApiClient implements AbstractApiClient {
   }
 
   @override
-  Future<BaseApiResponse> delete(
+  Future<BaseResponseData> delete(
     String path, {
     Map<String, dynamic>? data,
     Map<String, dynamic>? queryParameters,
@@ -197,12 +197,12 @@ class ApiClient implements AbstractApiClient {
         cancelToken: cancelToken,
       );
       final statusCode = response.statusCode;
-      final responseData = _getResponseDataFromRowData(response.data);
+      final baseResponseData = BaseResponseData.fromDynamic(response.data);
       _validateStatusCode(
         statusCode: statusCode,
-        message: _messageByResponseData(responseData),
+        message: baseResponseData.message,
       );
-      return BaseApiResponse.fromResponseData(responseData);
+      return baseResponseData;
     } on DioError catch (dioError) {
       throw _handleDioError(dioError);
     } on ApiException {
@@ -255,23 +255,5 @@ class ApiClient implements AbstractApiClient {
       message: apiErrorMessage,
       detail: dioError.requestOptions.uri,
     );
-  }
-
-  /// Map<String, dynamic>? な responseData に 'message' のキーが含まれていれば
-  /// その文字列を、そうでなければ空文字を返す。
-  String _messageByResponseData(Map<String, dynamic>? data) => (data?['message'] as String?) ?? '';
-
-  /// 型不定の生の HTTP レスポンスを Map<String, dynamic> に変換して返す
-  Map<String, dynamic> _getResponseDataFromRowData(dynamic data) {
-    if (data == null) {
-      return <String, dynamic>{};
-    }
-    if (data is List) {
-      return <String, dynamic>{'items': data};
-    }
-    if (data is Map) {
-      return data as Map<String, dynamic>;
-    }
-    return <String, dynamic>{};
   }
 }

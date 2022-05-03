@@ -12,7 +12,7 @@ _$_Issue _$$_IssueFromJson(Map<String, dynamic> json) => _$_Issue(
       title: json['title'] as String? ?? '',
       body: json['body'] as String? ?? '',
       number: json['number'] as int? ?? 0,
-      state: json['state'] as String? ?? 'state',
+      state: json['state'] as String? ?? 'open',
       createdAt: DateTime.parse(json['updated_at'] as String),
     );
 

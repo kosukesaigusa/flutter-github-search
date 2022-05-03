@@ -176,7 +176,7 @@ class _$_Issue implements _Issue {
       this.title = '',
       this.body = '',
       this.number = 0,
-      this.state = 'state',
+      this.state = 'open',
       @JsonKey(name: 'updated_at') required this.createdAt});
 
   factory _$_Issue.fromJson(Map<String, dynamic> json) =>

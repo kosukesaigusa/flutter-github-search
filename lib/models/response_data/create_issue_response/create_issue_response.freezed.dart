@@ -20,7 +20,8 @@ CreateIssueResponse _$CreateIssueResponseFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CreateIssueResponse {
-  @JsonKey(name: 'data')
+  bool get success => throw _privateConstructorUsedError;
+  String get message => throw _privateConstructorUsedError;
   Issue get issue => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -34,7 +35,7 @@ abstract class $CreateIssueResponseCopyWith<$Res> {
   factory $CreateIssueResponseCopyWith(
           CreateIssueResponse value, $Res Function(CreateIssueResponse) then) =
       _$CreateIssueResponseCopyWithImpl<$Res>;
-  $Res call({@JsonKey(name: 'data') Issue issue});
+  $Res call({bool success, String message, Issue issue});
 
   $IssueCopyWith<$Res> get issue;
 }
@@ -50,9 +51,19 @@ class _$CreateIssueResponseCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? success = freezed,
+    Object? message = freezed,
     Object? issue = freezed,
   }) {
     return _then(_value.copyWith(
+      success: success == freezed
+          ? _value.success
+          : success // ignore: cast_nullable_to_non_nullable
+              as bool,
+      message: message == freezed
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
       issue: issue == freezed
           ? _value.issue
           : issue // ignore: cast_nullable_to_non_nullable
@@ -75,7 +86,7 @@ abstract class _$CreateIssueResponseCopyWith<$Res>
           $Res Function(_CreateIssueResponse) then) =
       __$CreateIssueResponseCopyWithImpl<$Res>;
   @override
-  $Res call({@JsonKey(name: 'data') Issue issue});
+  $Res call({bool success, String message, Issue issue});
 
   @override
   $IssueCopyWith<$Res> get issue;
@@ -94,9 +105,19 @@ class __$CreateIssueResponseCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? success = freezed,
+    Object? message = freezed,
     Object? issue = freezed,
   }) {
     return _then(_CreateIssueResponse(
+      success: success == freezed
+          ? _value.success
+          : success // ignore: cast_nullable_to_non_nullable
+              as bool,
+      message: message == freezed
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
       issue: issue == freezed
           ? _value.issue
           : issue // ignore: cast_nullable_to_non_nullable
@@ -108,18 +129,24 @@ class __$CreateIssueResponseCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_CreateIssueResponse implements _CreateIssueResponse {
-  const _$_CreateIssueResponse({@JsonKey(name: 'data') required this.issue});
+  const _$_CreateIssueResponse(
+      {this.success = true, this.message = '', required this.issue});
 
   factory _$_CreateIssueResponse.fromJson(Map<String, dynamic> json) =>
       _$$_CreateIssueResponseFromJson(json);
 
   @override
-  @JsonKey(name: 'data')
+  @JsonKey()
+  final bool success;
+  @override
+  @JsonKey()
+  final String message;
+  @override
   final Issue issue;
 
   @override
   String toString() {
-    return 'CreateIssueResponse(issue: $issue)';
+    return 'CreateIssueResponse(success: $success, message: $message, issue: $issue)';
   }
 
   @override
@@ -127,13 +154,18 @@ class _$_CreateIssueResponse implements _CreateIssueResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _CreateIssueResponse &&
+            const DeepCollectionEquality().equals(other.success, success) &&
+            const DeepCollectionEquality().equals(other.message, message) &&
             const DeepCollectionEquality().equals(other.issue, issue));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(issue));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(success),
+      const DeepCollectionEquality().hash(message),
+      const DeepCollectionEquality().hash(issue));
 
   @JsonKey(ignore: true)
   @override
@@ -149,14 +181,18 @@ class _$_CreateIssueResponse implements _CreateIssueResponse {
 
 abstract class _CreateIssueResponse implements CreateIssueResponse {
   const factory _CreateIssueResponse(
-          {@JsonKey(name: 'data') required final Issue issue}) =
-      _$_CreateIssueResponse;
+      {final bool success,
+      final String message,
+      required final Issue issue}) = _$_CreateIssueResponse;
 
   factory _CreateIssueResponse.fromJson(Map<String, dynamic> json) =
       _$_CreateIssueResponse.fromJson;
 
   @override
-  @JsonKey(name: 'data')
+  bool get success => throw _privateConstructorUsedError;
+  @override
+  String get message => throw _privateConstructorUsedError;
+  @override
   Issue get issue => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)

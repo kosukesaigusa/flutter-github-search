@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'base_api_response.dart';
+part of 'base_response_data.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,42 +14,42 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-BaseApiResponse _$BaseApiResponseFromJson(Map<String, dynamic> json) {
-  return _BaseApiResponse.fromJson(json);
+BaseResponseData _$BaseResponseDataFromJson(Map<String, dynamic> json) {
+  return _BaseResponseData.fromJson(json);
 }
 
 /// @nodoc
-mixin _$BaseApiResponse {
+mixin _$BaseResponseData {
   bool get success => throw _privateConstructorUsedError;
   String get message => throw _privateConstructorUsedError;
-  @BaseApiResponseDataConverter()
+  @BaseResponseDataConverter()
   Map<String, dynamic> get data => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $BaseApiResponseCopyWith<BaseApiResponse> get copyWith =>
+  $BaseResponseDataCopyWith<BaseResponseData> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $BaseApiResponseCopyWith<$Res> {
-  factory $BaseApiResponseCopyWith(
-          BaseApiResponse value, $Res Function(BaseApiResponse) then) =
-      _$BaseApiResponseCopyWithImpl<$Res>;
+abstract class $BaseResponseDataCopyWith<$Res> {
+  factory $BaseResponseDataCopyWith(
+          BaseResponseData value, $Res Function(BaseResponseData) then) =
+      _$BaseResponseDataCopyWithImpl<$Res>;
   $Res call(
       {bool success,
       String message,
-      @BaseApiResponseDataConverter() Map<String, dynamic> data});
+      @BaseResponseDataConverter() Map<String, dynamic> data});
 }
 
 /// @nodoc
-class _$BaseApiResponseCopyWithImpl<$Res>
-    implements $BaseApiResponseCopyWith<$Res> {
-  _$BaseApiResponseCopyWithImpl(this._value, this._then);
+class _$BaseResponseDataCopyWithImpl<$Res>
+    implements $BaseResponseDataCopyWith<$Res> {
+  _$BaseResponseDataCopyWithImpl(this._value, this._then);
 
-  final BaseApiResponse _value;
+  final BaseResponseData _value;
   // ignore: unused_field
-  final $Res Function(BaseApiResponse) _then;
+  final $Res Function(BaseResponseData) _then;
 
   @override
   $Res call({
@@ -75,28 +75,28 @@ class _$BaseApiResponseCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$BaseApiResponseCopyWith<$Res>
-    implements $BaseApiResponseCopyWith<$Res> {
-  factory _$BaseApiResponseCopyWith(
-          _BaseApiResponse value, $Res Function(_BaseApiResponse) then) =
-      __$BaseApiResponseCopyWithImpl<$Res>;
+abstract class _$BaseResponseDataCopyWith<$Res>
+    implements $BaseResponseDataCopyWith<$Res> {
+  factory _$BaseResponseDataCopyWith(
+          _BaseResponseData value, $Res Function(_BaseResponseData) then) =
+      __$BaseResponseDataCopyWithImpl<$Res>;
   @override
   $Res call(
       {bool success,
       String message,
-      @BaseApiResponseDataConverter() Map<String, dynamic> data});
+      @BaseResponseDataConverter() Map<String, dynamic> data});
 }
 
 /// @nodoc
-class __$BaseApiResponseCopyWithImpl<$Res>
-    extends _$BaseApiResponseCopyWithImpl<$Res>
-    implements _$BaseApiResponseCopyWith<$Res> {
-  __$BaseApiResponseCopyWithImpl(
-      _BaseApiResponse _value, $Res Function(_BaseApiResponse) _then)
-      : super(_value, (v) => _then(v as _BaseApiResponse));
+class __$BaseResponseDataCopyWithImpl<$Res>
+    extends _$BaseResponseDataCopyWithImpl<$Res>
+    implements _$BaseResponseDataCopyWith<$Res> {
+  __$BaseResponseDataCopyWithImpl(
+      _BaseResponseData _value, $Res Function(_BaseResponseData) _then)
+      : super(_value, (v) => _then(v as _BaseResponseData));
 
   @override
-  _BaseApiResponse get _value => super._value as _BaseApiResponse;
+  _BaseResponseData get _value => super._value as _BaseResponseData;
 
   @override
   $Res call({
@@ -104,7 +104,7 @@ class __$BaseApiResponseCopyWithImpl<$Res>
     Object? message = freezed,
     Object? data = freezed,
   }) {
-    return _then(_BaseApiResponse(
+    return _then(_BaseResponseData(
       success: success == freezed
           ? _value.success
           : success // ignore: cast_nullable_to_non_nullable
@@ -123,16 +123,15 @@ class __$BaseApiResponseCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_BaseApiResponse implements _BaseApiResponse {
-  const _$_BaseApiResponse(
+class _$_BaseResponseData implements _BaseResponseData {
+  const _$_BaseResponseData(
       {this.success = true,
       this.message = '',
-      @BaseApiResponseDataConverter()
-          final Map<String, dynamic> data = const <String, dynamic>{}})
+      @BaseResponseDataConverter() final Map<String, dynamic> data = emptyMap})
       : _data = data;
 
-  factory _$_BaseApiResponse.fromJson(Map<String, dynamic> json) =>
-      _$$_BaseApiResponseFromJson(json);
+  factory _$_BaseResponseData.fromJson(Map<String, dynamic> json) =>
+      _$$_BaseResponseDataFromJson(json);
 
   @override
   @JsonKey()
@@ -140,11 +139,11 @@ class _$_BaseApiResponse implements _BaseApiResponse {
   @override
   @JsonKey()
   final String message;
-  @BaseApiResponseDataConverter()
+  @BaseResponseDataConverter()
   final Map<String, dynamic> _data;
   @override
   @JsonKey()
-  @BaseApiResponseDataConverter()
+  @BaseResponseDataConverter()
   Map<String, dynamic> get data {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableMapView(_data);
@@ -152,14 +151,14 @@ class _$_BaseApiResponse implements _BaseApiResponse {
 
   @override
   String toString() {
-    return 'BaseApiResponse(success: $success, message: $message, data: $data)';
+    return 'BaseResponseData(success: $success, message: $message, data: $data)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _BaseApiResponse &&
+            other is _BaseResponseData &&
             const DeepCollectionEquality().equals(other.success, success) &&
             const DeepCollectionEquality().equals(other.message, message) &&
             const DeepCollectionEquality().equals(other.data, data));
@@ -175,34 +174,34 @@ class _$_BaseApiResponse implements _BaseApiResponse {
 
   @JsonKey(ignore: true)
   @override
-  _$BaseApiResponseCopyWith<_BaseApiResponse> get copyWith =>
-      __$BaseApiResponseCopyWithImpl<_BaseApiResponse>(this, _$identity);
+  _$BaseResponseDataCopyWith<_BaseResponseData> get copyWith =>
+      __$BaseResponseDataCopyWithImpl<_BaseResponseData>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_BaseApiResponseToJson(this);
+    return _$$_BaseResponseDataToJson(this);
   }
 }
 
-abstract class _BaseApiResponse implements BaseApiResponse {
-  const factory _BaseApiResponse(
+abstract class _BaseResponseData implements BaseResponseData {
+  const factory _BaseResponseData(
           {final bool success,
           final String message,
-          @BaseApiResponseDataConverter() final Map<String, dynamic> data}) =
-      _$_BaseApiResponse;
+          @BaseResponseDataConverter() final Map<String, dynamic> data}) =
+      _$_BaseResponseData;
 
-  factory _BaseApiResponse.fromJson(Map<String, dynamic> json) =
-      _$_BaseApiResponse.fromJson;
+  factory _BaseResponseData.fromJson(Map<String, dynamic> json) =
+      _$_BaseResponseData.fromJson;
 
   @override
   bool get success => throw _privateConstructorUsedError;
   @override
   String get message => throw _privateConstructorUsedError;
   @override
-  @BaseApiResponseDataConverter()
+  @BaseResponseDataConverter()
   Map<String, dynamic> get data => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$BaseApiResponseCopyWith<_BaseApiResponse> get copyWith =>
+  _$BaseResponseDataCopyWith<_BaseResponseData> get copyWith =>
       throw _privateConstructorUsedError;
 }

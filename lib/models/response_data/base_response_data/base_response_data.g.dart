@@ -1,23 +1,23 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'base_api_response.dart';
+part of 'base_response_data.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_BaseApiResponse _$$_BaseApiResponseFromJson(Map<String, dynamic> json) =>
-    _$_BaseApiResponse(
+_$_BaseResponseData _$$_BaseResponseDataFromJson(Map<String, dynamic> json) =>
+    _$_BaseResponseData(
       success: json['success'] as bool? ?? true,
       message: json['message'] as String? ?? '',
       data: json['data'] == null
-          ? const <String, dynamic>{}
-          : const BaseApiResponseDataConverter().fromJson(json['data']),
+          ? emptyMap
+          : const BaseResponseDataConverter().fromJson(json['data']),
     );
 
-Map<String, dynamic> _$$_BaseApiResponseToJson(_$_BaseApiResponse instance) =>
+Map<String, dynamic> _$$_BaseResponseDataToJson(_$_BaseResponseData instance) =>
     <String, dynamic>{
       'success': instance.success,
       'message': instance.message,
-      'data': const BaseApiResponseDataConverter().toJson(instance.data),
+      'data': const BaseResponseDataConverter().toJson(instance.data),
     };

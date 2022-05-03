@@ -9,17 +9,22 @@ part of 'search_repo_response.dart';
 _$_SearchRepoResponse _$$_SearchRepoResponseFromJson(
         Map<String, dynamic> json) =>
     _$_SearchRepoResponse(
+      success: json['success'] as bool? ?? true,
+      message: json['message'] as String? ?? '',
       totalCount: json['total_count'] as int? ?? 0,
       incompleteResults: json['incomplete_results'] as bool? ?? false,
-      items: json['items'] == null
-          ? const <Repo>[]
-          : const SearchRepoResponseItemsConverter().fromJson(json['items']),
+      items: (json['items'] as List<dynamic>?)
+              ?.map((e) => Repo.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const <Repo>[],
     );
 
 Map<String, dynamic> _$$_SearchRepoResponseToJson(
         _$_SearchRepoResponse instance) =>
     <String, dynamic>{
+      'success': instance.success,
+      'message': instance.message,
       'total_count': instance.totalCount,
       'incomplete_results': instance.incompleteResults,
-      'items': const SearchRepoResponseItemsConverter().toJson(instance.items),
+      'items': instance.items,
     };
