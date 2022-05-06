@@ -33,7 +33,7 @@ class RepoRepository {
         'Accept': 'application/vnd.github.v3+json',
       }),
     );
-    return responseResult.when(
+    return responseResult.when<SearchRepoResponse>(
       success: SearchRepoResponse.fromBaseResponseData,
       failure: (message) => throw AppException(message),
     );

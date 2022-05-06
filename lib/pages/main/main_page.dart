@@ -34,7 +34,6 @@ class _MainPageState extends ConsumerState<MainPage> with WidgetsBindingObserver
   void didChangeAppLifecycleState(AppLifecycleState state) {
     debugPrint('***');
     debugPrint('AppLifecycleState: ${state.name}');
-    debugPrint('***');
   }
 
   @override

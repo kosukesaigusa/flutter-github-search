@@ -42,7 +42,7 @@ class IssueRepository {
         'Accept': 'application/vnd.github.v3+json',
       }),
     );
-    return responseResult.when(
+    return responseResult.when<IssuesResponse>(
       success: IssuesResponse.fromBaseResponseData,
       failure: (message) => throw AppException(message),
     );
@@ -67,7 +67,7 @@ class IssueRepository {
         'Authorization': 'token $_accessToken',
       }),
     );
-    return responseResult.when(
+    return responseResult.when<IssueResponse>(
       success: IssueResponse.fromBaseResponseData,
       failure: (message) => throw AppException(message),
     );

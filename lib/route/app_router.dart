@@ -28,7 +28,6 @@ class _AppRouterImpl implements AppRouter {
     }
     debugPrint('***');
     debugPrint('path: $path');
-    debugPrint('***');
 
     // path に ? がついている場合は、それ以降をクエリストリングとみなし、
     // 分割して `queryParams` というマップに追加する。
