@@ -67,7 +67,6 @@ class IssueRepository {
         'Authorization': 'token $_accessToken',
       }),
     );
-
     return responseResult.when(
       success: IssueResponse.fromBaseResponseData,
       failure: (message) => throw AppException(message),
