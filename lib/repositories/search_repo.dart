@@ -3,6 +3,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../services/api_client.dart';
 import '../models/response_data/search_repo_response/search_repo_response.dart';
+import '../utils/exception.dart';
 
 final searchRepoRepositoryProvider = Provider.autoDispose(
   (ref) => RepoRepository(client: ref.read(apiClientProvider)),
@@ -21,7 +22,7 @@ class RepoRepository {
     int page = 1,
     int perPage = 10,
   }) async {
-    final baseResponseData = await _client.get(
+    final responseResult = await _client.get(
       '/search/repositories',
       queryParameters: <String, dynamic>{
         'q': q,
@@ -32,6 +33,9 @@ class RepoRepository {
         'Accept': 'application/vnd.github.v3+json',
       }),
     );
-    return SearchRepoResponse.fromBaseResponseData(baseResponseData);
+    return responseResult.when(
+      success: SearchRepoResponse.fromBaseResponseData,
+      failure: (message) => throw AppException(message),
+    );
   }
 }

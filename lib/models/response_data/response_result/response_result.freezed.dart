@@ -16,22 +16,21 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$ResponseResult {
-  String get message => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String message, BaseResponseData data) success,
+    required TResult Function(BaseResponseData data) success,
     required TResult Function(String message) failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String message, BaseResponseData data)? success,
+    TResult Function(BaseResponseData data)? success,
     TResult Function(String message)? failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String message, BaseResponseData data)? success,
+    TResult Function(BaseResponseData data)? success,
     TResult Function(String message)? failure,
     required TResult orElse(),
   }) =>
@@ -55,10 +54,6 @@ mixin _$ResponseResult {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $ResponseResultCopyWith<ResponseResult> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -66,7 +61,6 @@ abstract class $ResponseResultCopyWith<$Res> {
   factory $ResponseResultCopyWith(
           ResponseResult value, $Res Function(ResponseResult) then) =
       _$ResponseResultCopyWithImpl<$Res>;
-  $Res call({String message});
 }
 
 /// @nodoc
@@ -77,26 +71,13 @@ class _$ResponseResultCopyWithImpl<$Res>
   final ResponseResult _value;
   // ignore: unused_field
   final $Res Function(ResponseResult) _then;
-
-  @override
-  $Res call({
-    Object? message = freezed,
-  }) {
-    return _then(_value.copyWith(
-      message: message == freezed
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
 }
 
 /// @nodoc
-abstract class $SuccessCopyWith<$Res> implements $ResponseResultCopyWith<$Res> {
+abstract class $SuccessCopyWith<$Res> {
   factory $SuccessCopyWith(Success value, $Res Function(Success) then) =
       _$SuccessCopyWithImpl<$Res>;
-  @override
-  $Res call({String message, BaseResponseData data});
+  $Res call({BaseResponseData data});
 
   $BaseResponseDataCopyWith<$Res> get data;
 }
@@ -112,14 +93,9 @@ class _$SuccessCopyWithImpl<$Res> extends _$ResponseResultCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? message = freezed,
     Object? data = freezed,
   }) {
     return _then(Success(
-      message: message == freezed
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String,
       data: data == freezed
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
@@ -138,17 +114,14 @@ class _$SuccessCopyWithImpl<$Res> extends _$ResponseResultCopyWithImpl<$Res>
 /// @nodoc
 
 class _$Success implements Success {
-  const _$Success({this.message = '', required this.data});
+  const _$Success({required this.data});
 
-  @override
-  @JsonKey()
-  final String message;
   @override
   final BaseResponseData data;
 
   @override
   String toString() {
-    return 'ResponseResult.success(message: $message, data: $data)';
+    return 'ResponseResult.success(data: $data)';
   }
 
   @override
@@ -156,15 +129,12 @@ class _$Success implements Success {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is Success &&
-            const DeepCollectionEquality().equals(other.message, message) &&
             const DeepCollectionEquality().equals(other.data, data));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(message),
-      const DeepCollectionEquality().hash(data));
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(data));
 
   @JsonKey(ignore: true)
   @override
@@ -174,30 +144,30 @@ class _$Success implements Success {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String message, BaseResponseData data) success,
+    required TResult Function(BaseResponseData data) success,
     required TResult Function(String message) failure,
   }) {
-    return success(message, data);
+    return success(data);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String message, BaseResponseData data)? success,
+    TResult Function(BaseResponseData data)? success,
     TResult Function(String message)? failure,
   }) {
-    return success?.call(message, data);
+    return success?.call(data);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String message, BaseResponseData data)? success,
+    TResult Function(BaseResponseData data)? success,
     TResult Function(String message)? failure,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(message, data);
+      return success(data);
     }
     return orElse();
   }
@@ -235,22 +205,17 @@ class _$Success implements Success {
 }
 
 abstract class Success implements ResponseResult {
-  const factory Success(
-      {final String message, required final BaseResponseData data}) = _$Success;
+  const factory Success({required final BaseResponseData data}) = _$Success;
 
-  @override
-  String get message => throw _privateConstructorUsedError;
   BaseResponseData get data => throw _privateConstructorUsedError;
-  @override
   @JsonKey(ignore: true)
   $SuccessCopyWith<Success> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $FailureCopyWith<$Res> implements $ResponseResultCopyWith<$Res> {
+abstract class $FailureCopyWith<$Res> {
   factory $FailureCopyWith(Failure value, $Res Function(Failure) then) =
       _$FailureCopyWithImpl<$Res>;
-  @override
   $Res call({String message});
 }
 
@@ -310,7 +275,7 @@ class _$Failure implements Failure {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String message, BaseResponseData data) success,
+    required TResult Function(BaseResponseData data) success,
     required TResult Function(String message) failure,
   }) {
     return failure(message);
@@ -319,7 +284,7 @@ class _$Failure implements Failure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String message, BaseResponseData data)? success,
+    TResult Function(BaseResponseData data)? success,
     TResult Function(String message)? failure,
   }) {
     return failure?.call(message);
@@ -328,7 +293,7 @@ class _$Failure implements Failure {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String message, BaseResponseData data)? success,
+    TResult Function(BaseResponseData data)? success,
     TResult Function(String message)? failure,
     required TResult orElse(),
   }) {
@@ -373,9 +338,7 @@ class _$Failure implements Failure {
 abstract class Failure implements ResponseResult {
   const factory Failure({final String message}) = _$Failure;
 
-  @override
   String get message => throw _privateConstructorUsedError;
-  @override
   @JsonKey(ignore: true)
   $FailureCopyWith<Failure> get copyWith => throw _privateConstructorUsedError;
 }

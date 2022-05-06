@@ -9,7 +9,6 @@ part 'response_result.freezed.dart';
 class ResponseResult with _$ResponseResult {
   /// 成功
   const factory ResponseResult.success({
-    @Default('') String message,
     required BaseResponseData data,
   }) = Success;
 

@@ -6,6 +6,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../constants/string.dart';
 import '../models/response_data/base_response_data/base_response_data.dart';
+import '../models/response_data/response_result/response_result.dart';
 import '../providers/common/dio.dart';
 import '../utils/enums.dart';
 import '../utils/exception.dart';
@@ -20,7 +21,7 @@ class ApiClient implements AbstractApiClient {
   final Reader _read;
 
   @override
-  Future<BaseResponseData> get(
+  Future<ResponseResult> get(
     String path, {
     Map<String, dynamic>? queryParameters,
     Map<String, dynamic>? header,
@@ -42,22 +43,23 @@ class ApiClient implements AbstractApiClient {
         statusCode: statusCode,
         message: baseResponseData.message,
       );
-      return baseResponseData;
+      return ResponseResult.success(data: baseResponseData);
     } on DioError catch (dioError) {
-      throw _handleDioError(dioError);
-    } on ApiException {
-      rethrow;
+      final exception = _handleDioError(dioError);
+      return ResponseResult.failure(message: exception.toString());
+    } on ApiException catch (e) {
+      return ResponseResult.failure(message: e.toString());
     } on SocketException {
-      rethrow;
+      return const ResponseResult.failure(message: 'サーバとの通信に失敗しました。');
     } on FormatException {
-      rethrow;
+      return const ResponseResult.failure(message: 'レスポンスの形式が正しくありません。');
     } on Exception catch (e) {
-      throw Exception(e.toString());
+      return ResponseResult.failure(message: e.toString());
     }
   }
 
   @override
-  Future<BaseResponseData> put(
+  Future<ResponseResult> put(
     String path, {
     Map<String, dynamic>? data,
     Map<String, dynamic>? queryParameters,
@@ -83,22 +85,23 @@ class ApiClient implements AbstractApiClient {
         statusCode: statusCode,
         message: baseResponseData.message,
       );
-      return baseResponseData;
+      return ResponseResult.success(data: baseResponseData);
     } on DioError catch (dioError) {
-      throw _handleDioError(dioError);
-    } on ApiException {
-      rethrow;
+      final exception = _handleDioError(dioError);
+      return ResponseResult.failure(message: exception.toString());
+    } on ApiException catch (e) {
+      return ResponseResult.failure(message: e.toString());
     } on SocketException {
-      rethrow;
+      return const ResponseResult.failure(message: 'サーバとの通信に失敗しました。');
     } on FormatException {
-      rethrow;
+      return const ResponseResult.failure(message: 'レスポンスの形式が正しくありません。');
     } on Exception catch (e) {
-      throw Exception(e.toString());
+      return ResponseResult.failure(message: e.toString());
     }
   }
 
   @override
-  Future<BaseResponseData> post(
+  Future<ResponseResult> post(
     String path, {
     Map<String, dynamic>? data,
     Map<String, dynamic>? queryParameters,
@@ -124,22 +127,23 @@ class ApiClient implements AbstractApiClient {
         statusCode: statusCode,
         message: baseResponseData.message,
       );
-      return baseResponseData;
+      return ResponseResult.success(data: baseResponseData);
     } on DioError catch (dioError) {
-      throw _handleDioError(dioError);
-    } on ApiException {
-      rethrow;
+      final exception = _handleDioError(dioError);
+      return ResponseResult.failure(message: exception.toString());
+    } on ApiException catch (e) {
+      return ResponseResult.failure(message: e.toString());
     } on SocketException {
-      rethrow;
+      return const ResponseResult.failure(message: 'サーバとの通信に失敗しました。');
     } on FormatException {
-      rethrow;
+      return const ResponseResult.failure(message: 'レスポンスの形式が正しくありません。');
     } on Exception catch (e) {
-      throw Exception(e.toString());
+      return ResponseResult.failure(message: e.toString());
     }
   }
 
   @override
-  Future<BaseResponseData> patch(
+  Future<ResponseResult> patch(
     String path, {
     Map<String, dynamic>? data,
     Map<String, dynamic>? queryParameters,
@@ -165,22 +169,23 @@ class ApiClient implements AbstractApiClient {
         statusCode: statusCode,
         message: baseResponseData.message,
       );
-      return baseResponseData;
+      return ResponseResult.success(data: baseResponseData);
     } on DioError catch (dioError) {
-      throw _handleDioError(dioError);
-    } on ApiException {
-      rethrow;
+      final exception = _handleDioError(dioError);
+      return ResponseResult.failure(message: exception.toString());
+    } on ApiException catch (e) {
+      return ResponseResult.failure(message: e.toString());
     } on SocketException {
-      rethrow;
+      return const ResponseResult.failure(message: 'サーバとの通信に失敗しました。');
     } on FormatException {
-      rethrow;
+      return const ResponseResult.failure(message: 'レスポンスの形式が正しくありません。');
     } on Exception catch (e) {
-      throw Exception(e.toString());
+      return ResponseResult.failure(message: e.toString());
     }
   }
 
   @override
-  Future<BaseResponseData> delete(
+  Future<ResponseResult> delete(
     String path, {
     Map<String, dynamic>? data,
     Map<String, dynamic>? queryParameters,
@@ -202,17 +207,18 @@ class ApiClient implements AbstractApiClient {
         statusCode: statusCode,
         message: baseResponseData.message,
       );
-      return baseResponseData;
+      return ResponseResult.success(data: baseResponseData);
     } on DioError catch (dioError) {
-      throw _handleDioError(dioError);
-    } on ApiException {
-      rethrow;
+      final exception = _handleDioError(dioError);
+      return ResponseResult.failure(message: exception.toString());
+    } on ApiException catch (e) {
+      return ResponseResult.failure(message: e.toString());
     } on SocketException {
-      rethrow;
+      return const ResponseResult.failure(message: 'サーバとの通信に失敗しました。');
     } on FormatException {
-      rethrow;
+      return const ResponseResult.failure(message: 'レスポンスの形式が正しくありません。');
     } on Exception catch (e) {
-      throw Exception(e.toString());
+      return ResponseResult.failure(message: e.toString());
     }
   }
 

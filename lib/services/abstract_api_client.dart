@@ -1,11 +1,11 @@
 import 'package:dio/dio.dart';
 
-import '../models/response_data/base_response_data/base_response_data.dart';
+import '../models/response_data/response_result/response_result.dart';
 
 /// dio.dart の abstract class Dio の形式に沿った
 /// API クライアントの抽象クラス
 abstract class AbstractApiClient {
-  Future<BaseResponseData> get(
+  Future<ResponseResult> get(
     String path, {
     Map<String, dynamic> queryParameters,
     Map<String, dynamic> header,
@@ -14,7 +14,7 @@ abstract class AbstractApiClient {
     ProgressCallback onReceiveProgress,
   });
 
-  Future<BaseResponseData> put(
+  Future<ResponseResult> put(
     String path, {
     Map<String, dynamic> data,
     Map<String, dynamic> queryParameters,
@@ -25,7 +25,7 @@ abstract class AbstractApiClient {
     ProgressCallback onReceiveProgress,
   });
 
-  Future<BaseResponseData> patch(
+  Future<ResponseResult> patch(
     String path, {
     Map<String, dynamic> data,
     Map<String, dynamic> queryParameters,
@@ -34,7 +34,7 @@ abstract class AbstractApiClient {
     ProgressCallback onReceiveProgress,
   });
 
-  Future<BaseResponseData> post(
+  Future<ResponseResult> post(
     String path, {
     Map<String, dynamic> data,
     Map<String, dynamic> queryParameters,
@@ -45,7 +45,7 @@ abstract class AbstractApiClient {
     ProgressCallback onReceiveProgress,
   });
 
-  Future<BaseResponseData> delete(
+  Future<ResponseResult> delete(
     String path, {
     Map<String, dynamic> data,
     Map<String, dynamic> queryParameters,
