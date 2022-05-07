@@ -1,5 +1,6 @@
 import '../utils/types.dart';
 
+/// Route 引数に指定する型。中身は Map<String, dynamic>
 class RouteArguments {
   RouteArguments(this.data);
 
@@ -17,6 +18,7 @@ class AppRoute {
   final PageBuilder pageBuilder;
 }
 
+/// 指定した Route のパスが見つからない場合の例外
 class RouteNotFoundException implements Exception {
   RouteNotFoundException(this._path);
   final String _path;

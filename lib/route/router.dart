@@ -1,31 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../pages/not_found/not_found_page.dart';
 import '../utils/bool.dart';
 import '../utils/route.dart';
-import '../utils/types.dart';
 
-abstract class AppRouter {
-  factory AppRouter.create(Map<String, PageBuilder> routeMap) => _AppRouterImpl(routeMap);
+final routerProvider = Provider.family<Router, List<AppRoute>>(
+  (_, appRoutes) => Router(appRoutes),
+);
 
-  static const initialRoute = '/';
-  Route<dynamic> generateRoute(RouteSettings settings, {String bottomNavigationPath});
-}
-
-class _AppRouterImpl implements AppRouter {
-  _AppRouterImpl(Map<String, PageBuilder> routeMap)
-      : appRoutes = <AppRoute>[for (final key in routeMap.keys) AppRoute(key, routeMap[key]!)];
+class Router {
+  Router(this.appRoutes);
 
   final List<AppRoute> appRoutes;
+  final initialRoute = '/';
 
-  @override
-  Route<dynamic> generateRoute(RouteSettings settings, {String? bottomNavigationPath}) {
-    var path = settings.name!;
-    if (bottomNavigationPath?.isEmpty ?? true) {
-      path = settings.name!;
-    } else {
-      path = (settings.name == AppRouter.initialRoute ? bottomNavigationPath : settings.name)!;
-    }
+  Route<dynamic> onGenerateRoute(RouteSettings routeSettings, {String? bottomNavigationPath}) {
+    var path = _path(routeSettings, bottomNavigationPath: bottomNavigationPath);
     debugPrint('***');
     debugPrint('path: $path');
 
@@ -40,7 +31,7 @@ class _AppRouterImpl implements AppRouter {
     }
 
     // ページに渡す引数の Map<String, dynamic>
-    final data = (settings.arguments as RouteArguments?)?.data ?? <String, dynamic>{};
+    final data = (routeSettings.arguments as RouteArguments?)?.data ?? <String, dynamic>{};
 
     try {
       // appRoutes の各要素のパスに一致する AppRoute を見つけて
@@ -50,17 +41,31 @@ class _AppRouterImpl implements AppRouter {
         orElse: () => throw RouteNotFoundException(path),
       );
       final route = MaterialPageRoute<dynamic>(
-        settings: settings,
+        settings: routeSettings,
         builder: (context) => appRoute.pageBuilder(context, RouteArguments(data)),
         fullscreenDialog: toBool(queryParams['fullScreenDialog'] ?? false),
       );
       return route;
     } on RouteNotFoundException {
       final route = MaterialPageRoute<void>(
-        settings: settings,
+        settings: routeSettings,
         builder: (context) => const NotFoundPage(),
       );
       return route;
     }
+  }
+
+  String _path(RouteSettings routeSettings, {String? bottomNavigationPath}) {
+    final path = routeSettings.name;
+    if (path == null) {
+      return '';
+    }
+    if (bottomNavigationPath?.isEmpty ?? true) {
+      return path;
+    }
+    if (path == initialRoute) {
+      return bottomNavigationPath!;
+    }
+    return path;
   }
 }
