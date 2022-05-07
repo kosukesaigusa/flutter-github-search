@@ -3,12 +3,11 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter/services.dart';
 
-/// assets 内のJson から[Response]を作って返す
-///
-/// ステータスコードは 200
+/// 実際のレスポンスの代わりに対応する JSON の Mock データを返す
+/// HTTP リクエストのインターセプタ。
 class MockInterceptor extends Interceptor {
-  static const _jsonDir = 'assets/json/mock/';
-  static const _jsonExtension = '.json';
+  static const baseDir = 'assets/json/mock/';
+  static const extension = '.json';
 
   @override
   Future onRequest(
@@ -16,31 +15,27 @@ class MockInterceptor extends Interceptor {
     RequestInterceptorHandler handler,
   ) async {
     try {
-      var path = options.path;
-      // /api を削除
-      path = path.replaceFirst(RegExp(r'^/api'), '');
-      // バージョンを削除
-      path = path.replaceFirst(RegExp(r'^/v[1-9]/'), '');
-      // ? 以降を削除
-      path = path.split('?').first;
+      // JSON ファイルを特定して読み込む。
+      // {rootDir}/assets/json/mock/ 以下の階層に
+      // API の URL パスに対応する JSON ファイルが保存されている想定。
+      final jsonFilePath = _jsonFilePath(options.path);
+      final byteData = await rootBundle.load(jsonFilePath);
 
-      // 最後のスラッシュを削除
-      path = path.replaceFirst(RegExp(r'/$'), '');
-
-      final resourcePath = _jsonDir + path + _jsonExtension;
-      final data = await rootBundle.load(resourcePath);
-      final map = json.decode(
+      // JSON ファイルの内容を UTF-8 デコードして Map<String, dynamic> にキャストする
+      final data = json.decode(
         utf8.decode(
-          data.buffer.asUint8List(
-            data.offsetInBytes,
-            data.lengthInBytes,
+          byteData.buffer.asUint8List(
+            byteData.offsetInBytes,
+            byteData.lengthInBytes,
           ),
         ),
       ) as Map<String, dynamic>;
 
       return handler.resolve(
         Response<Map<String, dynamic>>(
-          data: map,
+          data: data,
+          // TODO: 期待されるステータスコードは API によって異なるはずだが
+          //  どのようにして指定できるか調査して対応する。
           statusCode: 200,
           requestOptions: options,
         ),
@@ -54,5 +49,14 @@ class MockInterceptor extends Interceptor {
         ),
       );
     }
+  }
+
+  /// HTTP リクエストの URL パスから JSON ファイルのパスを特定する。
+  /// RequestOptions.path は URL パスであって、apiBaseURL は含まれていない。
+  String _jsonFilePath(String path) {
+    var filePath = path;
+    // 末尾スラッシュを削除する
+    filePath = path.replaceFirst(RegExp(r'/$'), '');
+    return baseDir + filePath + extension;
   }
 }
