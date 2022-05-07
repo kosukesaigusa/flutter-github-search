@@ -5,7 +5,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../providers/bottom_tab/bottom_tab.dart';
 import '../../route/bottom_tabs.dart';
-import '../../widgets/stacked_pages_navigator.dart';
+import '../../widgets/main_stacked_pages_navigator.dart';
 
 class MainPage extends StatefulHookConsumerWidget {
   const MainPage({Key? key}) : super(key: key);
