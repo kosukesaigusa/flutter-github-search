@@ -23,7 +23,6 @@ class HomePage extends HookConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             ElevatedButton(
-              // onPressed: () => context.go(FirstPage.path),
               onPressed: () => Navigator.pushNamed<void>(context, FirstPage.path),
               child: const Text('Go to First Page'),
             ),
