@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../constants/map.dart';
 import '../pages/not_found/not_found_page.dart';
 import '../utils/bool.dart';
 import '../utils/route.dart';
@@ -24,14 +25,14 @@ class Router {
     // 分割して `queryParams` というマップに追加する。
     // path は ? 以前の文字列で上書きしておく。
     // 現状 fullScreenDialog=true くらいしか使いみちはない。
-    var queryParams = <String, dynamic>{};
+    var queryParams = emptyMap;
     if (path.contains('?')) {
       queryParams = Uri.parse(path).queryParameters;
       path = path.split('?').first;
     }
 
     // ページに渡す引数の Map<String, dynamic>
-    final data = (routeSettings.arguments as RouteArguments?)?.data ?? <String, dynamic>{};
+    final data = (routeSettings.arguments as RouteArguments?)?.data ?? emptyMap;
 
     try {
       // appRoutes の各要素のパスに一致する AppRoute を見つけて
