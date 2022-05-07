@@ -9,9 +9,8 @@ import '../models/response_data/base_response_data/base_response_data.dart';
 import '../models/response_data/response_result/response_result.dart';
 import '../providers/common/dio.dart';
 import '../utils/enums.dart';
-import '../utils/exception.dart';
+import '../utils/exceptions/api.dart';
 import '../utils/extensions/dio.dart';
-import '../utils/extensions/string.dart';
 import 'abstract_api_client.dart';
 
 final apiClientProvider = Provider<ApiClient>((ref) => ApiClient(ref.read));
@@ -37,12 +36,7 @@ class ApiClient implements AbstractApiClient {
         cancelToken: cancelToken,
         onReceiveProgress: onReceiveProgress,
       );
-      final statusCode = response.statusCode;
-      final baseResponseData = BaseResponseData.fromDynamic(response.data);
-      _validateStatusCode(
-        statusCode: statusCode,
-        message: baseResponseData.message,
-      );
+      final baseResponseData = _parseResponse(response);
       return ResponseResult.success(data: baseResponseData);
     } on DioError catch (dioError) {
       final exception = _handleDioError(dioError);
@@ -79,12 +73,7 @@ class ApiClient implements AbstractApiClient {
         onSendProgress: onSendProgress,
         onReceiveProgress: onReceiveProgress,
       );
-      final statusCode = response.statusCode;
-      final baseResponseData = BaseResponseData.fromDynamic(response.data);
-      _validateStatusCode(
-        statusCode: statusCode,
-        message: baseResponseData.message,
-      );
+      final baseResponseData = _parseResponse(response);
       return ResponseResult.success(data: baseResponseData);
     } on DioError catch (dioError) {
       final exception = _handleDioError(dioError);
@@ -121,12 +110,7 @@ class ApiClient implements AbstractApiClient {
         onSendProgress: onSendProgress,
         onReceiveProgress: onReceiveProgress,
       );
-      final statusCode = response.statusCode;
-      final baseResponseData = BaseResponseData.fromDynamic(response.data);
-      _validateStatusCode(
-        statusCode: statusCode,
-        message: baseResponseData.message,
-      );
+      final baseResponseData = _parseResponse(response);
       return ResponseResult.success(data: baseResponseData);
     } on DioError catch (dioError) {
       final exception = _handleDioError(dioError);
@@ -163,12 +147,7 @@ class ApiClient implements AbstractApiClient {
         onSendProgress: onSendProgress,
         onReceiveProgress: onReceiveProgress,
       );
-      final statusCode = response.statusCode;
-      final baseResponseData = BaseResponseData.fromDynamic(response.data);
-      _validateStatusCode(
-        statusCode: statusCode,
-        message: baseResponseData.message,
-      );
+      final baseResponseData = _parseResponse(response);
       return ResponseResult.success(data: baseResponseData);
     } on DioError catch (dioError) {
       final exception = _handleDioError(dioError);
@@ -201,12 +180,7 @@ class ApiClient implements AbstractApiClient {
         options: options ?? Options(headers: header),
         cancelToken: cancelToken,
       );
-      final statusCode = response.statusCode;
-      final baseResponseData = BaseResponseData.fromDynamic(response.data);
-      _validateStatusCode(
-        statusCode: statusCode,
-        message: baseResponseData.message,
-      );
+      final baseResponseData = _parseResponse(response);
       return ResponseResult.success(data: baseResponseData);
     } on DioError catch (dioError) {
       final exception = _handleDioError(dioError);
@@ -222,19 +196,31 @@ class ApiClient implements AbstractApiClient {
     }
   }
 
-  // TODO: ステータスコードのチェックを必要な分だけ書く
-  /// ステータスコードを確認して例外をスローする。問題なければ何もしない。
-  void _validateStatusCode({
-    int? statusCode,
-    String message = '',
-  }) {
+  /// Dio の Response を受け取り、
+  /// ステータスコードを確認して問題があれば例外をスローする。
+  /// 問題がなければ dynamic 型のレスポンスボディを BaseResponseData に変換して返す。
+  BaseResponseData _parseResponse(Response<dynamic> response) {
+    _validateStatusCode(response.statusCode);
+    final baseResponseData = BaseResponseData.fromDynamic(response.data);
+    return baseResponseData;
+  }
+
+  /// レスポンスのステータスコードを検証する。
+  /// レスポンスボディに 'message' フィールドがある場合はそれを、
+  /// そうでない場合は適当なエラーメッセージを例外型の message に格納してスローする
+  void _validateStatusCode(int? statusCode) {
     if (statusCode == 400) {
-      throw ApiException(message: message.ifIsEmpty('エラーが発生しました。'));
+      throw const ApiException();
     }
     if (statusCode == 401) {
-      throw const UnAuthorizedException();
+      throw const UnauthorizedException();
     }
-    if (statusCode == 403) {
+    if (statusCode == 404) {
+      throw const ApiNotFoundException();
+    }
+    // TODO: statusCode が null となるのはどのような場合か確認して
+    //  必要があれば対応する
+    if ((statusCode ?? 400) >= 400) {
       throw const ApiException();
     }
   }
@@ -249,17 +235,11 @@ class ApiClient implements AbstractApiClient {
       return const ApiTimeoutException();
     }
     if (error is ErrorCode && error == ErrorCode.internetConnection) {
-      return const NetworkConnectionException();
+      return const NetworkNotConnectedException();
     }
     if (errorResponse == null) {
-      return ApiException(
-        message: apiErrorMessage,
-        detail: dioError.requestOptions.uri,
-      );
+      return const ApiException();
     }
-    return ApiException(
-      message: apiErrorMessage,
-      detail: dioError.requestOptions.uri,
-    );
+    return const ApiException(message: apiErrorMessage);
   }
 }

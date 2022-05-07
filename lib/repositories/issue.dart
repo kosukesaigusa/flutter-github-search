@@ -5,7 +5,7 @@ import '../../services/api_client.dart';
 import '../models/response_data/issue_response/issue_response.dart';
 import '../models/response_data/issues_response/issues_response.dart';
 import '../providers/common/github_access_token.dart';
-import '../utils/exception.dart';
+import '../utils/exceptions/common.dart';
 
 final issueRepositoryProvider = Provider.autoDispose(
   (ref) => IssueRepository(
@@ -44,7 +44,7 @@ class IssueRepository {
     );
     return responseResult.when<IssuesResponse>(
       success: IssuesResponse.fromBaseResponseData,
-      failure: (message) => throw AppException(message),
+      failure: (message) => throw AppException(message: message),
     );
   }
 
@@ -69,7 +69,7 @@ class IssueRepository {
     );
     return responseResult.when<IssueResponse>(
       success: IssueResponse.fromBaseResponseData,
-      failure: (message) => throw AppException(message),
+      failure: (message) => throw AppException(message: message),
     );
   }
 }

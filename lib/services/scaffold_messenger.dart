@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../constants/snack_bar.dart';
+import '../constants/string.dart';
+import '../utils/extensions/string.dart';
 
 final scaffoldMessengerServiceProvider = Provider.autoDispose((ref) => ScaffoldMessengerService());
 
@@ -49,9 +51,11 @@ class ScaffoldMessengerService {
     }
   }
 
-  /// その他の Exception 起点でスナックバーを表示する
+  /// Exception 起点でスナックバーを表示するｌ
+  /// Dart の Exception 型の場合は toString() 冒頭を取り除いて差し支えのないメッセージに置換しておく。
   ScaffoldFeatureController<SnackBar, SnackBarClosedReason> showSnackBarByException(Exception e) {
-    return showSnackBar('[${e.toString()}]: エラーが発生しました。');
+    final message = e.toString().replaceFirst('Exception: ', '');
+    return showSnackBar(message.ifIsEmpty(generalErrorMessage));
   }
 
   /// フォーカスを外す
