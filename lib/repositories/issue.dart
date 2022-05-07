@@ -5,7 +5,7 @@ import '../../services/api_client.dart';
 import '../models/response_data/issue_response/issue_response.dart';
 import '../models/response_data/issues_response/issues_response.dart';
 import '../providers/common/github_access_token.dart';
-import '../utils/exceptions/common.dart';
+import '../utils/exceptions/base.dart';
 
 final issueRepositoryProvider = Provider.autoDispose(
   (ref) => IssueRepository(

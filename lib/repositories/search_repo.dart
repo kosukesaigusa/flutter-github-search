@@ -3,7 +3,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../services/api_client.dart';
 import '../models/response_data/search_repo_response/search_repo_response.dart';
-import '../utils/exceptions/common.dart';
+import '../utils/exceptions/base.dart';
 
 final searchRepoRepositoryProvider = Provider.autoDispose(
   (ref) => RepoRepository(client: ref.read(apiClientProvider)),

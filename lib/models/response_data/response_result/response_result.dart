@@ -1,6 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../../constants/string.dart';
 import '../base_response_data/base_response_data.dart';
 
 part 'response_result.freezed.dart';
@@ -14,6 +13,6 @@ class ResponseResult with _$ResponseResult {
 
   /// 失敗
   const factory ResponseResult.failure({
-    @Default(apiExceptionMessage) String message,
+    @Default('サーバとの通信に失敗しました。') String message,
   }) = Failure;
 }

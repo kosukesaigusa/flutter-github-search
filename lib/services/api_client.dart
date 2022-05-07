@@ -44,9 +44,9 @@ class ApiClient implements AbstractApiClient {
     } on ApiException catch (e) {
       return ResponseResult.failure(message: e.toString());
     } on SocketException {
-      return const ResponseResult.failure(message: 'サーバとの通信に失敗しました。');
+      return const ResponseResult.failure(message: networkNotConnected);
     } on FormatException {
-      return const ResponseResult.failure(message: 'レスポンスの形式が正しくありません。');
+      return const ResponseResult.failure(message: responseFormatNotValid);
     } on Exception catch (e) {
       return ResponseResult.failure(message: e.toString());
     }
@@ -81,9 +81,9 @@ class ApiClient implements AbstractApiClient {
     } on ApiException catch (e) {
       return ResponseResult.failure(message: e.toString());
     } on SocketException {
-      return const ResponseResult.failure(message: 'サーバとの通信に失敗しました。');
+      return const ResponseResult.failure(message: networkNotConnected);
     } on FormatException {
-      return const ResponseResult.failure(message: 'レスポンスの形式が正しくありません。');
+      return const ResponseResult.failure(message: responseFormatNotValid);
     } on Exception catch (e) {
       return ResponseResult.failure(message: e.toString());
     }
@@ -118,9 +118,9 @@ class ApiClient implements AbstractApiClient {
     } on ApiException catch (e) {
       return ResponseResult.failure(message: e.toString());
     } on SocketException {
-      return const ResponseResult.failure(message: 'サーバとの通信に失敗しました。');
+      return const ResponseResult.failure(message: networkNotConnected);
     } on FormatException {
-      return const ResponseResult.failure(message: 'レスポンスの形式が正しくありません。');
+      return const ResponseResult.failure(message: responseFormatNotValid);
     } on Exception catch (e) {
       return ResponseResult.failure(message: e.toString());
     }
@@ -155,9 +155,9 @@ class ApiClient implements AbstractApiClient {
     } on ApiException catch (e) {
       return ResponseResult.failure(message: e.toString());
     } on SocketException {
-      return const ResponseResult.failure(message: 'サーバとの通信に失敗しました。');
+      return const ResponseResult.failure(message: networkNotConnected);
     } on FormatException {
-      return const ResponseResult.failure(message: 'レスポンスの形式が正しくありません。');
+      return const ResponseResult.failure(message: responseFormatNotValid);
     } on Exception catch (e) {
       return ResponseResult.failure(message: e.toString());
     }
@@ -188,9 +188,9 @@ class ApiClient implements AbstractApiClient {
     } on ApiException catch (e) {
       return ResponseResult.failure(message: e.toString());
     } on SocketException {
-      return const ResponseResult.failure(message: 'サーバとの通信に失敗しました。');
+      return const ResponseResult.failure(message: networkNotConnected);
     } on FormatException {
-      return const ResponseResult.failure(message: 'レスポンスの形式が正しくありません。');
+      return const ResponseResult.failure(message: responseFormatNotValid);
     } on Exception catch (e) {
       return ResponseResult.failure(message: e.toString());
     }
@@ -240,6 +240,6 @@ class ApiClient implements AbstractApiClient {
     if (errorResponse == null) {
       return const ApiException();
     }
-    return const ApiException(message: apiExceptionMessage);
+    return const ApiException();
   }
 }

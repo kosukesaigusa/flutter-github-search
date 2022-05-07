@@ -1,64 +1,49 @@
-import '../../constants/string.dart';
 import 'base.dart';
 
-/// AbstractAppException 型を interface として実装した
-/// API 通信時に発生する汎用的な例外。
-/// アプリ内の他の API 関係の例外もこの ApiException を extend して、
-/// デフォルトのメッセージ、特有のフィールドや toString() の挙動を定義する。
-class ApiException implements AbstractAppException {
+/// API 通信時に使用する例外型。
+class ApiException extends AppException implements Exception {
   const ApiException({
-    this.statusCode,
-    this.message,
-  });
-
-  final int? statusCode;
-
-  @override
-  final String? message;
-
-  @override
-  String toString() {
-    if (statusCode == null) {
-      return message ?? apiExceptionMessage;
-    }
-    return '[$statusCode] $message';
-  }
-}
-
-/// API で 404 が発生した場合の例外
-class ApiNotFoundException extends ApiException {
-  const ApiNotFoundException();
-
-  @override
-  int get statusCode => 404;
-
-  @override
-  String get message => '[$statusCode] $apiNotFoundExceptionMessage';
+    String? code,
+    String? message,
+    String defaultMessage = 'サーバとの通信に失敗しました。',
+  }) : super(
+          code: code,
+          message: message,
+          defaultMessage: defaultMessage,
+        );
 }
 
 /// API で 403 が発生した場合の例外
 class UnauthorizedException extends ApiException {
-  const UnauthorizedException();
+  const UnauthorizedException()
+      : super(
+          code: '403',
+          defaultMessage: '指定した操作を行う権限がありません。',
+        );
+}
 
-  @override
-  int get statusCode => 401;
-
-  @override
-  String get message => '[$statusCode] $unauthorizedExceptionMessage';
+/// API で 404 が発生した場合の例外
+class ApiNotFoundException extends ApiException {
+  const ApiNotFoundException()
+      : super(
+          code: '404',
+          defaultMessage: 'リクエストした API が見つかりませんでした。',
+        );
 }
 
 /// API がタイムアウトした場合の例外
 class ApiTimeoutException extends ApiException {
-  const ApiTimeoutException();
-
-  @override
-  String get message => apiTimeoutExceptionMessage;
+  const ApiTimeoutException()
+      : super(
+          defaultMessage: 'API 通信がタイムアウトしました。'
+              '通信環境をご確認のうえ、再度実行してください。',
+        );
 }
 
 /// ネットワーク接続に問題がある場合の例外
 class NetworkNotConnectedException extends ApiException {
-  const NetworkNotConnectedException();
-
-  @override
-  String get message => networkNotConnectedExceptionMessage;
+  const NetworkNotConnectedException()
+      : super(
+          defaultMessage: 'ネットワーク接続がありません。',
+        );
 }

@@ -4,7 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../providers/issue/create_issue_dialog.dart';
 import '../../utils/exceptions/api.dart';
-import '../../utils/exceptions/common.dart';
+import '../../utils/exceptions/base.dart';
 
 /// イシューを作成するためのフォームを入力させるダイアログ
 class CreateIssueDialogDialog extends StatefulHookConsumerWidget {
@@ -83,9 +83,9 @@ class _CreateIssueDialogDialogState extends ConsumerState<CreateIssueDialogDialo
                         try {
                           await notifier.createIssueDialog();
                           Navigator.pop(context, true);
-                        } on AppException catch (e) {
-                          notifier.showSnackBarOnDialog(e.toString());
                         } on ApiException catch (e) {
+                          notifier.showSnackBarOnDialog(e.toString());
+                        } on AppException catch (e) {
                           notifier.showSnackBarOnDialog(e.toString());
                         } on Exception catch (e) {
                           notifier.showSnackBarOnDialog(e.toString());

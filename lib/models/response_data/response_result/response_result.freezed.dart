@@ -58,12 +58,14 @@ mixin _$ResponseResult {
 
 /// @nodoc
 abstract class $ResponseResultCopyWith<$Res> {
-  factory $ResponseResultCopyWith(ResponseResult value, $Res Function(ResponseResult) then) =
+  factory $ResponseResultCopyWith(
+          ResponseResult value, $Res Function(ResponseResult) then) =
       _$ResponseResultCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$ResponseResultCopyWithImpl<$Res> implements $ResponseResultCopyWith<$Res> {
+class _$ResponseResultCopyWithImpl<$Res>
+    implements $ResponseResultCopyWith<$Res> {
   _$ResponseResultCopyWithImpl(this._value, this._then);
 
   final ResponseResult _value;
@@ -131,11 +133,13 @@ class _$Success implements Success {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, const DeepCollectionEquality().hash(data));
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(data));
 
   @JsonKey(ignore: true)
   @override
-  $SuccessCopyWith<Success> get copyWith => _$SuccessCopyWithImpl<Success>(this, _$identity);
+  $SuccessCopyWith<Success> get copyWith =>
+      _$SuccessCopyWithImpl<Success>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -240,7 +244,7 @@ class _$FailureCopyWithImpl<$Res> extends _$ResponseResultCopyWithImpl<$Res>
 /// @nodoc
 
 class _$Failure implements Failure {
-  const _$Failure({this.message = apiExceptionMessage});
+  const _$Failure({this.message = 'サーバとの通信に失敗しました。'});
 
   @override
   @JsonKey()
@@ -260,11 +264,13 @@ class _$Failure implements Failure {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, const DeepCollectionEquality().hash(message));
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(message));
 
   @JsonKey(ignore: true)
   @override
-  $FailureCopyWith<Failure> get copyWith => _$FailureCopyWithImpl<Failure>(this, _$identity);
+  $FailureCopyWith<Failure> get copyWith =>
+      _$FailureCopyWithImpl<Failure>(this, _$identity);
 
   @override
   @optionalTypeArgs
