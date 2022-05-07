@@ -14,6 +14,6 @@ class ResponseResult with _$ResponseResult {
 
   /// 失敗
   const factory ResponseResult.failure({
-    @Default(apiErrorMessage) String message,
+    @Default(apiExceptionMessage) String message,
   }) = Failure;
 }

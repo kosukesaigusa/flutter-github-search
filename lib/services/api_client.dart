@@ -240,6 +240,6 @@ class ApiClient implements AbstractApiClient {
     if (errorResponse == null) {
       return const ApiException();
     }
-    return const ApiException(message: apiErrorMessage);
+    return const ApiException(message: apiExceptionMessage);
   }
 }
