@@ -33,7 +33,7 @@ class ApiNotFoundException extends ApiException {
   int get statusCode => 404;
 
   @override
-  String get message => apiNotFoundExceptionMessage;
+  String get message => '[$statusCode] $apiNotFoundExceptionMessage';
 }
 
 /// API で 403 が発生した場合の例外
@@ -44,7 +44,7 @@ class UnauthorizedException extends ApiException {
   int get statusCode => 401;
 
   @override
-  String get message => unauthorizedExceptionMessage;
+  String get message => '[$statusCode] $unauthorizedExceptionMessage';
 }
 
 /// API がタイムアウトした場合の例外
