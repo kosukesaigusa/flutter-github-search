@@ -2,14 +2,24 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "test and show result",
+      "label": "TEST",
       "type": "shell",
       "dependsOrder": "sequence",
       "dependsOn": [
+        "import all Dart files",
         "flutter test --coverage",
-        "genereage test coverage html",
+        "generate test coverage html",
         "open coverage result html"
       ]
+    },
+    {
+      "label": "import all Dart files",
+      "type": "shell",
+      "command": "$(pwd)/scripts/import_all_for_coverage.sh",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      }
     },
     {
       "label": "flutter test --coverage",
@@ -18,7 +28,7 @@
       "args": ["test", "--coverage"],
       "presentation": {
         "reveal": "always",
-        "panel": "new"
+        "panel": "shared"
       }
     },
     {
@@ -26,8 +36,8 @@
       "type": "shell",
       "command": "genhtml coverage/lcov.info -o coverage/html",
       "presentation": {
-        "reveal": "always",
-        "panel": "new"
+        "reveal": "never",
+        "panel": "shared"
       }
     },
     {
@@ -35,8 +45,8 @@
       "type": "shell",
       "command": "open coverage/html/index.html",
       "presentation": {
-        "reveal": "always",
-        "panel": "new"
+        "reveal": "never",
+        "panel": "shared"
       }
     }
   ]

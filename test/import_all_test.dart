@@ -1,0 +1,81 @@
+/// *** GENERATED FILE - ANY CHANGES WOULD BE OBSOLETE ON NEXT GENERATION *** ///
+
+// ignore_for_file: unused_import
+
+/// Helper to test coverage for all project files
+import 'package:flutter_github_search/route/router.dart';
+import 'package:flutter_github_search/route/routes.dart';
+import 'package:flutter_github_search/route/bottom_tabs.dart';
+import 'package:flutter_github_search/route/go_router.dart';
+import 'package:flutter_github_search/constants/map.dart';
+import 'package:flutter_github_search/constants/snack_bar.dart';
+import 'package:flutter_github_search/constants/number.dart';
+import 'package:flutter_github_search/constants/localization.dart';
+import 'package:flutter_github_search/providers/common/github_access_token.dart';
+import 'package:flutter_github_search/providers/common/dio.dart';
+import 'package:flutter_github_search/providers/common/cookie.dart';
+import 'package:flutter_github_search/providers/common/application_documents_directory.dart';
+import 'package:flutter_github_search/providers/issue/create_issue_dialog_state.dart';
+import 'package:flutter_github_search/providers/issue/fetch_issue.dart';
+import 'package:flutter_github_search/providers/issue/fetch_issue_state.dart';
+import 'package:flutter_github_search/providers/bottom_tab/bottom_tab.dart';
+import 'package:flutter_github_search/providers/application/application.dart';
+import 'package:flutter_github_search/providers/application/application_state.dart';
+import 'package:flutter_github_search/providers/repo/search_repo.dart';
+import 'package:flutter_github_search/providers/repo/search_repo_state.dart';
+import 'package:flutter_github_search/utils/enums.dart';
+import 'package:flutter_github_search/utils/response_data.dart';
+import 'package:flutter_github_search/utils/route.dart';
+import 'package:flutter_github_search/utils/exceptions/api_exceptions.dart';
+import 'package:flutter_github_search/utils/exceptions/base.dart';
+import 'package:flutter_github_search/utils/exceptions/common_exceptions.dart';
+import 'package:flutter_github_search/utils/extensions/iterable.dart';
+import 'package:flutter_github_search/utils/extensions/exception.dart';
+import 'package:flutter_github_search/utils/extensions/map.dart';
+import 'package:flutter_github_search/utils/extensions/dio.dart';
+import 'package:flutter_github_search/utils/extensions/build_context.dart';
+import 'package:flutter_github_search/utils/extensions/int.dart';
+import 'package:flutter_github_search/utils/types.dart';
+import 'package:flutter_github_search/utils/connectivity.dart';
+import 'package:flutter_github_search/utils/dio_interceptors/response_interceptor.dart';
+import 'package:flutter_github_search/utils/dio_interceptors/mock_interceptor.dart';
+import 'package:flutter_github_search/utils/dio_interceptors/request_interceptor.dart';
+import 'package:flutter_github_search/utils/dio_interceptors/header_interceptor.dart';
+import 'package:flutter_github_search/utils/dio_interceptors/connectivity_interceptor.dart';
+import 'package:flutter_github_search/utils/bool.dart';
+import 'package:flutter_github_search/repositories/search_repo.dart';
+import 'package:flutter_github_search/repositories/issue.dart';
+import 'package:flutter_github_search/models/issue/issue.dart';
+import 'package:flutter_github_search/models/repo/owner/owner.dart';
+import 'package:flutter_github_search/models/repo/repo.dart';
+import 'package:flutter_github_search/models/response_data/response_result/response_result.dart';
+import 'package:flutter_github_search/models/response_data/base_response_data/base_response_data.dart';
+import 'package:flutter_github_search/models/response_data/issues_response/issues_response.dart';
+import 'package:flutter_github_search/models/response_data/search_repo_response/search_repo_response.dart';
+import 'package:flutter_github_search/models/response_data/issue_response/issue_response.dart';
+import 'package:flutter_github_search/models/json_converter.dart';
+import 'package:flutter_github_search/main.dart';
+import 'package:flutter_github_search/pages/home/home_page.dart';
+import 'package:flutter_github_search/pages/first/first_page.dart';
+import 'package:flutter_github_search/pages/second/second_page.dart';
+import 'package:flutter_github_search/pages/not_found/not_found_page.dart';
+import 'package:flutter_github_search/pages/issue/issue_page.dart';
+import 'package:flutter_github_search/pages/main/main_page.dart';
+import 'package:flutter_github_search/pages/repo/repo_page.dart';
+import 'package:flutter_github_search/app.dart';
+import 'package:flutter_github_search/services/shared_preferences.dart';
+import 'package:flutter_github_search/services/abstract_api_client.dart';
+import 'package:flutter_github_search/services/navigation.dart';
+import 'package:flutter_github_search/services/api_client.dart';
+import 'package:flutter_github_search/services/scaffold_messenger.dart';
+import 'package:flutter_github_search/widgets/pager.dart';
+import 'package:flutter_github_search/widgets/fetch_summary.dart';
+import 'package:flutter_github_search/widgets/root.dart';
+import 'package:flutter_github_search/widgets/issue/issue_item.dart';
+import 'package:flutter_github_search/widgets/scaffold_messenger_navigator.dart';
+import 'package:flutter_github_search/widgets/repo/text_field.dart';
+import 'package:flutter_github_search/widgets/repo/repo_item.dart';
+import 'package:flutter_github_search/widgets/main_stacked_pages_navigator.dart';
+import 'package:flutter_github_search/widgets/common_text.dart';
+
+void main() {}

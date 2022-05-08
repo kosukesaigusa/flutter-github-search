@@ -4,6 +4,7 @@ analyzer:
   exclude:
     - lib/**/**.freezed.dart
     - lib/**/**.g.dart
+    - test/import_all_test.dart
   errors:
     missing_required_param: warning
     missing_return: warning

@@ -15,3 +15,9 @@ genhtml coverage/lcov.info -o coverage/html
 # Open the report
 open coverage/html/index.html
 ```
+
+## Add every .dart file to test coverage calculation
+
+```shell
+./scripts/import_all_for_coverage.sh
+```
