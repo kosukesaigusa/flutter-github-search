@@ -1,0 +1,43 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "test and show result",
+      "type": "shell",
+      "dependsOrder": "sequence",
+      "dependsOn": [
+        "flutter test --coverage",
+        "genereage test coverage html",
+        "open coverage result html"
+      ]
+    },
+    {
+      "label": "flutter test --coverage",
+      "type": "flutter",
+      "command": "flutter",
+      "args": ["test", "--coverage"],
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      }
+    },
+    {
+      "label": "generate test coverage html",
+      "type": "shell",
+      "command": "genhtml coverage/lcov.info -o coverage/html",
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      }
+    },
+    {
+      "label": "open coverage result html",
+      "type": "shell",
+      "command": "open coverage/html/index.html",
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      }
+    }
+  ]
+}

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_github_search/pages/first/first_page.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../widgets/test_scaffold_wrapper.dart';
+import '../../widgets/test_scaffold_wrapper.dart';
 
 void main() {
   testWidgets('FirstPage のカウンターのテスト', (tester) async {
