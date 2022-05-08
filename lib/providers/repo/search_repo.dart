@@ -5,7 +5,7 @@ import '../../models/repo/repo.dart';
 import '../../models/response_data/search_repo_response/search_repo_response.dart';
 import '../../repositories/search_repo.dart';
 import '../../utils/enums.dart';
-import '../../utils/exceptions/api.dart';
+import '../../utils/exceptions/api_exceptions.dart';
 import 'search_repo_state.dart';
 
 /// GitHub リポジトリの検索条件や検索結果を操作・保持する

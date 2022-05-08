@@ -9,7 +9,7 @@ import '../models/response_data/base_response_data/base_response_data.dart';
 import '../models/response_data/response_result/response_result.dart';
 import '../providers/common/dio.dart';
 import '../utils/enums.dart';
-import '../utils/exceptions/api.dart';
+import '../utils/exceptions/api_exceptions.dart';
 import '../utils/extensions/dio.dart';
 import 'abstract_api_client.dart';
 

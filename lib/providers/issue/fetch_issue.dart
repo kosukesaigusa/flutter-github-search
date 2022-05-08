@@ -4,7 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../models/response_data/issues_response/issues_response.dart';
 import '../../repositories/issue.dart';
 import '../../utils/enums.dart';
-import '../../utils/exceptions/api.dart';
+import '../../utils/exceptions/api_exceptions.dart';
 import 'fetch_issue_state.dart';
 
 /// Issue の読み書きの対象としている GitHub リポジトリのオーナー名を提供するプロバイダ

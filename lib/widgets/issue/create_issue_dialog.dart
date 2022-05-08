@@ -3,7 +3,7 @@ import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../providers/issue/create_issue_dialog.dart';
-import '../../utils/exceptions/api.dart';
+import '../../utils/exceptions/api_exceptions.dart';
 import '../../utils/exceptions/base.dart';
 
 /// イシューを作成するためのフォームを入力させるダイアログ

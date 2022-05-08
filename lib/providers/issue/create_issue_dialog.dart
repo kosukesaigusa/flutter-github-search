@@ -3,7 +3,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../constants/snack_bar.dart';
 import '../../repositories/issue.dart';
-import '../../utils/exceptions/api.dart';
+import '../../utils/exceptions/api_exceptions.dart';
 import '../../utils/exceptions/base.dart';
 import 'create_issue_dialog_state.dart';
 import 'fetch_issue.dart';
