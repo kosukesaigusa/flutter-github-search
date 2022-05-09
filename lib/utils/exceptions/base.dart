@@ -1,4 +1,4 @@
-/// アプリ内で使用する例外型のインターフェース。
+/// アプリ内で使用する例外型。
 class AppException implements Exception {
   const AppException({
     this.code,
