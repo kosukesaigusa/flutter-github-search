@@ -19,7 +19,7 @@ Future<void> main() async {
         // ProviderScope の overrides したい Provider やその値を列挙する。
         // 起動時に一回インスタンス化したキャッシュを使いませせるようにすることで、
         // それ以降 await なしでアクセスしたいときなどに便利。
-        overrides: [
+        overrides: <Override>[
           applicationDocumentsDirectoryProvider.overrideWithValue(
             await getApplicationDocumentsDirectory(),
           ),
