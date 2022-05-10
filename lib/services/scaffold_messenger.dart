@@ -26,7 +26,7 @@ class ScaffoldMessengerService {
 
   /// スナックバーを表示する
   ScaffoldFeatureController<SnackBar, SnackBarClosedReason> showSnackBar(
-    dynamic message, {
+    String message, {
     bool removeCurrentSnackBar = true,
     Duration duration = defaultSnackBarDuration,
   }) {
@@ -34,21 +34,11 @@ class ScaffoldMessengerService {
     if (removeCurrentSnackBar) {
       scaffoldMessengerState.removeCurrentSnackBar();
     }
-    // message が String 型ならそのまま、その他なら String 型に変換しつつ
-    // ユーザーに見せるべきでない文言は調整して SnackBar を表示する。
-    if (message is String) {
-      return scaffoldMessengerState.showSnackBar(SnackBar(
-        content: Text(message),
-        behavior: defaultSnackBarBehavior,
-        duration: duration,
-      ));
-    } else {
-      return scaffoldMessengerState.showSnackBar(SnackBar(
-        content: Text('$message'.replaceAll('Exception:', '')),
-        behavior: defaultSnackBarBehavior,
-        duration: duration,
-      ));
-    }
+    return scaffoldMessengerState.showSnackBar(SnackBar(
+      content: Text(message),
+      behavior: defaultSnackBarBehavior,
+      duration: duration,
+    ));
   }
 
   /// Exception 起点でスナックバーを表示するｌ
