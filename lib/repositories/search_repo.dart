@@ -29,9 +29,11 @@ class RepoRepository {
         'page': page,
         'per_page': perPage,
       },
-      options: Options(headers: <String, dynamic>{
-        'Accept': 'application/vnd.github.v3+json',
-      }),
+      options: Options(
+        headers: <String, dynamic>{
+          'Accept': 'application/vnd.github.v3+json',
+        },
+      ),
     );
     return responseResult.when<SearchRepoResponse>(
       success: SearchRepoResponse.fromBaseResponseData,

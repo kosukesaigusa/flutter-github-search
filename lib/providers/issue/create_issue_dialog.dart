@@ -75,11 +75,13 @@ class CreateIssueDialogStateNotifier extends StateNotifier<CreateIssueDialogStat
     if (removeCurrentSnackBar) {
       scaffoldMessengerState.removeCurrentSnackBar();
     }
-    return scaffoldMessengerState.showSnackBar(SnackBar(
-      content: Text(message),
-      behavior: defaultSnackBarBehavior,
-      duration: duration,
-    ));
+    return scaffoldMessengerState.showSnackBar(
+      SnackBar(
+        content: Text(message),
+        behavior: defaultSnackBarBehavior,
+        duration: duration,
+      ),
+    );
   }
 
   @override

@@ -31,15 +31,16 @@ class _IssuePageState extends ConsumerState<IssuePage> {
           : state.issues.isEmpty
               ? Center(
                   child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text('Issue が取得できませんでした。'),
-                    TextButton(
-                      onPressed: notifier.reload,
-                      child: const Text('リロードする'),
-                    ),
-                  ],
-                ))
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text('Issue が取得できませんでした。'),
+                      TextButton(
+                        onPressed: notifier.reload,
+                        child: const Text('リロードする'),
+                      ),
+                    ],
+                  ),
+                )
               : RefreshIndicator(
                   onRefresh: notifier.reload,
                   child: ListView.builder(

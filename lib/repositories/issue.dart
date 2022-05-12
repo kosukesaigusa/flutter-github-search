@@ -38,9 +38,11 @@ class IssueRepository {
         'page': page,
         'per_page': perPage,
       },
-      options: Options(headers: <String, dynamic>{
-        'Accept': 'application/vnd.github.v3+json',
-      }),
+      options: Options(
+        headers: <String, dynamic>{
+          'Accept': 'application/vnd.github.v3+json',
+        },
+      ),
     );
     return responseResult.when<IssuesResponse>(
       success: IssuesResponse.fromBaseResponseData,
@@ -62,10 +64,12 @@ class IssueRepository {
         'title': title,
         'body': body,
       },
-      options: Options(headers: <String, dynamic>{
-        'Accept': 'application/vnd.github.v3+json',
-        'Authorization': 'token $_accessToken',
-      }),
+      options: Options(
+        headers: <String, dynamic>{
+          'Accept': 'application/vnd.github.v3+json',
+          'Authorization': 'token $_accessToken',
+        },
+      ),
     );
     return responseResult.when<IssueResponse>(
       success: IssueResponse.fromBaseResponseData,
