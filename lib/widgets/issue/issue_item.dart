@@ -22,8 +22,9 @@ class IssueItemWidget extends HookConsumerWidget {
     return InkWell(
       onTap: () async {
         final urlString = issue.htmlUrl;
-        if (await canLaunch(urlString)) {
-          await launch(urlString);
+        final uri = Uri.parse(urlString);
+        if (await canLaunchUrl(uri)) {
+          await launchUrl(uri);
         } else {
           ref.read(scaffoldMessengerServiceProvider).showSnackBar('URL が開けませんでした：$urlString');
         }

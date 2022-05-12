@@ -82,6 +82,9 @@ class _CreateIssueDialogDialogState extends ConsumerState<CreateIssueDialogDialo
                         final notifier = ref.read(createIssueDialogStateNotifierProvider.notifier);
                         try {
                           await notifier.createIssueDialog();
+                          if (!mounted) {
+                            return;
+                          }
                           Navigator.pop(context, true);
                         } on ApiException catch (e) {
                           notifier.showSnackBarOnDialog(e.toString());

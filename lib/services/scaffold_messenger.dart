@@ -34,11 +34,13 @@ class ScaffoldMessengerService {
     if (removeCurrentSnackBar) {
       scaffoldMessengerState.removeCurrentSnackBar();
     }
-    return scaffoldMessengerState.showSnackBar(SnackBar(
-      content: Text(message),
-      behavior: defaultSnackBarBehavior,
-      duration: duration,
-    ));
+    return scaffoldMessengerState.showSnackBar(
+      SnackBar(
+        content: Text(message),
+        behavior: defaultSnackBarBehavior,
+        duration: duration,
+      ),
+    );
   }
 
   /// Exception 起点でスナックバーを表示するｌ
