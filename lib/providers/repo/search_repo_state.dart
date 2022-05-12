@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../models/repo/repo.dart';
-import '../../utils/enums.dart';
+import '../../utils/api.dart';
 
 part 'search_repo_state.freezed.dart';
 
@@ -9,7 +9,7 @@ part 'search_repo_state.freezed.dart';
 class SearchRepoState with _$SearchRepoState {
   const factory SearchRepoState({
     @Default(false) bool loading,
-    @Default(FetchResponseErrorEnum.none) FetchResponseErrorEnum error,
+    @Default(FetchResponseError.none) FetchResponseError error,
     @Default(false) bool canShowPreviousPage,
     @Default(false) bool canShowNextPage,
     @Default('') String q,

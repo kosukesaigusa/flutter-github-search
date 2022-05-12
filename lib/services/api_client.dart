@@ -8,7 +8,7 @@ import '../constants/string.dart';
 import '../models/response_data/base_response_data/base_response_data.dart';
 import '../models/response_data/response_result/response_result.dart';
 import '../providers/common/dio.dart';
-import '../utils/enums.dart';
+import '../utils/api.dart';
 import '../utils/exceptions/api_exceptions.dart';
 import '../utils/extensions/dio.dart';
 import 'abstract_api_client.dart';
@@ -233,8 +233,8 @@ class ApiClient implements AbstractApiClient {
     }
   }
 
-  /// DioError を受けて、何かしらの Exception を return する
-  /// 呼び出し側ではそれをスローする
+  /// DioError を受けて、何かしらの Exception を return する。
+  /// 呼び出し側ではそれをスローする。
   Exception _handleDioError(DioError dioError) {
     final errorType = dioError.type;
     final errorResponse = dioError.response;
@@ -242,7 +242,7 @@ class ApiClient implements AbstractApiClient {
     if (errorType.isTimeout) {
       return const ApiTimeoutException();
     }
-    if (error is ErrorCode && error == ErrorCode.internetConnection) {
+    if (error is ErrorCode && error == ErrorCode.networkNotConnected) {
       return const NetworkNotConnectedException();
     }
     if (errorResponse == null) {

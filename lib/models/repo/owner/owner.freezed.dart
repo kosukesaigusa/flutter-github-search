@@ -119,9 +119,9 @@ class _$OwnerCopyWithImpl<$Res> implements $OwnerCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$OwnerCopyWith<$Res> implements $OwnerCopyWith<$Res> {
-  factory _$OwnerCopyWith(_Owner value, $Res Function(_Owner) then) =
-      __$OwnerCopyWithImpl<$Res>;
+abstract class _$$_OwnerCopyWith<$Res> implements $OwnerCopyWith<$Res> {
+  factory _$$_OwnerCopyWith(_$_Owner value, $Res Function(_$_Owner) then) =
+      __$$_OwnerCopyWithImpl<$Res>;
   @override
   $Res call(
       {String login,
@@ -136,13 +136,13 @@ abstract class _$OwnerCopyWith<$Res> implements $OwnerCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$OwnerCopyWithImpl<$Res> extends _$OwnerCopyWithImpl<$Res>
-    implements _$OwnerCopyWith<$Res> {
-  __$OwnerCopyWithImpl(_Owner _value, $Res Function(_Owner) _then)
-      : super(_value, (v) => _then(v as _Owner));
+class __$$_OwnerCopyWithImpl<$Res> extends _$OwnerCopyWithImpl<$Res>
+    implements _$$_OwnerCopyWith<$Res> {
+  __$$_OwnerCopyWithImpl(_$_Owner _value, $Res Function(_$_Owner) _then)
+      : super(_value, (v) => _then(v as _$_Owner));
 
   @override
-  _Owner get _value => super._value as _Owner;
+  _$_Owner get _value => super._value as _$_Owner;
 
   @override
   $Res call({
@@ -156,7 +156,7 @@ class __$OwnerCopyWithImpl<$Res> extends _$OwnerCopyWithImpl<$Res>
     Object? type = freezed,
     Object? siteAdmin = freezed,
   }) {
-    return _then(_Owner(
+    return _then(_$_Owner(
       login: login == freezed
           ? _value.login
           : login // ignore: cast_nullable_to_non_nullable
@@ -248,7 +248,7 @@ class _$_Owner implements _Owner {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Owner &&
+            other is _$_Owner &&
             const DeepCollectionEquality().equals(other.login, login) &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.avatarUrl, avatarUrl) &&
@@ -278,8 +278,8 @@ class _$_Owner implements _Owner {
 
   @JsonKey(ignore: true)
   @override
-  _$OwnerCopyWith<_Owner> get copyWith =>
-      __$OwnerCopyWithImpl<_Owner>(this, _$identity);
+  _$$_OwnerCopyWith<_$_Owner> get copyWith =>
+      __$$_OwnerCopyWithImpl<_$_Owner>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -327,5 +327,6 @@ abstract class _Owner implements Owner {
   bool get siteAdmin => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$OwnerCopyWith<_Owner> get copyWith => throw _privateConstructorUsedError;
+  _$$_OwnerCopyWith<_$_Owner> get copyWith =>
+      throw _privateConstructorUsedError;
 }

@@ -4,7 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../models/repo/repo.dart';
 import '../../models/response_data/search_repo_response/search_repo_response.dart';
 import '../../repositories/search_repo.dart';
-import '../../utils/enums.dart';
+import '../../utils/api.dart';
 import '../../utils/exceptions/api_exceptions.dart';
 import 'search_repo_state.dart';
 
@@ -31,15 +31,15 @@ class SearchRepoStateNotifier extends StateNotifier<SearchRepoState> {
   /// GET /search/repositories API をコールして検索結果をstate に保持する
   Future<void> _searchRepositories() async {
     if (state.q.isEmpty) {
-      state = state.copyWith(loading: false, error: FetchResponseErrorEnum.emptyQ);
+      state = state.copyWith(loading: false, error: FetchResponseError.emptyQ);
       return;
     }
     if (state.currentPage < 1) {
-      state = state.copyWith(loading: false, error: FetchResponseErrorEnum.pageNotValid);
+      state = state.copyWith(loading: false, error: FetchResponseError.pageNotValid);
       return;
     }
     if (state.perPage < 1) {
-      state = state.copyWith(loading: false, error: FetchResponseErrorEnum.perPageNotValid);
+      state = state.copyWith(loading: false, error: FetchResponseError.perPageNotValid);
       return;
     }
     try {
@@ -51,9 +51,9 @@ class SearchRepoStateNotifier extends StateNotifier<SearchRepoState> {
       );
       _updateStateByResponse(response);
     } on ApiException {
-      state = state.copyWith(error: FetchResponseErrorEnum.apiError);
+      state = state.copyWith(error: FetchResponseError.apiError);
     } on Exception {
-      state = state.copyWith(error: FetchResponseErrorEnum.other);
+      state = state.copyWith(error: FetchResponseError.other);
     } finally {
       state = state.copyWith(loading: false);
     }

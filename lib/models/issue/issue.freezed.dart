@@ -101,9 +101,9 @@ class _$IssueCopyWithImpl<$Res> implements $IssueCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$IssueCopyWith<$Res> implements $IssueCopyWith<$Res> {
-  factory _$IssueCopyWith(_Issue value, $Res Function(_Issue) then) =
-      __$IssueCopyWithImpl<$Res>;
+abstract class _$$_IssueCopyWith<$Res> implements $IssueCopyWith<$Res> {
+  factory _$$_IssueCopyWith(_$_Issue value, $Res Function(_$_Issue) then) =
+      __$$_IssueCopyWithImpl<$Res>;
   @override
   $Res call(
       {int id,
@@ -116,13 +116,13 @@ abstract class _$IssueCopyWith<$Res> implements $IssueCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$IssueCopyWithImpl<$Res> extends _$IssueCopyWithImpl<$Res>
-    implements _$IssueCopyWith<$Res> {
-  __$IssueCopyWithImpl(_Issue _value, $Res Function(_Issue) _then)
-      : super(_value, (v) => _then(v as _Issue));
+class __$$_IssueCopyWithImpl<$Res> extends _$IssueCopyWithImpl<$Res>
+    implements _$$_IssueCopyWith<$Res> {
+  __$$_IssueCopyWithImpl(_$_Issue _value, $Res Function(_$_Issue) _then)
+      : super(_value, (v) => _then(v as _$_Issue));
 
   @override
-  _Issue get _value => super._value as _Issue;
+  _$_Issue get _value => super._value as _$_Issue;
 
   @override
   $Res call({
@@ -134,7 +134,7 @@ class __$IssueCopyWithImpl<$Res> extends _$IssueCopyWithImpl<$Res>
     Object? state = freezed,
     Object? createdAt = freezed,
   }) {
-    return _then(_Issue(
+    return _then(_$_Issue(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -212,7 +212,7 @@ class _$_Issue implements _Issue {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Issue &&
+            other is _$_Issue &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.htmlUrl, htmlUrl) &&
             const DeepCollectionEquality().equals(other.title, title) &&
@@ -236,8 +236,8 @@ class _$_Issue implements _Issue {
 
   @JsonKey(ignore: true)
   @override
-  _$IssueCopyWith<_Issue> get copyWith =>
-      __$IssueCopyWithImpl<_Issue>(this, _$identity);
+  _$$_IssueCopyWith<_$_Issue> get copyWith =>
+      __$$_IssueCopyWithImpl<_$_Issue>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -276,5 +276,6 @@ abstract class _Issue implements Issue {
   DateTime get createdAt => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$IssueCopyWith<_Issue> get copyWith => throw _privateConstructorUsedError;
+  _$$_IssueCopyWith<_$_Issue> get copyWith =>
+      throw _privateConstructorUsedError;
 }

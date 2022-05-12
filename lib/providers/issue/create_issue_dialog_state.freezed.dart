@@ -54,31 +54,32 @@ class _$CreateIssueDialogStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$CreateIssueDialogStateCopyWith<$Res>
+abstract class _$$_CreateIssueDialogStateCopyWith<$Res>
     implements $CreateIssueDialogStateCopyWith<$Res> {
-  factory _$CreateIssueDialogStateCopyWith(_CreateIssueDialogState value,
-          $Res Function(_CreateIssueDialogState) then) =
-      __$CreateIssueDialogStateCopyWithImpl<$Res>;
+  factory _$$_CreateIssueDialogStateCopyWith(_$_CreateIssueDialogState value,
+          $Res Function(_$_CreateIssueDialogState) then) =
+      __$$_CreateIssueDialogStateCopyWithImpl<$Res>;
   @override
   $Res call({bool sending});
 }
 
 /// @nodoc
-class __$CreateIssueDialogStateCopyWithImpl<$Res>
+class __$$_CreateIssueDialogStateCopyWithImpl<$Res>
     extends _$CreateIssueDialogStateCopyWithImpl<$Res>
-    implements _$CreateIssueDialogStateCopyWith<$Res> {
-  __$CreateIssueDialogStateCopyWithImpl(_CreateIssueDialogState _value,
-      $Res Function(_CreateIssueDialogState) _then)
-      : super(_value, (v) => _then(v as _CreateIssueDialogState));
+    implements _$$_CreateIssueDialogStateCopyWith<$Res> {
+  __$$_CreateIssueDialogStateCopyWithImpl(_$_CreateIssueDialogState _value,
+      $Res Function(_$_CreateIssueDialogState) _then)
+      : super(_value, (v) => _then(v as _$_CreateIssueDialogState));
 
   @override
-  _CreateIssueDialogState get _value => super._value as _CreateIssueDialogState;
+  _$_CreateIssueDialogState get _value =>
+      super._value as _$_CreateIssueDialogState;
 
   @override
   $Res call({
     Object? sending = freezed,
   }) {
-    return _then(_CreateIssueDialogState(
+    return _then(_$_CreateIssueDialogState(
       sending: sending == freezed
           ? _value.sending
           : sending // ignore: cast_nullable_to_non_nullable
@@ -105,7 +106,7 @@ class _$_CreateIssueDialogState implements _CreateIssueDialogState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _CreateIssueDialogState &&
+            other is _$_CreateIssueDialogState &&
             const DeepCollectionEquality().equals(other.sending, sending));
   }
 
@@ -115,8 +116,8 @@ class _$_CreateIssueDialogState implements _CreateIssueDialogState {
 
   @JsonKey(ignore: true)
   @override
-  _$CreateIssueDialogStateCopyWith<_CreateIssueDialogState> get copyWith =>
-      __$CreateIssueDialogStateCopyWithImpl<_CreateIssueDialogState>(
+  _$$_CreateIssueDialogStateCopyWith<_$_CreateIssueDialogState> get copyWith =>
+      __$$_CreateIssueDialogStateCopyWithImpl<_$_CreateIssueDialogState>(
           this, _$identity);
 }
 
@@ -128,6 +129,6 @@ abstract class _CreateIssueDialogState implements CreateIssueDialogState {
   bool get sending => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$CreateIssueDialogStateCopyWith<_CreateIssueDialogState> get copyWith =>
+  _$$_CreateIssueDialogStateCopyWith<_$_CreateIssueDialogState> get copyWith =>
       throw _privateConstructorUsedError;
 }

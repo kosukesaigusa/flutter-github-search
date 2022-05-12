@@ -75,11 +75,11 @@ class _$IssuesResponseCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$IssuesResponseCopyWith<$Res>
+abstract class _$$_IssuesResponseCopyWith<$Res>
     implements $IssuesResponseCopyWith<$Res> {
-  factory _$IssuesResponseCopyWith(
-          _IssuesResponse value, $Res Function(_IssuesResponse) then) =
-      __$IssuesResponseCopyWithImpl<$Res>;
+  factory _$$_IssuesResponseCopyWith(
+          _$_IssuesResponse value, $Res Function(_$_IssuesResponse) then) =
+      __$$_IssuesResponseCopyWithImpl<$Res>;
   @override
   $Res call(
       {bool success,
@@ -88,15 +88,15 @@ abstract class _$IssuesResponseCopyWith<$Res>
 }
 
 /// @nodoc
-class __$IssuesResponseCopyWithImpl<$Res>
+class __$$_IssuesResponseCopyWithImpl<$Res>
     extends _$IssuesResponseCopyWithImpl<$Res>
-    implements _$IssuesResponseCopyWith<$Res> {
-  __$IssuesResponseCopyWithImpl(
-      _IssuesResponse _value, $Res Function(_IssuesResponse) _then)
-      : super(_value, (v) => _then(v as _IssuesResponse));
+    implements _$$_IssuesResponseCopyWith<$Res> {
+  __$$_IssuesResponseCopyWithImpl(
+      _$_IssuesResponse _value, $Res Function(_$_IssuesResponse) _then)
+      : super(_value, (v) => _then(v as _$_IssuesResponse));
 
   @override
-  _IssuesResponse get _value => super._value as _IssuesResponse;
+  _$_IssuesResponse get _value => super._value as _$_IssuesResponse;
 
   @override
   $Res call({
@@ -104,7 +104,7 @@ class __$IssuesResponseCopyWithImpl<$Res>
     Object? message = freezed,
     Object? issues = freezed,
   }) {
-    return _then(_IssuesResponse(
+    return _then(_$_IssuesResponse(
       success: success == freezed
           ? _value.success
           : success // ignore: cast_nullable_to_non_nullable
@@ -114,7 +114,7 @@ class __$IssuesResponseCopyWithImpl<$Res>
           : message // ignore: cast_nullable_to_non_nullable
               as String,
       issues: issues == freezed
-          ? _value.issues
+          ? _value._issues
           : issues // ignore: cast_nullable_to_non_nullable
               as List<Issue>,
     ));
@@ -139,7 +139,6 @@ class _$_IssuesResponse implements _IssuesResponse {
   @override
   @JsonKey()
   final String message;
-  @JsonKey(name: 'items')
   final List<Issue> _issues;
   @override
   @JsonKey(name: 'items')
@@ -157,10 +156,10 @@ class _$_IssuesResponse implements _IssuesResponse {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _IssuesResponse &&
+            other is _$_IssuesResponse &&
             const DeepCollectionEquality().equals(other.success, success) &&
             const DeepCollectionEquality().equals(other.message, message) &&
-            const DeepCollectionEquality().equals(other.issues, issues));
+            const DeepCollectionEquality().equals(other._issues, _issues));
   }
 
   @JsonKey(ignore: true)
@@ -169,12 +168,12 @@ class _$_IssuesResponse implements _IssuesResponse {
       runtimeType,
       const DeepCollectionEquality().hash(success),
       const DeepCollectionEquality().hash(message),
-      const DeepCollectionEquality().hash(issues));
+      const DeepCollectionEquality().hash(_issues));
 
   @JsonKey(ignore: true)
   @override
-  _$IssuesResponseCopyWith<_IssuesResponse> get copyWith =>
-      __$IssuesResponseCopyWithImpl<_IssuesResponse>(this, _$identity);
+  _$$_IssuesResponseCopyWith<_$_IssuesResponse> get copyWith =>
+      __$$_IssuesResponseCopyWithImpl<_$_IssuesResponse>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -200,6 +199,6 @@ abstract class _IssuesResponse implements IssuesResponse {
   List<Issue> get issues => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$IssuesResponseCopyWith<_IssuesResponse> get copyWith =>
+  _$$_IssuesResponseCopyWith<_$_IssuesResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }

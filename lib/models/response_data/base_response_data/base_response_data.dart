@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../constants/map.dart';
-import '../../../utils/response_data.dart';
+import '../../../utils/api.dart';
 import '../../json_converter.dart';
 
 part 'base_response_data.freezed.dart';

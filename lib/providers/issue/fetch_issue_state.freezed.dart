@@ -17,7 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$FetchIssueState {
   bool get loading => throw _privateConstructorUsedError;
-  FetchResponseErrorEnum get error => throw _privateConstructorUsedError;
+  FetchResponseError get error => throw _privateConstructorUsedError;
   bool get canShowPreviousPage => throw _privateConstructorUsedError;
   bool get canShowNextPage => throw _privateConstructorUsedError;
   int get currentPage => throw _privateConstructorUsedError;
@@ -36,7 +36,7 @@ abstract class $FetchIssueStateCopyWith<$Res> {
       _$FetchIssueStateCopyWithImpl<$Res>;
   $Res call(
       {bool loading,
-      FetchResponseErrorEnum error,
+      FetchResponseError error,
       bool canShowPreviousPage,
       bool canShowNextPage,
       int currentPage,
@@ -71,7 +71,7 @@ class _$FetchIssueStateCopyWithImpl<$Res>
       error: error == freezed
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
-              as FetchResponseErrorEnum,
+              as FetchResponseError,
       canShowPreviousPage: canShowPreviousPage == freezed
           ? _value.canShowPreviousPage
           : canShowPreviousPage // ignore: cast_nullable_to_non_nullable
@@ -97,15 +97,15 @@ class _$FetchIssueStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$FetchIssueStateCopyWith<$Res>
+abstract class _$$_FetchIssueStateCopyWith<$Res>
     implements $FetchIssueStateCopyWith<$Res> {
-  factory _$FetchIssueStateCopyWith(
-          _FetchIssueState value, $Res Function(_FetchIssueState) then) =
-      __$FetchIssueStateCopyWithImpl<$Res>;
+  factory _$$_FetchIssueStateCopyWith(
+          _$_FetchIssueState value, $Res Function(_$_FetchIssueState) then) =
+      __$$_FetchIssueStateCopyWithImpl<$Res>;
   @override
   $Res call(
       {bool loading,
-      FetchResponseErrorEnum error,
+      FetchResponseError error,
       bool canShowPreviousPage,
       bool canShowNextPage,
       int currentPage,
@@ -114,15 +114,15 @@ abstract class _$FetchIssueStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$FetchIssueStateCopyWithImpl<$Res>
+class __$$_FetchIssueStateCopyWithImpl<$Res>
     extends _$FetchIssueStateCopyWithImpl<$Res>
-    implements _$FetchIssueStateCopyWith<$Res> {
-  __$FetchIssueStateCopyWithImpl(
-      _FetchIssueState _value, $Res Function(_FetchIssueState) _then)
-      : super(_value, (v) => _then(v as _FetchIssueState));
+    implements _$$_FetchIssueStateCopyWith<$Res> {
+  __$$_FetchIssueStateCopyWithImpl(
+      _$_FetchIssueState _value, $Res Function(_$_FetchIssueState) _then)
+      : super(_value, (v) => _then(v as _$_FetchIssueState));
 
   @override
-  _FetchIssueState get _value => super._value as _FetchIssueState;
+  _$_FetchIssueState get _value => super._value as _$_FetchIssueState;
 
   @override
   $Res call({
@@ -134,7 +134,7 @@ class __$FetchIssueStateCopyWithImpl<$Res>
     Object? perPage = freezed,
     Object? issues = freezed,
   }) {
-    return _then(_FetchIssueState(
+    return _then(_$_FetchIssueState(
       loading: loading == freezed
           ? _value.loading
           : loading // ignore: cast_nullable_to_non_nullable
@@ -142,7 +142,7 @@ class __$FetchIssueStateCopyWithImpl<$Res>
       error: error == freezed
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
-              as FetchResponseErrorEnum,
+              as FetchResponseError,
       canShowPreviousPage: canShowPreviousPage == freezed
           ? _value.canShowPreviousPage
           : canShowPreviousPage // ignore: cast_nullable_to_non_nullable
@@ -160,7 +160,7 @@ class __$FetchIssueStateCopyWithImpl<$Res>
           : perPage // ignore: cast_nullable_to_non_nullable
               as int,
       issues: issues == freezed
-          ? _value.issues
+          ? _value._issues
           : issues // ignore: cast_nullable_to_non_nullable
               as List<Issue>,
     ));
@@ -172,7 +172,7 @@ class __$FetchIssueStateCopyWithImpl<$Res>
 class _$_FetchIssueState implements _FetchIssueState {
   const _$_FetchIssueState(
       {this.loading = false,
-      this.error = FetchResponseErrorEnum.none,
+      this.error = FetchResponseError.none,
       this.canShowPreviousPage = false,
       this.canShowNextPage = false,
       this.currentPage = 1,
@@ -185,7 +185,7 @@ class _$_FetchIssueState implements _FetchIssueState {
   final bool loading;
   @override
   @JsonKey()
-  final FetchResponseErrorEnum error;
+  final FetchResponseError error;
   @override
   @JsonKey()
   final bool canShowPreviousPage;
@@ -215,7 +215,7 @@ class _$_FetchIssueState implements _FetchIssueState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _FetchIssueState &&
+            other is _$_FetchIssueState &&
             const DeepCollectionEquality().equals(other.loading, loading) &&
             const DeepCollectionEquality().equals(other.error, error) &&
             const DeepCollectionEquality()
@@ -225,7 +225,7 @@ class _$_FetchIssueState implements _FetchIssueState {
             const DeepCollectionEquality()
                 .equals(other.currentPage, currentPage) &&
             const DeepCollectionEquality().equals(other.perPage, perPage) &&
-            const DeepCollectionEquality().equals(other.issues, issues));
+            const DeepCollectionEquality().equals(other._issues, _issues));
   }
 
   @override
@@ -237,18 +237,18 @@ class _$_FetchIssueState implements _FetchIssueState {
       const DeepCollectionEquality().hash(canShowNextPage),
       const DeepCollectionEquality().hash(currentPage),
       const DeepCollectionEquality().hash(perPage),
-      const DeepCollectionEquality().hash(issues));
+      const DeepCollectionEquality().hash(_issues));
 
   @JsonKey(ignore: true)
   @override
-  _$FetchIssueStateCopyWith<_FetchIssueState> get copyWith =>
-      __$FetchIssueStateCopyWithImpl<_FetchIssueState>(this, _$identity);
+  _$$_FetchIssueStateCopyWith<_$_FetchIssueState> get copyWith =>
+      __$$_FetchIssueStateCopyWithImpl<_$_FetchIssueState>(this, _$identity);
 }
 
 abstract class _FetchIssueState implements FetchIssueState {
   const factory _FetchIssueState(
       {final bool loading,
-      final FetchResponseErrorEnum error,
+      final FetchResponseError error,
       final bool canShowPreviousPage,
       final bool canShowNextPage,
       final int currentPage,
@@ -258,7 +258,7 @@ abstract class _FetchIssueState implements FetchIssueState {
   @override
   bool get loading => throw _privateConstructorUsedError;
   @override
-  FetchResponseErrorEnum get error => throw _privateConstructorUsedError;
+  FetchResponseError get error => throw _privateConstructorUsedError;
   @override
   bool get canShowPreviousPage => throw _privateConstructorUsedError;
   @override
@@ -271,6 +271,6 @@ abstract class _FetchIssueState implements FetchIssueState {
   List<Issue> get issues => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$FetchIssueStateCopyWith<_FetchIssueState> get copyWith =>
+  _$$_FetchIssueStateCopyWith<_$_FetchIssueState> get copyWith =>
       throw _privateConstructorUsedError;
 }

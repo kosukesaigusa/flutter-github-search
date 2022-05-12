@@ -3,7 +3,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../models/response_data/issues_response/issues_response.dart';
 import '../../repositories/issue.dart';
-import '../../utils/enums.dart';
+import '../../utils/api.dart';
 import '../../utils/exceptions/api_exceptions.dart';
 import 'fetch_issue_state.dart';
 
@@ -35,11 +35,11 @@ class FetchIssueStateNotifier extends StateNotifier<FetchIssueState> {
   /// GET /repos/{owner}/{repo}/issues API をコールして結果を state に保持する
   Future<void> _fetchIssues() async {
     if (state.currentPage < 1) {
-      state = state.copyWith(loading: false, error: FetchResponseErrorEnum.pageNotValid);
+      state = state.copyWith(loading: false, error: FetchResponseError.pageNotValid);
       return;
     }
     if (state.perPage < 1) {
-      state = state.copyWith(loading: false, error: FetchResponseErrorEnum.perPageNotValid);
+      state = state.copyWith(loading: false, error: FetchResponseError.perPageNotValid);
       return;
     }
     try {
@@ -52,9 +52,9 @@ class FetchIssueStateNotifier extends StateNotifier<FetchIssueState> {
       );
       _updateStateByResponse(response);
     } on ApiException {
-      state = state.copyWith(error: FetchResponseErrorEnum.apiError);
+      state = state.copyWith(error: FetchResponseError.apiError);
     } on Exception {
-      state = state.copyWith(error: FetchResponseErrorEnum.other);
+      state = state.copyWith(error: FetchResponseError.other);
     } finally {
       state = state.copyWith(loading: false);
     }

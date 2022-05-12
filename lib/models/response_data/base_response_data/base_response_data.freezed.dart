@@ -75,11 +75,11 @@ class _$BaseResponseDataCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$BaseResponseDataCopyWith<$Res>
+abstract class _$$_BaseResponseDataCopyWith<$Res>
     implements $BaseResponseDataCopyWith<$Res> {
-  factory _$BaseResponseDataCopyWith(
-          _BaseResponseData value, $Res Function(_BaseResponseData) then) =
-      __$BaseResponseDataCopyWithImpl<$Res>;
+  factory _$$_BaseResponseDataCopyWith(
+          _$_BaseResponseData value, $Res Function(_$_BaseResponseData) then) =
+      __$$_BaseResponseDataCopyWithImpl<$Res>;
   @override
   $Res call(
       {bool success,
@@ -88,15 +88,15 @@ abstract class _$BaseResponseDataCopyWith<$Res>
 }
 
 /// @nodoc
-class __$BaseResponseDataCopyWithImpl<$Res>
+class __$$_BaseResponseDataCopyWithImpl<$Res>
     extends _$BaseResponseDataCopyWithImpl<$Res>
-    implements _$BaseResponseDataCopyWith<$Res> {
-  __$BaseResponseDataCopyWithImpl(
-      _BaseResponseData _value, $Res Function(_BaseResponseData) _then)
-      : super(_value, (v) => _then(v as _BaseResponseData));
+    implements _$$_BaseResponseDataCopyWith<$Res> {
+  __$$_BaseResponseDataCopyWithImpl(
+      _$_BaseResponseData _value, $Res Function(_$_BaseResponseData) _then)
+      : super(_value, (v) => _then(v as _$_BaseResponseData));
 
   @override
-  _BaseResponseData get _value => super._value as _BaseResponseData;
+  _$_BaseResponseData get _value => super._value as _$_BaseResponseData;
 
   @override
   $Res call({
@@ -104,7 +104,7 @@ class __$BaseResponseDataCopyWithImpl<$Res>
     Object? message = freezed,
     Object? data = freezed,
   }) {
-    return _then(_BaseResponseData(
+    return _then(_$_BaseResponseData(
       success: success == freezed
           ? _value.success
           : success // ignore: cast_nullable_to_non_nullable
@@ -114,7 +114,7 @@ class __$BaseResponseDataCopyWithImpl<$Res>
           : message // ignore: cast_nullable_to_non_nullable
               as String,
       data: data == freezed
-          ? _value.data
+          ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
               as Map<String, dynamic>,
     ));
@@ -139,7 +139,6 @@ class _$_BaseResponseData implements _BaseResponseData {
   @override
   @JsonKey()
   final String message;
-  @BaseResponseDataConverter()
   final Map<String, dynamic> _data;
   @override
   @JsonKey()
@@ -158,10 +157,10 @@ class _$_BaseResponseData implements _BaseResponseData {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _BaseResponseData &&
+            other is _$_BaseResponseData &&
             const DeepCollectionEquality().equals(other.success, success) &&
             const DeepCollectionEquality().equals(other.message, message) &&
-            const DeepCollectionEquality().equals(other.data, data));
+            const DeepCollectionEquality().equals(other._data, _data));
   }
 
   @JsonKey(ignore: true)
@@ -170,12 +169,12 @@ class _$_BaseResponseData implements _BaseResponseData {
       runtimeType,
       const DeepCollectionEquality().hash(success),
       const DeepCollectionEquality().hash(message),
-      const DeepCollectionEquality().hash(data));
+      const DeepCollectionEquality().hash(_data));
 
   @JsonKey(ignore: true)
   @override
-  _$BaseResponseDataCopyWith<_BaseResponseData> get copyWith =>
-      __$BaseResponseDataCopyWithImpl<_BaseResponseData>(this, _$identity);
+  _$$_BaseResponseDataCopyWith<_$_BaseResponseData> get copyWith =>
+      __$$_BaseResponseDataCopyWithImpl<_$_BaseResponseData>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -202,6 +201,6 @@ abstract class _BaseResponseData implements BaseResponseData {
   Map<String, dynamic> get data => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$BaseResponseDataCopyWith<_BaseResponseData> get copyWith =>
+  _$$_BaseResponseDataCopyWith<_$_BaseResponseData> get copyWith =>
       throw _privateConstructorUsedError;
 }

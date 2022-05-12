@@ -119,9 +119,9 @@ class _$RepoCopyWithImpl<$Res> implements $RepoCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$RepoCopyWith<$Res> implements $RepoCopyWith<$Res> {
-  factory _$RepoCopyWith(_Repo value, $Res Function(_Repo) then) =
-      __$RepoCopyWithImpl<$Res>;
+abstract class _$$_RepoCopyWith<$Res> implements $RepoCopyWith<$Res> {
+  factory _$$_RepoCopyWith(_$_Repo value, $Res Function(_$_Repo) then) =
+      __$$_RepoCopyWithImpl<$Res>;
   @override
   $Res call(
       {int id,
@@ -138,13 +138,13 @@ abstract class _$RepoCopyWith<$Res> implements $RepoCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$RepoCopyWithImpl<$Res> extends _$RepoCopyWithImpl<$Res>
-    implements _$RepoCopyWith<$Res> {
-  __$RepoCopyWithImpl(_Repo _value, $Res Function(_Repo) _then)
-      : super(_value, (v) => _then(v as _Repo));
+class __$$_RepoCopyWithImpl<$Res> extends _$RepoCopyWithImpl<$Res>
+    implements _$$_RepoCopyWith<$Res> {
+  __$$_RepoCopyWithImpl(_$_Repo _value, $Res Function(_$_Repo) _then)
+      : super(_value, (v) => _then(v as _$_Repo));
 
   @override
-  _Repo get _value => super._value as _Repo;
+  _$_Repo get _value => super._value as _$_Repo;
 
   @override
   $Res call({
@@ -157,7 +157,7 @@ class __$RepoCopyWithImpl<$Res> extends _$RepoCopyWithImpl<$Res>
     Object? starGazersCount = freezed,
     Object? forksCount = freezed,
   }) {
-    return _then(_Repo(
+    return _then(_$_Repo(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -240,7 +240,7 @@ class _$_Repo implements _Repo {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Repo &&
+            other is _$_Repo &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality().equals(other.owner, owner) &&
@@ -269,8 +269,8 @@ class _$_Repo implements _Repo {
 
   @JsonKey(ignore: true)
   @override
-  _$RepoCopyWith<_Repo> get copyWith =>
-      __$RepoCopyWithImpl<_Repo>(this, _$identity);
+  _$$_RepoCopyWith<_$_Repo> get copyWith =>
+      __$$_RepoCopyWithImpl<_$_Repo>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -313,5 +313,5 @@ abstract class _Repo implements Repo {
   int get forksCount => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$RepoCopyWith<_Repo> get copyWith => throw _privateConstructorUsedError;
+  _$$_RepoCopyWith<_$_Repo> get copyWith => throw _privateConstructorUsedError;
 }

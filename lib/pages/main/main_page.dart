@@ -21,7 +21,7 @@ class _MainPageState extends ConsumerState<MainPage> with WidgetsBindingObserver
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance!.addObserver(this);
+    WidgetsBinding.instance.addObserver(this);
     // 必要な初期化処理を行う
     Future.wait([
       // _initializePushNotification(),
@@ -51,10 +51,12 @@ class _MainPageState extends ConsumerState<MainPage> with WidgetsBindingObserver
               onTap: _onTap,
               currentIndex: ref.watch(bottomTabStateProvider).index,
               items: bottomTabs
-                  .map((b) => BottomNavigationBarItem(
-                        icon: Icon(b.iconData),
-                        label: b.label,
-                      ))
+                  .map(
+                    (b) => BottomNavigationBarItem(
+                      icon: Icon(b.iconData),
+                      label: b.label,
+                    ),
+                  )
                   .toList(),
             ),
           ),
