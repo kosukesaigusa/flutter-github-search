@@ -197,31 +197,39 @@ class ApiClient implements AbstractApiClient {
   }
 
   /// Dio の Response を受け取り、
-  /// ステータスコードを確認して問題があれば例外をスローする。
+  /// ステータスコードと success を確認して問題があれば例外をスローする。
   /// 問題がなければ dynamic 型のレスポンスボディを BaseResponseData に変換して返す。
   BaseResponseData _parseResponse(Response<dynamic> response) {
-    _validateStatusCode(response.statusCode);
+    final statusCode = response.statusCode;
     final baseResponseData = BaseResponseData.fromDynamic(response.data);
+    _validateResponse(statusCode: statusCode, data: baseResponseData);
     return baseResponseData;
   }
 
   /// レスポンスのステータスコードを検証する。
   /// レスポンスボディに 'message' フィールドがある場合はそれを、
   /// そうでない場合は適当なエラーメッセージを例外型の message に格納してスローする
-  void _validateStatusCode(int? statusCode) {
+  void _validateResponse({
+    required int? statusCode,
+    required BaseResponseData data,
+  }) {
+    final message = data.message;
     if (statusCode == 400) {
-      throw const ApiException();
+      throw ApiException(message: message);
     }
     if (statusCode == 401) {
-      throw const UnauthorizedException();
+      throw UnauthorizedException(message: message);
     }
     if (statusCode == 404) {
-      throw const ApiNotFoundException();
+      throw ApiNotFoundException(message: message);
     }
-    // TODO: statusCode が null となるのはどのような場合か確認して
-    //  必要があれば対応する
+    // statusCode が null のときはとりあえず 400 番扱いで良いか確認が必要
+    // そもそも、それがどのような場合かは特定できていない。
     if ((statusCode ?? 400) >= 400) {
-      throw const ApiException();
+      throw ApiException(message: message);
+    }
+    if (!data.success) {
+      throw ApiException(message: message);
     }
   }
 
