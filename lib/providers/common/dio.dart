@@ -10,6 +10,7 @@ import '../../utils/dio_interceptors/header_interceptor.dart';
 import '../../utils/dio_interceptors/mock_interceptor.dart';
 import '../../utils/dio_interceptors/request_interceptor.dart';
 import '../../utils/dio_interceptors/response_interceptor.dart';
+import 'use_mock.dart';
 
 /// Dio のインスタンスを各種設定を済ませた状態で提供するプロバイダ
 final dioProvider = Provider<Dio>((ref) {
@@ -30,12 +31,7 @@ final dioProvider = Provider<Dio>((ref) {
     // デバッグモードでは ResponseInterceptor を追加
     if (kDebugMode) ResponseInterceptor(),
     // モックで動作させる場合は MockInterceptor を追加
-    // if (ref.watch(useMockProvider))
-    MockInterceptor(),
-    // InterceptorsWrapper(
-    //   onRequest: MockInterceptor().onRequest,
-    //   onResponse: (response, handler) => handler.next(response),
-    // ),
+    if (ref.watch(useMockProvider)) MockInterceptor(),
   ]);
   return dio;
 });
