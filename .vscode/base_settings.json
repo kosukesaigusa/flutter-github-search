@@ -1,5 +1,5 @@
 {
-  "dart.flutterSdkPath": "/Users/kosukesaigusa/.asdf/installs/flutter/2.10.5-stable",
-  "dart.sdkPath": "/Users/kosukesaigusa/.asdf/installs/flutter/2.10.5-stable/bin/cache/dart-sdk",
+  "dart.flutterSdkPath": ".fvm/flutter_sdk",
+  "dart.sdkPath": ".fvm/flutter_sdk/bin/cache/dart-sdk",
   "dart.runPubGetOnPubspecChanges": false
 }
