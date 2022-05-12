@@ -122,6 +122,7 @@ linter:
     - prefer_typing_uninitialized_variables
     - prefer_void_to_null
     - recursive_getters
+    - require_trailing_commas
     - sized_box_for_whitespace
     - slash_for_doc_comments
     - sort_constructors_first
