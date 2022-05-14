@@ -23,17 +23,21 @@ class HomePage extends HookConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             ElevatedButton(
+              key: const ValueKey(FirstPage.path),
               onPressed: () => Navigator.pushNamed<void>(context, FirstPage.path),
-              child: const Text('Go to First Page'),
+              child: const Text('Go to ${FirstPage.name}'),
             ),
             const Gap(16),
             ElevatedButton(
+              key: const ValueKey(SecondPage.path),
               onPressed: () => Navigator.pushNamed<void>(context, SecondPage.path),
-              child: const Text('Go to Second Page'),
+              child: const Text('Go to ${SecondPage.name}'),
             ),
             const Gap(16),
             ElevatedButton(
-              onPressed: () => ref.watch(scaffoldMessengerServiceProvider).showSnackBar('スナックバー'),
+              key: const ValueKey('SnackBar'),
+              onPressed: () =>
+                  ref.watch(scaffoldMessengerServiceProvider).showSnackBar('A SnackBar is shown.'),
               child: const Text('Show SnackBar'),
             ),
           ],

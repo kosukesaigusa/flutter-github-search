@@ -5,7 +5,6 @@ import '../pages/main/main_page.dart';
 import '../pages/not_found/not_found_page.dart';
 import '../route/bottom_tabs.dart';
 import '../route/router.dart';
-import '../route/routes.dart';
 
 class MainStackedPagesNavigator extends HookConsumerWidget {
   const MainStackedPagesNavigator({
@@ -25,7 +24,7 @@ class MainStackedPagesNavigator extends HookConsumerWidget {
       ],
       // MainPage の StackedPages 上での Navigation の設定
       onGenerateRoute: (routeSettings) => ref
-          .watch(routerProvider(appRoutes))
+          .watch(routerProvider)
           .onGenerateRoute(routeSettings, bottomNavigationPath: bottomTab.path),
       onUnknownRoute: (settings) {
         final route = MaterialPageRoute<void>(

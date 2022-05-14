@@ -18,7 +18,7 @@ class FirstPage extends HookConsumerWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text('First Page'),
+            const Text(name),
             const Gap(8),
             const Text('You have pushed the button this many time:'),
             Text('${counter.value}'),

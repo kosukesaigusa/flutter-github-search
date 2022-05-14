@@ -5,15 +5,14 @@ import '../constants/map.dart';
 import '../pages/not_found/not_found_page.dart';
 import '../utils/bool.dart';
 import '../utils/route.dart';
+import 'routes.dart';
 
-final routerProvider = Provider.family<Router, List<AppRoute>>(
-  (_, appRoutes) => Router(appRoutes),
-);
+final routerProvider = Provider<Router>((ref) => Router(ref.read));
 
 class Router {
-  Router(this.appRoutes);
+  Router(this._read);
 
-  final List<AppRoute> appRoutes;
+  final Reader _read;
   final initialRoute = '/';
 
   Route<dynamic> onGenerateRoute(RouteSettings routeSettings, {String? bottomNavigationPath}) {
@@ -37,7 +36,7 @@ class Router {
     try {
       // appRoutes の各要素のパスに一致する AppRoute を見つけて
       // 遷移先の Widget の MaterialPageRoute を返す
-      final appRoute = appRoutes.firstWhere(
+      final appRoute = _read(appRoutesProvider).firstWhere(
         (appRoute) => appRoute.path == path,
         orElse: () => throw RouteNotFoundException(path),
       );

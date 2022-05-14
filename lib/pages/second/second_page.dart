@@ -18,10 +18,11 @@ class SecondPage extends HookConsumerWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text('Second Page'),
+            const Text(name),
             const Gap(16),
             ElevatedButton(
-              onPressed: () => ref.watch(scaffoldMessengerServiceProvider).showSnackBar('スナックバー'),
+              onPressed: () =>
+                  ref.watch(scaffoldMessengerServiceProvider).showSnackBar('A SnackBar is shown.'),
               child: const Text('Show SnackBar'),
             ),
           ],

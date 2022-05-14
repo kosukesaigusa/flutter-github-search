@@ -4,7 +4,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../pages/not_found/not_found_page.dart';
 import '../providers/overlay_loading/overlay_loading.dart';
 import '../route/router.dart';
-import '../route/routes.dart';
 import '../services/scaffold_messenger.dart';
 import 'loading.dart';
 
@@ -23,9 +22,9 @@ class ScaffoldMessengerNavigator extends HookConsumerWidget {
           children: [
             Navigator(
               key: ref.watch(scaffoldMessengerServiceProvider.select((c) => c.navigatorKey)),
-              initialRoute: ref.watch(routerProvider(appRoutes)).initialRoute,
-              onGenerateRoute: ref.watch(routerProvider(appRoutes)).onGenerateRoute,
-              observers: const [],
+              initialRoute: ref.watch(routerProvider).initialRoute,
+              onGenerateRoute: ref.watch(routerProvider).onGenerateRoute,
+              observers: const <NavigatorObserver>[],
               onUnknownRoute: (settings) {
                 final route = MaterialPageRoute<void>(
                   settings: settings,

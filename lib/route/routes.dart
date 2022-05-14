@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../pages/first/first_page.dart';
 import '../pages/home/home_page.dart';
@@ -7,6 +8,9 @@ import '../pages/main/main_page.dart';
 import '../pages/repo/repo_page.dart';
 import '../pages/second/second_page.dart';
 import '../utils/route.dart';
+
+/// テスト時に override できるように Provider でラップしておく
+final appRoutesProvider = Provider((_) => appRoutes);
 
 /// ページのパスと対応するビルダーメソッドをまとめた
 /// AppRoute インスタンス一覧
