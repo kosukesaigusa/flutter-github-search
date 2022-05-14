@@ -43,7 +43,7 @@ class ScaffoldMessengerService {
     );
   }
 
-  /// Exception 起点でスナックバーを表示するｌ
+  /// Exception 起点でスナックバーを表示する
   /// Dart の Exception 型の場合は toString() 冒頭を取り除いて差し支えのないメッセージに置換しておく。
   ScaffoldFeatureController<SnackBar, SnackBarClosedReason> showSnackBarByException(Exception e) {
     final message = e.toString().replaceAll('Exception: ', '').replaceAll('Exception', '');
