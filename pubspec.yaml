@@ -26,9 +26,10 @@ dependencies:
   freezed_annotation:
   gap:
   go_router:
-  hooks_riverpod: 2.0.0-dev.5
+  hooks_riverpod: 2.0.0-dev.7
   intl:
   json_annotation:
+  mockito: ^5.1.0
   package_info_plus:
   path_provider:
   shared_preferences:
