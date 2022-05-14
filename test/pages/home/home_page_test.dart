@@ -21,7 +21,7 @@ void main() {
     await tester.pumpAndSettle();
 
     // FirstPage に遷移していることを確認する
-    expect(find.byKey(const ValueKey(FirstPage.name)), findsOneWidget);
+    expect(find.byType(FirstPage), findsOneWidget);
 
     // 戻る
     await tester.pageBack();
@@ -36,7 +36,7 @@ void main() {
     await tester.pumpAndSettle();
 
     // SecondPage に遷移していることを確認する
-    expect(find.byKey(const ValueKey(SecondPage.name)), findsOneWidget);
+    expect(find.byType(SecondPage), findsOneWidget);
 
     // 戻る
     await tester.pageBack();

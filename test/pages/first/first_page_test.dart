@@ -5,7 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import '../../widgets/test_scaffold_wrapper.dart';
 
 void main() {
-  testWidgets('FirstPage のカウンターのテスト', (tester) async {
+  testWidgets('FirstPage のテスト', (tester) async {
     await tester.pumpWidget(const TestScaffoldWrapper(child: FirstPage()));
 
     // はじめはカウンターの値は 0 である

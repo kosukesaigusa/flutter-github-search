@@ -12,10 +12,10 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 /// 必要に応じて ProviderScope.overrides も指定する。
 class TestScaffoldWrapper extends StatelessWidget {
   const TestScaffoldWrapper({
-    Key? key,
+    super.key,
     this.child,
     this.overrides = const <Override>[],
-  }) : super(key: key);
+  });
 
   final Widget? child;
   final List<Override> overrides;
@@ -33,9 +33,9 @@ class TestScaffoldWrapper extends StatelessWidget {
 
 class TestApp extends HookConsumerWidget {
   const TestApp({
-    Key? key,
+    super.key,
     this.child,
-  }) : super(key: key);
+  });
 
   final Widget? child;
 
