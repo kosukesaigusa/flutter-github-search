@@ -11,9 +11,9 @@ import '../../utils/extensions/int.dart';
 /// リポジトリのひとつひとつのウィジェット
 class RepoItemWidget extends HookConsumerWidget {
   const RepoItemWidget({
-    Key? key,
+    super.key,
     required this.repo,
-  }) : super(key: key);
+  });
 
   final Repo repo;
 

@@ -7,7 +7,7 @@ import '../../constants/number.dart';
 import '../../providers/repo/search_repo.dart';
 
 class RepoPageTextField extends StatefulHookConsumerWidget {
-  const RepoPageTextField({Key? key}) : super(key: key);
+  const RepoPageTextField({super.key});
 
   @override
   ConsumerState<RepoPageTextField> createState() => _RepoPageTextFieldState();

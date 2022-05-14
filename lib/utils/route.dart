@@ -20,9 +20,9 @@ class AppRoute {
 
 /// 指定した Route のパスが見つからない場合の例外
 class RouteNotFoundException implements Exception {
-  RouteNotFoundException(this._path);
-  final String _path;
+  RouteNotFoundException(this.path);
+  final String path;
 
   @override
-  String toString() => '$_path：指定されたパスが見つかりませんでした。';
+  String toString() => '$path：指定されたページが見つかりませんでした。';
 }

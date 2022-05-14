@@ -7,11 +7,11 @@ import 'common_text.dart';
 /// 表示するウィジェット
 class FetchSummaryWidget extends StatelessWidget {
   const FetchSummaryWidget({
-    Key? key,
+    super.key,
     required this.totalCount,
     required this.currentPage,
     required this.maxPage,
-  }) : super(key: key);
+  });
 
   final int totalCount;
   final int currentPage;

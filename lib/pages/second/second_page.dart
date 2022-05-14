@@ -5,7 +5,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../services/scaffold_messenger.dart';
 
 class SecondPage extends HookConsumerWidget {
-  const SecondPage({Key? key}) : super(key: key);
+  const SecondPage({super.key});
 
   static const path = '/second/';
   static const name = 'SecondPage';

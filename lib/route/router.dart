@@ -46,10 +46,10 @@ class Router {
         fullscreenDialog: toBool(queryParams['fullScreenDialog'] ?? false),
       );
       return route;
-    } on RouteNotFoundException {
+    } on RouteNotFoundException catch (e) {
       final route = MaterialPageRoute<void>(
         settings: routeSettings,
-        builder: (context) => const NotFoundPage(),
+        builder: (context) => NotFoundPage(exception: e),
       );
       return route;
     }

@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 class CommonTextWidget extends StatelessWidget {
   const CommonTextWidget(
     this.text, {
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final String text;
 

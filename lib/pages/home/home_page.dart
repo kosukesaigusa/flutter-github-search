@@ -7,7 +7,7 @@ import '../first/first_page.dart';
 import '../second/second_page.dart';
 
 class HomePage extends HookConsumerWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({super.key});
 
   static const path = '/home/';
   static const name = 'HomePage';

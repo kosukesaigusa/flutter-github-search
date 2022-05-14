@@ -12,7 +12,7 @@ import '../../widgets/repo/repo_item.dart';
 import '../../widgets/repo/text_field.dart';
 
 class RepoPage extends HookConsumerWidget {
-  const RepoPage({Key? key}) : super(key: key);
+  const RepoPage({super.key});
 
   static const path = '/search-repo/';
   static const name = 'RepoPage';
@@ -44,7 +44,7 @@ class RepoPage extends HookConsumerWidget {
 
 /// SearchRepo の TextField 以下のウィジェット
 class SearchRepoContentWidget extends HookConsumerWidget {
-  const SearchRepoContentWidget({Key? key}) : super(key: key);
+  const SearchRepoContentWidget({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

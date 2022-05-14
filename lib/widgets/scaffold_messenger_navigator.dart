@@ -11,7 +11,7 @@ import 'loading.dart';
 /// 目には見えないが、アプリケーション上の全てのページがこの Scaffold の上に載るので
 /// scaffoldMessengerServiceProvider でどこからでもスナックバーが表示できるようになっている。
 class ScaffoldMessengerNavigator extends HookConsumerWidget {
-  const ScaffoldMessengerNavigator({Key? key}) : super(key: key);
+  const ScaffoldMessengerNavigator({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

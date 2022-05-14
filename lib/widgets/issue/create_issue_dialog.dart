@@ -8,7 +8,7 @@ import '../../utils/exceptions/base.dart';
 
 /// イシューを作成するためのフォームを入力させるダイアログ
 class CreateIssueDialogDialog extends StatefulHookConsumerWidget {
-  const CreateIssueDialogDialog({Key? key}) : super(key: key);
+  const CreateIssueDialogDialog({super.key});
 
   @override
   ConsumerState<CreateIssueDialogDialog> createState() => _CreateIssueDialogDialogState();

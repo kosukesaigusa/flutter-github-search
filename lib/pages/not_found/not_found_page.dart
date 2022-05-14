@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class NotFoundPage extends StatelessWidget {
-  const NotFoundPage({Key? key, this.exception}) : super(key: key);
+  const NotFoundPage({super.key, this.exception});
 
   final Exception? exception;
 
@@ -12,7 +12,9 @@ class NotFoundPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Text('ページが見つかりませんでした：${exception.toString()}'),
+        child: Text(
+          exception == null ? '指定されたページが見つかりませんでした。' : exception.toString(),
+        ),
       ),
     );
   }

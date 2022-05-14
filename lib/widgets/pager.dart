@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 /// リポジトリ一覧・イシュー一覧の下部の前のページ・次のページボタン
 class PagerWidget extends StatelessWidget {
   const PagerWidget({
-    Key? key,
+    super.key,
     required this.canShowPreviousPage,
     required this.canShowNextPage,
     required this.showPreviousPage,
     required this.showNextPage,
-  }) : super(key: key);
+  });
 
   final bool canShowPreviousPage;
   final bool canShowNextPage;

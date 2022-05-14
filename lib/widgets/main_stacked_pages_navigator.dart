@@ -8,9 +8,9 @@ import '../route/router.dart';
 
 class MainStackedPagesNavigator extends HookConsumerWidget {
   const MainStackedPagesNavigator({
-    Key? key,
+    super.key,
     required this.bottomTab,
-  }) : super(key: key);
+  });
 
   final BottomTab bottomTab;
 

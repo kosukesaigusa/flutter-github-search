@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 /// アプリケーションのルートのウィジェット
 class RootWidget extends StatefulWidget {
   const RootWidget({
-    Key? key,
+    super.key,
     required this.child,
-  }) : super(key: key);
+  });
 
   final Widget child;
 

@@ -10,7 +10,7 @@ import '../../widgets/loading.dart';
 import '../../widgets/pager.dart';
 
 class IssuePage extends StatefulHookConsumerWidget {
-  const IssuePage({Key? key}) : super(key: key);
+  const IssuePage({super.key});
 
   static const path = '/issue/';
   static const name = 'IssuePage';

@@ -8,7 +8,7 @@ import '../../route/bottom_tabs.dart';
 import '../../widgets/main_stacked_pages_navigator.dart';
 
 class MainPage extends StatefulHookConsumerWidget {
-  const MainPage({Key? key}) : super(key: key);
+  const MainPage({super.key});
 
   static const path = '/';
   static const name = 'MainPage';

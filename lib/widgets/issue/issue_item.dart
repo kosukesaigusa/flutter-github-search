@@ -11,9 +11,9 @@ import '../../utils/extensions/int.dart';
 /// イシューのひとつひとつのウィジェット
 class IssueItemWidget extends HookConsumerWidget {
   const IssueItemWidget({
-    Key? key,
+    super.key,
     required this.issue,
-  }) : super(key: key);
+  });
 
   final Issue issue;
 
