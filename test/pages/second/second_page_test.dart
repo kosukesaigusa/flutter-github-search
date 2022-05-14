@@ -6,14 +6,19 @@ import '../../widgets/test_scaffold_wrapper.dart';
 
 void main() {
   testWidgets('SecondPage のテスト', (tester) async {
-    await tester.pumpWidget(const TestScaffoldWrapper(child: SecondPage()));
+    await tester.pumpWidget(
+      const TestScaffoldWrapper(
+        child: SecondPage(),
+      ),
+    );
 
     // ボタンを押して SnackBar を表示する
     await tester.tap(find.byType(ElevatedButton));
 
+    // 待つ
     await tester.pump();
 
     // スナックバーが表示されていることを確認する
-    expect(find.text('スナックバー'), findsOneWidget);
+    expect(find.text('A SnackBar is shown.'), findsOneWidget);
   });
 }
