@@ -23,7 +23,6 @@ final dioProvider = Provider<Dio>((ref) {
     validateStatus: (_) => true,
   );
   dio.interceptors.addAll(<Interceptor>[
-    ConnectivityInterceptor(),
     HeaderInterceptor(),
     // CookieManager(ref.read(cookieJarProvider)),
     // デバッグモードでは RequestInterceptor を追加
@@ -31,7 +30,8 @@ final dioProvider = Provider<Dio>((ref) {
     // デバッグモードでは ResponseInterceptor を追加
     if (kDebugMode) ResponseInterceptor(),
     // モックで動作させる場合は MockInterceptor を追加
-    if (ref.watch(useMockProvider)) MockInterceptor(),
+    // モックで動作させない場合のみ ConnectivityInterceptor を追加
+    if (ref.watch(useMockProvider)) MockInterceptor() else ConnectivityInterceptor(),
   ]);
   return dio;
 });
