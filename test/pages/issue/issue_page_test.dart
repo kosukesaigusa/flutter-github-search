@@ -16,10 +16,10 @@ void main() {
         TestScaffoldWrapper(
           overrides: <Override>[
             issueOwnerNameProvider.overrideWithProvider(
-              StateProvider.autoDispose<String>((_) => 'KosukeSaigusa'),
+              StateProvider.autoDispose<String>((_) => 'ownerName'),
             ),
             issueRepoNameProvider.overrideWithProvider(
-              StateProvider.autoDispose<String>((_) => 'flutter-github-search'),
+              StateProvider.autoDispose<String>((_) => 'test-repository-name'),
             ),
             // Mock を使用する
             useMockProvider.overrideWithValue(true)
