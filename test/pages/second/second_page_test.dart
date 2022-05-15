@@ -5,7 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import '../../widgets/test_scaffold_wrapper.dart';
 
 void main() {
-  testWidgets('SecondPage のテスト', (tester) async {
+  testWidgets('${SecondPage.name} のテスト', (tester) async {
     await tester.pumpWidget(
       const TestScaffoldWrapper(
         child: SecondPage(),

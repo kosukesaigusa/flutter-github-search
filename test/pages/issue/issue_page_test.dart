@@ -10,7 +10,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../widgets/test_scaffold_wrapper.dart';
 
 void main() {
-  testWidgets('IssuePage のテスト', (tester) async {
+  testWidgets('${IssuePage.name} のテスト', (tester) async {
     await tester.runAsync(() async {
       await tester.pumpWidget(
         TestScaffoldWrapper(

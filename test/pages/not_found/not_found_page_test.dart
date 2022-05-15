@@ -5,7 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import '../../widgets/test_scaffold_wrapper.dart';
 
 void main() {
-  testWidgets('NotFoundPage のテスト', (tester) async {
+  testWidgets('${NotFoundPage.name} のテスト', (tester) async {
     await tester.pumpWidget(
       TestScaffoldWrapper(
         child: Builder(

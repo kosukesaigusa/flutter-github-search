@@ -7,7 +7,7 @@ import 'package:flutter_test/flutter_test.dart';
 import '../../widgets/test_scaffold_wrapper.dart';
 
 void main() {
-  testWidgets('HomePage のテスト', (tester) async {
+  testWidgets('${HomePage.name} のテスト', (tester) async {
     await tester.pumpWidget(
       const TestScaffoldWrapper(
         child: HomePage(),
