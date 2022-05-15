@@ -32,7 +32,9 @@ class _RepoPageTextFieldState extends ConsumerState<RepoPageTextField> {
   Widget build(BuildContext context) {
     return TextField(
       controller: _textEditingController,
-      onChanged: (q) => debounce.run(() => _updateSearchWordCallback(q)),
+      onChanged: (q) => debounce.run(
+        () => ref.read(searchRepoStateNotifierProvider.notifier).updateSearchWord(q),
+      ),
       maxLines: 1,
       decoration: const InputDecoration(
         border: OutlineInputBorder(),
@@ -41,8 +43,4 @@ class _RepoPageTextFieldState extends ConsumerState<RepoPageTextField> {
       ),
     );
   }
-
-  /// 検索キーワードを更新する。Debounce の callback に指定する
-  void _updateSearchWordCallback(String q) =>
-      ref.read(searchRepoStateNotifierProvider.notifier).updateSearchWord(q);
 }

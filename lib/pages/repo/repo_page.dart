@@ -16,10 +16,12 @@ class RepoPage extends HookConsumerWidget {
 
   static const path = '/search-repo/';
   static const name = 'RepoPage';
+  static const gestureDetectorKey = ValueKey('RepoPage GestureDetector');
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return GestureDetector(
+      key: gestureDetectorKey,
       behavior: HitTestBehavior.opaque,
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(

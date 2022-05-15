@@ -36,6 +36,7 @@ import 'package:flutter_github_search/utils/extensions/build_context.dart';
 import 'package:flutter_github_search/utils/extensions/int.dart';
 import 'package:flutter_github_search/utils/types.dart';
 import 'package:flutter_github_search/utils/connectivity.dart';
+import 'package:flutter_github_search/utils/timer.dart';
 import 'package:flutter_github_search/utils/dio_interceptors/response_interceptor.dart';
 import 'package:flutter_github_search/utils/dio_interceptors/mock_interceptor.dart';
 import 'package:flutter_github_search/utils/dio_interceptors/request_interceptor.dart';
