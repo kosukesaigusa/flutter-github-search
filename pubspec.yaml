@@ -29,7 +29,6 @@ dependencies:
   hooks_riverpod: 2.0.0-dev.7
   intl:
   json_annotation:
-  mockito: ^5.1.0
   package_info_plus:
   path_provider:
   shared_preferences:
@@ -38,11 +37,13 @@ dependencies:
 
 dev_dependencies:
   build_runner:
+  fake_async:
   flutter_launcher_icons:
   flutter_lints:
   flutter_test:
     sdk: flutter
   json_serializable: ^6.1.6
+  mockito: ^5.1.0
 
 flutter:
   uses-material-design: true

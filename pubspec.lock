@@ -261,7 +261,7 @@ packages:
     source: hosted
     version: "2.0.0"
   fake_async:
-    dependency: transitive
+    dependency: "direct dev"
     description:
       name: fake_async
       url: "https://pub.dartlang.org"
@@ -526,7 +526,7 @@ packages:
     source: hosted
     version: "1.0.2"
   mockito:
-    dependency: "direct main"
+    dependency: "direct dev"
     description:
       name: mockito
       url: "https://pub.dartlang.org"
