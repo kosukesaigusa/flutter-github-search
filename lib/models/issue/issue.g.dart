@@ -13,7 +13,7 @@ _$_Issue _$$_IssueFromJson(Map<String, dynamic> json) => _$_Issue(
       body: json['body'] as String? ?? '',
       number: json['number'] as int? ?? 0,
       state: json['state'] as String? ?? 'open',
-      createdAt: DateTime.parse(json['updated_at'] as String),
+      createdAt: DateTime.parse(json['created_at'] as String),
     );
 
 Map<String, dynamic> _$$_IssueToJson(_$_Issue instance) => <String, dynamic>{
@@ -23,5 +23,5 @@ Map<String, dynamic> _$$_IssueToJson(_$_Issue instance) => <String, dynamic>{
       'body': instance.body,
       'number': instance.number,
       'state': instance.state,
-      'updated_at': instance.createdAt.toIso8601String(),
+      'created_at': instance.createdAt.toIso8601String(),
     };

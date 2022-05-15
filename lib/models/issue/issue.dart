@@ -12,7 +12,7 @@ class Issue with _$Issue {
     @Default('') String body,
     @Default(0) int number,
     @Default('open') String state,
-    @JsonKey(name: 'updated_at') required DateTime createdAt,
+    @JsonKey(name: 'created_at') required DateTime createdAt,
   }) = _Issue;
 
   factory Issue.fromJson(Map<String, dynamic> json) => _$IssueFromJson(json);

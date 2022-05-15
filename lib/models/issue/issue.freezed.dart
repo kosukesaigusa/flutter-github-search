@@ -27,7 +27,7 @@ mixin _$Issue {
   String get body => throw _privateConstructorUsedError;
   int get number => throw _privateConstructorUsedError;
   String get state => throw _privateConstructorUsedError;
-  @JsonKey(name: 'updated_at')
+  @JsonKey(name: 'created_at')
   DateTime get createdAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -46,7 +46,7 @@ abstract class $IssueCopyWith<$Res> {
       String body,
       int number,
       String state,
-      @JsonKey(name: 'updated_at') DateTime createdAt});
+      @JsonKey(name: 'created_at') DateTime createdAt});
 }
 
 /// @nodoc
@@ -112,7 +112,7 @@ abstract class _$$_IssueCopyWith<$Res> implements $IssueCopyWith<$Res> {
       String body,
       int number,
       String state,
-      @JsonKey(name: 'updated_at') DateTime createdAt});
+      @JsonKey(name: 'created_at') DateTime createdAt});
 }
 
 /// @nodoc
@@ -177,7 +177,7 @@ class _$_Issue implements _Issue {
       this.body = '',
       this.number = 0,
       this.state = 'open',
-      @JsonKey(name: 'updated_at') required this.createdAt});
+      @JsonKey(name: 'created_at') required this.createdAt});
 
   factory _$_Issue.fromJson(Map<String, dynamic> json) =>
       _$$_IssueFromJson(json);
@@ -200,7 +200,7 @@ class _$_Issue implements _Issue {
   @JsonKey()
   final String state;
   @override
-  @JsonKey(name: 'updated_at')
+  @JsonKey(name: 'created_at')
   final DateTime createdAt;
 
   @override
@@ -253,7 +253,7 @@ abstract class _Issue implements Issue {
           final String body,
           final int number,
           final String state,
-          @JsonKey(name: 'updated_at') required final DateTime createdAt}) =
+          @JsonKey(name: 'created_at') required final DateTime createdAt}) =
       _$_Issue;
 
   factory _Issue.fromJson(Map<String, dynamic> json) = _$_Issue.fromJson;
@@ -272,7 +272,7 @@ abstract class _Issue implements Issue {
   @override
   String get state => throw _privateConstructorUsedError;
   @override
-  @JsonKey(name: 'updated_at')
+  @JsonKey(name: 'created_at')
   DateTime get createdAt => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
