@@ -21,7 +21,7 @@ void main() {
             issueRepoNameProvider.overrideWithProvider(
               StateProvider.autoDispose<String>((_) => 'test-repository-name'),
             ),
-            useMockProvider.overrideWithValue(true)
+            useMockProvider.overrideWithValue(true),
           ],
           child: const IssuePage(),
         ),
