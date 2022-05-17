@@ -220,6 +220,9 @@ class ApiClient implements AbstractApiClient {
     if (statusCode == 401) {
       throw UnauthorizedException(message: message);
     }
+    if (statusCode == 403) {
+      throw ForbiddenException(message: message);
+    }
     if (statusCode == 404) {
       throw ApiNotFoundException(message: message);
     }

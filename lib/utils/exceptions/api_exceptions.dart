@@ -9,9 +9,18 @@ class ApiException extends AppException implements Exception {
   });
 }
 
-/// HTTP リクエストで 403 が発生した場合の例外
+/// HTTP リクエストで 401 が発生した場合の例外
 class UnauthorizedException extends ApiException {
   const UnauthorizedException({super.message})
+      : super(
+          code: '401',
+          defaultMessage: '認証されていません。',
+        );
+}
+
+/// HTTP リクエストで 403 が発生した場合の例外
+class ForbiddenException extends ApiException {
+  const ForbiddenException({super.message})
       : super(
           code: '403',
           defaultMessage: '指定した操作を行う権限がありません。',
