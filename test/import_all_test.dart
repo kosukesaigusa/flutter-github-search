@@ -24,6 +24,7 @@ import 'package:flutter_github_search/providers/application/application.dart';
 import 'package:flutter_github_search/providers/application/application_state.dart';
 import 'package:flutter_github_search/providers/repo/search_repo.dart';
 import 'package:flutter_github_search/providers/repo/search_repo_state.dart';
+import 'package:flutter_github_search/utils/provider_scope.dart';
 import 'package:flutter_github_search/utils/route.dart';
 import 'package:flutter_github_search/utils/exceptions/api_exceptions.dart';
 import 'package:flutter_github_search/utils/exceptions/base.dart';

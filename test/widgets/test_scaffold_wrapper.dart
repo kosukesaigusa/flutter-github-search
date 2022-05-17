@@ -23,10 +23,8 @@ class TestScaffoldWrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RootWidget(
-      child: ProviderScope(
-        overrides: overrides,
-        child: TestApp(child: child),
-      ),
+      overrides: overrides,
+      widget: TestApp(child: child),
     );
   }
 }

@@ -1,17 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+import '../../utils/provider_scope.dart';
 
 /// runApp() の引数にするべき
 /// アプリケーションのルートのウィジェット
 class RootWidget extends StatefulWidget {
   const RootWidget({
     super.key,
-    required this.child,
+    required this.widget,
+    required this.overrides,
   });
 
-  final Widget child;
+  final Widget widget;
+  final List<Override> overrides;
 
-  static void restart(BuildContext context) {
-    context.findAncestorStateOfType<_RootWidgetState>()?.restart();
+  static Future<void> restart(BuildContext context) async {
+    // アプリの再起動に際して、ProviderScope の overrides を再度やり直す
+    final overrides = await providerScopeOverrides;
+    // ignore: use_build_context_synchronously
+    context.findAncestorStateOfType<_RootWidgetState>()!.restart(overrides);
   }
 
   @override
@@ -19,19 +27,27 @@ class RootWidget extends StatefulWidget {
 }
 
 class _RootWidgetState extends State<RootWidget> {
-  Key key = UniqueKey();
+  Key _key = UniqueKey();
+  List<Override> _overrides = [];
 
-  void restart() {
+  void restart(List<Override> overrides) {
     setState(() {
-      key = UniqueKey();
+      _key = UniqueKey();
+      _overrides = overrides;
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return KeyedSubtree(
-      key: key,
-      child: widget.child,
+      key: _key,
+      child: ProviderScope(
+        // ProviderScope の overrides したい Provider やその値を列挙する。
+        // 起動時に一回インスタンス化したキャッシュを使いませせるようにすることで、
+        // それ以降 await なしでアクセスしたいときなどに便利。
+        overrides: _overrides.isEmpty ? widget.overrides : _overrides,
+        child: widget.widget,
+      ),
     );
   }
 }
