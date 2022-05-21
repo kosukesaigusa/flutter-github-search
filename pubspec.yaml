@@ -10,7 +10,7 @@ environment:
 
 dependencies:
   cached_network_image:
-  connectivity_plus:
+  connectivity_plus: 2.3.0
   cookie_jar:
   cupertino_icons:
   dio:
@@ -26,7 +26,7 @@ dependencies:
   freezed_annotation:
   gap:
   go_router:
-  hooks_riverpod: 2.0.0-dev.7
+  hooks_riverpod: 2.0.0-dev.8
   intl:
   json_annotation:
   package_info_plus:
