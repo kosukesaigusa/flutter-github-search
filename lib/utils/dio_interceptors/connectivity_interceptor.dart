@@ -8,7 +8,7 @@ class ConnectivityInterceptor extends Interceptor {
   ConnectivityInterceptor();
 
   @override
-  Future onRequest(
+  Future<void> onRequest(
     RequestOptions options,
     RequestInterceptorHandler handler,
   ) async {

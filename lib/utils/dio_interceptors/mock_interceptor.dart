@@ -7,7 +7,7 @@ import 'package:flutter/services.dart';
 /// HTTP リクエストのインターセプタ。
 class MockInterceptor extends Interceptor {
   @override
-  Future onRequest(
+  Future<void> onRequest(
     RequestOptions options,
     RequestInterceptorHandler handler,
   ) async {

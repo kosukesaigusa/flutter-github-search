@@ -6,10 +6,10 @@ import 'package:flutter/material.dart';
 /// HTTP リクエストをインターセプトして行いたい処理などを行う
 class RequestInterceptor extends Interceptor {
   @override
-  Future onRequest(
+  void onRequest(
     RequestOptions options,
     RequestInterceptorHandler handler,
-  ) async {
+  ) {
     debugPrint('*** Request ***');
     _printCurlCommand(options);
     super.onRequest(options, handler);

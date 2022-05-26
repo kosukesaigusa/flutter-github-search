@@ -9,10 +9,10 @@ class HeaderInterceptor extends Interceptor {
   String? overwriteUrl;
 
   @override
-  Future onRequest(
+  void onRequest(
     RequestOptions options,
     RequestInterceptorHandler handler,
-  ) async {
+  ) {
     // Referer や Origin など、Dio 経由のすべてのリクエストヘッダーに付加したい
     // キー・バリューを追加する。
     options.headers[referrer] = overwriteUrl ?? options.baseUrl;
