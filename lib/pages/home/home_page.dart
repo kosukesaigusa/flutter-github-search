@@ -75,7 +75,7 @@ class HomePage extends HookConsumerWidget {
             ElevatedButton(
               key: const ValueKey('SnackBar'),
               onPressed: () =>
-                  ref.watch(scaffoldMessengerServiceProvider).showSnackBar('A SnackBar is shown.'),
+                  ref.read(scaffoldMessengerServiceProvider).showSnackBar('A SnackBar is shown.'),
               child: const Text('Show SnackBar'),
             ),
           ],

@@ -22,7 +22,7 @@ class SecondPage extends HookConsumerWidget {
             const Gap(16),
             ElevatedButton(
               onPressed: () =>
-                  ref.watch(scaffoldMessengerServiceProvider).showSnackBar('A SnackBar is shown.'),
+                  ref.read(scaffoldMessengerServiceProvider).showSnackBar('A SnackBar is shown.'),
               child: const Text('Show SnackBar'),
             ),
           ],
